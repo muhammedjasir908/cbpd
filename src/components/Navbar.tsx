@@ -1,0 +1,270 @@
+"use client";
+
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import TiltCard from "@/components/TiltCard";
+
+export default function Navbar() {
+  const [scrolled, setScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [programsOpen, setProgramsOpen] = useState(false);
+  const [activeCategory, setActiveCategory] = useState(0);
+  
+  // Mobile accordion states
+  const [mobileProgramsOpen, setMobileProgramsOpen] = useState(false);
+  const [mobileActiveCategory, setMobileActiveCategory] = useState<number | null>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const programData = [
+    { title: "Business", icon: "💼", subs: ["MBA Essentials", "Corporate Strategy & Leadership", "Business Ethics", "Organizational Behavior", "Entrepreneurship Fundamentals"] },
+    { title: "Construction", icon: "🏗️", subs: ["Project Management for Construction", "Site Safety Fundamentals", "Structural Planning", "Sustainable Building Methods"] },
+    { title: "Design", icon: "🎨", subs: ["UI/UX Masterclass", "Graphic & Layout Design", "Interior Space Planning", "Product Prototype Design", "Design Thinking"] },
+    { title: "Education", icon: "🎓", subs: ["Train the Trainer", "Digital & Distance Learning", "Special Education Needs", "Curriculum Development"] },
+    { title: "Energy", icon: "⚡", subs: ["Renewable Energy Sources", "Oil & Gas Management", "Solar Technology Fundamentals", "Energy Trading Policies"] },
+    { title: "Engineering", icon: "⚙️", subs: ["Mechanical Systems", "Electrical Engineering Basics", "Civil Planning & Infrastructure", "Mechatronics"] },
+    { title: "Finance", icon: "📈", subs: ["Accounting Principles", "Investment Strategies", "Risk Management & Compliance", "Corporate Finance"] },
+    { title: "Fire & Safety", icon: "🔥", subs: ["Fire Prevention Systems", "Emergency Response Tactics", "Occupational Hazard Control", "Safety Regulation Auditing"] },
+    { title: "Healthcare & Medical", icon: "🏥", subs: ["Nursing Administration", "Medical Billing & Coding", "Clinical Care Leadership", "Healthcare Operations"] },
+    { title: "Hospitality", icon: "🏨", subs: ["Hotel & Resort Management", "Culinary Arts & Services", "Guest Experience Optimization", "Event Coordination"] },
+    { title: "Human Resources", icon: "👥", subs: ["Talent Acquisition", "Payroll & Compliance Systems", "Employee Relations", "Performance Management"] },
+    { title: "Information Technology", icon: "💻", subs: ["Full-Stack Software Development", "Cybersecurity Protocols", "Cloud Architecture AWS/Azure", "Data Engineering"] },
+    { title: "International Studies", icon: "🌍", subs: ["Global Political Economics", "Cross-Cultural Communication", "International Trade Laws", "Diplomatic Relations"] },
+    { title: "Marine", icon: "⚓", subs: ["Oceanography & Marine Biology", "Maritime Logistics & Law", "Naval Architecture basics", "Offshore Operations"] },
+    { title: "Media", icon: "🎥", subs: ["Digital Journalism", "Broadcasting Techniques", "Video Production & Editing", "Mass Communication Strategies"] },
+    { title: "Science", icon: "🔬", subs: ["Biotechnology Fundamentals", "Applied Chemistry", "Environmental Tech Solutions", "Laboratory Data Analysis"] },
+    { title: "Security", icon: "🛡️", subs: ["Cyber Defense Strategies", "Physical Facility Security", "Intelligence & Threat Analysis", "CCTV & Surveillance Ops"] },
+    { title: "Social Care", icon: "🤝", subs: ["Youth Counseling & Development", "Elderly Care Administration", "Community Outreach & Support", "Child Welfare Programs"] },
+    { title: "Sport", icon: "⚽", subs: ["Sports Management & Economics", "Athletic Training Principles", "Coaching Methodologies", "Sport Psychology"] },
+    { title: "Telecommunications", icon: "📡", subs: ["Network Topologies", "5G Infrastructure Planning", "Satellite Communications", "Fiber Optics Deployment"] },
+    { title: "Tourism", icon: "✈️", subs: ["Travel Agency Operations", "Ecotourism Development", "Destination Management", "Cultural Heritage Travel"] },
+    { title: "Transport", icon: "🚆", subs: ["Logistics & Fleet Ops", "Supply Chain Management", "Aviation Basics & Guidelines", "Railway Network Operations"] },
+  ];
+
+  let timeoutId: NodeJS.Timeout;
+
+  const handleMouseEnter = () => {
+    clearTimeout(timeoutId);
+    setProgramsOpen(true);
+  };
+
+  const handleMouseLeave = () => {
+    timeoutId = setTimeout(() => {
+      setProgramsOpen(false);
+    }, 200);
+  };
+
+  return (
+    <header
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+        scrolled || programsOpen ? "glass-dark bg-primary-900/95 shadow-xl border-b border-white/10" : "bg-transparent py-3"
+      }`}
+      onMouseLeave={handleMouseLeave}
+    >
+      <div className={`container mx-auto px-6 md:px-12 flex justify-between items-center transition-all duration-300 ${scrolled || programsOpen ? 'py-3' : 'py-5'}`}>
+        
+        {/* Logo */}
+        <Link href="/" className="flex items-center gap-3 group">
+          <img src="https://www.cbpd.co.uk/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FCBPD_LOGO.7c42c792.png&w=256&q=75" alt="CBPD Logo" className="h-10 md:h-12 w-auto group-hover:scale-105 transition-transform bg-white rounded p-1" />
+          <span className={`text-xl md:text-2xl font-black tracking-widest transition-colors ${scrolled || programsOpen ? 'text-brand-blue dark:text-white' : 'text-white'}`}>
+            CBPD
+          </span>
+        </Link>
+
+        {/* Desktop Nav */}
+        <nav className="hidden md:flex items-center gap-8 h-full">
+          {["Home", "About Us"].map((item) => (
+            <Link
+              key={item}
+              href={`/${item.toLowerCase().replace(" ", "-")}`}
+              className="text-sm font-medium text-slate-200 hover:text-accent-gold transition-colors relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-accent-gold after:transition-all hover:after:w-full pb-1"
+            >
+              {item}
+            </Link>
+          ))}
+
+          {/* Programs Hover Trigger */}
+          <div 
+            className="relative h-full py-4 flex items-center cursor-pointer"
+            onMouseEnter={handleMouseEnter}
+          >
+            <span className={`text-sm font-medium transition-colors relative after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:bg-accent-gold after:transition-all pb-1 flex items-center gap-1 ${programsOpen ? 'text-accent-gold after:w-full' : 'text-slate-200 hover:text-accent-gold after:w-0 hover:after:w-full'}`}>
+              Programs
+              <svg className={`w-4 h-4 transition-transform duration-300 ${programsOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+            </span>
+          </div>
+
+          {["Partner", "Verifications", "Contact"].map((item) => (
+            <Link
+              key={item}
+              href={`/${item.toLowerCase().replace(" ", "-")}`}
+              className="text-sm font-medium text-slate-200 hover:text-accent-gold transition-colors relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-accent-gold after:transition-all hover:after:w-full pb-1"
+            >
+              {item}
+            </Link>
+          ))}
+
+          <Link
+            href="/login"
+            className="px-6 py-2.5 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-white font-medium transition-all hover:-translate-y-0.5 hover:shadow-lg hover:shadow-accent-gold/20"
+          >
+            Register / Login
+          </Link>
+        </nav>
+
+        {/* Mobile Toggle */}
+        <button 
+          className="md:hidden text-white p-2"
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+        >
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            {mobileMenuOpen ? (
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            ) : (
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+            )}
+          </svg>
+        </button>
+      </div>
+
+      {/* Full Screen Desktop Mega Menu (Split-Pane Layout) */}
+      <div 
+        className={`hidden md:block absolute left-0 w-full overflow-hidden transition-all duration-500 ease-in-out bg-[#0a0f1c] border-t border-white/5 shadow-[0_20px_50px_rgba(0,0,0,0.5)] ${programsOpen ? 'max-h-[700px] opacity-100 visible' : 'max-h-0 opacity-0 invisible'}`}
+        onMouseEnter={handleMouseEnter}
+      >
+        <div className="container mx-auto px-6 md:px-12 flex h-[500px]">
+          
+          {/* Left Sidebar: 22 Faculties/Disciplines */}
+          <div className="w-1/4 h-full overflow-y-auto py-6 pr-4 border-r border-white/10 custom-scrollbar-mega hide-scrollbars">
+            <style jsx>{`
+              .hide-scrollbars::-webkit-scrollbar { width: 4px; }
+              .hide-scrollbars::-webkit-scrollbar-track { background: transparent; }
+              .hide-scrollbars::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 10px; }
+            `}</style>
+            <div className="space-y-1">
+              {programData.map((prog, idx) => (
+                <button
+                  key={idx}
+                  className={`w-full text-left px-4 py-3 rounded-xl transition-all duration-200 flex items-center justify-between group ${activeCategory === idx ? 'bg-white/10 text-white font-bold border-l-2 border-accent-gold' : 'text-slate-400 hover:bg-white/5 hover:text-white border-l-2 border-transparent'}`}
+                  onMouseEnter={() => setActiveCategory(idx)}
+                >
+                  <div className="flex items-center gap-3">
+                    <span className="text-xl opacity-80 group-hover:opacity-100">{prog.icon}</span>
+                    <span className="text-sm tracking-wide">{prog.title}</span>
+                  </div>
+                  <svg className={`w-4 h-4 transition-transform ${activeCategory === idx ? 'translate-x-1 text-accent-gold opacity-100' : 'opacity-0 -translate-x-2 group-hover:opacity-50 group-hover:translate-x-0'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Right Content Area: Sub-programs display */}
+          <div className="w-3/4 h-full p-10 overflow-y-auto">
+            <div className="flex items-center gap-6 mb-10 border-b border-white/10 pb-6">
+              <div className="w-16 h-16 rounded-2xl bg-white/10 flex items-center justify-center text-3xl shadow-inner border border-white/5">
+                {programData[activeCategory].icon}
+              </div>
+              <div>
+                <h2 className="text-3xl font-bold text-white mb-2">{programData[activeCategory].title} <span className="text-brand-red">Programs</span></h2>
+                <p className="text-slate-400 text-sm">Explore specialized certifications within this discipline.</p>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 gap-x-12 gap-y-6">
+              {programData[activeCategory].subs.map((sub, i) => (
+                <TiltCard key={i} sensitivity={5}>
+                  <Link href={`/programs`} className="block px-6 py-5 rounded-2xl bg-white/5 border border-white/5 hover:bg-white/10 hover:border-brand-red/30 transition-all duration-300 group">
+                    <h3 className="text-white font-bold mb-2 group-hover:text-accent-gold transition-colors">{sub}</h3>
+                    <p className="text-sm text-slate-400">Comprehensive curriculum designed for modern industry standards.</p>
+                  </Link>
+                </TiltCard>
+              ))}
+              
+              {/* "View All" placeholder card */}
+              <TiltCard sensitivity={5}>
+                <Link href={`/programs`} className="block px-6 py-5 rounded-2xl border border-dashed border-white/20 hover:border-accent-gold/50 bg-transparent hover:bg-accent-gold/5 transition-all duration-300 group flex items-center justify-center h-full min-h-[100px]">
+                  <span className="text-slate-300 font-bold group-hover:text-accent-gold transition-colors flex items-center gap-2">
+                    View All {programData[activeCategory].title} Programs
+                    <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+                  </span>
+                </Link>
+              </TiltCard>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      {/* Mobile Menu */}
+      {mobileMenuOpen && (
+        <div className="md:hidden absolute top-full left-0 w-full glass-dark bg-primary-900/95 border-t border-white/10 py-4 flex flex-col px-6 shadow-2xl max-h-[85vh] overflow-y-auto custom-scrollbar-mega pb-10">
+           {["Home", "About Us"].map((item) => (
+            <Link key={item} href={`/${item.toLowerCase().replace(" ", "-")}`} className="text-white hover:text-accent-gold py-3 border-b border-white/5 font-medium" onClick={() => setMobileMenuOpen(false)}>{item}</Link>
+          ))}
+
+          {/* Programs Accordion Container */}
+          <div className="py-1 border-b border-white/5">
+            <button 
+              className="w-full flex items-center justify-between py-2 text-white font-medium focus:outline-none" 
+              onClick={() => setMobileProgramsOpen(!mobileProgramsOpen)}
+            >
+              Programs
+              <svg className={`w-5 h-5 transition-transform duration-300 ${mobileProgramsOpen ? 'rotate-180 text-accent-gold' : 'text-slate-400'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+            </button>
+            
+            {/* Multi-level Dropdown for Mobile Programs */}
+            <div className={`overflow-hidden transition-all duration-500 ease-in-out ${mobileProgramsOpen ? 'max-h-[3000px] mt-2 mb-4 opacity-100' : 'max-h-0 opacity-0'}`}>
+              <div className="bg-white/5 rounded-2xl p-2 flex flex-col gap-1 border border-white/10">
+                {programData.map((prog, idx) => (
+                  <div key={idx} className="flex flex-col">
+                    <button 
+                      className={`w-full text-left flex items-center justify-between p-3 rounded-xl transition-all duration-300 focus:outline-none ${mobileActiveCategory === idx ? 'bg-white/10 text-accent-gold font-bold shadow-sm' : 'text-slate-300 hover:bg-white/5 hover:text-white'}`}
+                      onClick={() => setMobileActiveCategory(mobileActiveCategory === idx ? null : idx)}
+                    >
+                      <div className="flex items-center gap-3">
+                        <span className="text-xl bg-primary-900/50 p-1.5 rounded-lg border border-white/5">{prog.icon}</span>
+                        <span className="text-sm tracking-wide">{prog.title}</span>
+                      </div>
+                      <svg className={`w-4 h-4 transition-transform duration-300 ${mobileActiveCategory === idx ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+                    </button>
+                    
+                    {/* Inner Sub-programs Dropdown */}
+                    <div className={`overflow-hidden transition-all duration-300 ease-in-out ${mobileActiveCategory === idx ? 'max-h-[500px] opacity-100 mt-2 mb-3' : 'max-h-0 opacity-0'}`}>
+                      <div className="pl-12 pr-4 flex flex-col gap-4 py-2 border-l border-white/10 ml-6">
+                        {prog.subs.map((sub, i) => (
+                          <Link 
+                            key={i} 
+                            href="/programs" 
+                            className="text-xs text-slate-400 hover:text-accent-gold transition-colors flex items-start gap-2"
+                            onClick={() => { setMobileProgramsOpen(false); setMobileMenuOpen(false); }}
+                          >
+                            <span className="text-brand-red opacity-80 mt-0.5 text-[0.6rem]">●</span>
+                            <span className="leading-tight">{sub}</span>
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {["Partner", "Verifications", "Contact"].map((item) => (
+            <Link key={item} href={`/${item.toLowerCase().replace(" ", "-")}`} className="text-white hover:text-accent-gold py-3 border-b border-white/5 font-medium" onClick={() => setMobileMenuOpen(false)}>{item}</Link>
+          ))}
+           
+          <Link href="/login" className="mt-8 text-center px-6 py-3.5 rounded-full bg-accent-gold text-primary-900 font-bold hover:bg-white hover:shadow-[0_0_20px_rgba(255,255,255,0.4)] transition-all">
+            Register / Login
+          </Link>
+        </div>
+      )}
+    </header>
+  );
+}
