@@ -13,7 +13,7 @@ export default function Hero() {
           playsInline
           className="object-cover w-full h-full opacity-60"
         >
-          <source src="/hero-video-comp.mp4" type="video/mp4" />
+          <source src="./hero-video-comp.mp4" type="video/mp4" />
         </video>
         {/* Dark opacity layer as requested */}
         <div className="absolute inset-0 bg-black/60 z-0"></div>
