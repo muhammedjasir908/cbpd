@@ -32,14 +32,14 @@ export default function AboutUs() {
             className="relative z-10 w-full rounded-3xl object-cover object-center shadow-2xl h-[400px] hover:scale-[1.02] transition-transform duration-500"
           />
           <div className="absolute -bottom-6 -right-6 bg-brand-red text-white p-6 rounded-2xl z-20 shadow-xl animate-float">
-            <p className="text-3xl font-bold">10+</p>
-            <p className="font-semibold text-sm">Years of Excellence</p>
+            <p className="text-xl font-bold">Proven</p>
+            <p className="font-semibold text-sm">Excellence</p>
           </div>
         </div>
 
         <div className={`md:w-1/2 transition-all duration-1000 delay-300 ${isVisible ? 'translate-x-0 opacity-100' : 'translate-x-12 opacity-0'}`}>
           <h2 className="text-3xl md:text-5xl font-bold text-slate-800 dark:text-white mb-6">
-            Over <span className="text-brand-blue dark:text-brand-red">10+ Years</span> in Education Skill Development Solutions
+            <span className="text-brand-blue dark:text-brand-red">Leaders</span> in Education Skill Development Solutions
           </h2>
           <p className="text-lg text-slate-600 dark:text-slate-300 mb-6 leading-relaxed">
             A global perspective, we empower learners to make an impact anywhere in the world. We set the benchmark for success by making excellence the foundation of everything we do.

@@ -1,9 +1,10 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import TiltCard from "@/components/TiltCard";
 import { programData } from "@/data/programs";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -23,17 +24,15 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-
-
-  let timeoutId: NodeJS.Timeout;
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const handleMouseEnter = () => {
-    clearTimeout(timeoutId);
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
     setProgramsOpen(true);
   };
 
   const handleMouseLeave = () => {
-    timeoutId = setTimeout(() => {
+    timeoutRef.current = setTimeout(() => {
       setProgramsOpen(false);
     }, 200);
   };
@@ -83,7 +82,10 @@ export default function Navbar() {
           </Link>
 
           {[
-            { name: "Partner", path: "/partner" },
+            { name: "Become a Partner", path: "/partner" },
+            { name: "Testimonials", path: "/testimonials" },
+            { name: "FAQs", path: "/faq" },
+            { name: "Blogs", path: "/blog" },
             { name: "Verifications", path: "/verifications" },
             { name: "Contact", path: "/contact" },
           ].map((item) => (
@@ -96,6 +98,7 @@ export default function Navbar() {
             </Link>
           ))}
 
+          <ThemeToggle />
           <Link
             href="/login"
             className="px-6 py-2.5 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-white font-medium transition-all hover:-translate-y-0.5 hover:shadow-lg hover:shadow-accent-gold/20"
@@ -246,7 +249,10 @@ export default function Navbar() {
           </div>
 
           {[
-            { name: "Partner", path: "/partner" },
+            { name: "Become a Partner", path: "/partner" },
+            { name: "Testimonials", path: "/testimonials" },
+            { name: "FAQs", path: "/faq" },
+            { name: "Blogs", path: "/blog" },
             { name: "Verifications", path: "/verifications" },
             { name: "Contact", path: "/contact" },
           ].map((item) => (

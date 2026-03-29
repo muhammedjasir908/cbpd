@@ -29,7 +29,6 @@ export default function Stats() {
     { number: "80+", label: "Global Partners" },
     { number: "100%", label: "Satisfaction Rate" },
     { number: "100+", label: "Programs Offered" },
-    { number: "10+", label: "Years Experience" },
   ];
 
   return (
@@ -44,7 +43,7 @@ export default function Stats() {
             </p>
           </div>
           
-          <div className="md:w-2/3 grid grid-cols-2 md:grid-cols-5 gap-6">
+          <div className="md:w-2/3 grid grid-cols-2 md:grid-cols-4 gap-6">
             {stats.map((stat, index) => (
               <div 
                 key={index} 
