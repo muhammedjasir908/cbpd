@@ -1,7 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import TiltCard from "@/components/TiltCard";
+import { programData } from "@/data/programs";
 
 export default function ProgramsPage() {
   const [expandedCards, setExpandedCards] = useState<Record<number, boolean>>({});
@@ -13,30 +15,7 @@ export default function ProgramsPage() {
     }));
   };
 
-  const programData = [
-    { title: "Business", icon: "💼", subs: ["MBA Essentials", "Corporate Strategy & Leadership", "Business Ethics", "Organizational Behavior"] },
-    { title: "Construction", icon: "🏗️", subs: ["Project Management for Construction", "Site Safety Fundamentals", "Structural Planning", "Sustainable Building"] },
-    { title: "Design", icon: "🎨", subs: ["UI/UX Masterclass", "Graphic & Layout Design", "Interior Space Planning", "Product Prototype Design"] },
-    { title: "Education", icon: "🎓", subs: ["Train the Trainer", "Digital & Distance Learning", "Special Education Needs", "Curriculum Development"] },
-    { title: "Energy", icon: "⚡", subs: ["Renewable Energy Sources", "Oil & Gas Management", "Solar Technology Fundamentals", "Energy Trading Policies"] },
-    { title: "Engineering", icon: "⚙️", subs: ["Mechanical Systems", "Electrical Engineering Basics", "Civil Planning & Infrastructure", "Mechatronics"] },
-    { title: "Finance", icon: "📈", subs: ["Accounting Principles", "Investment Strategies", "Risk Management & Compliance", "Corporate Finance"] },
-    { title: "Fire & Safety", icon: "🔥", subs: ["Fire Prevention Systems", "Emergency Response Tactics", "Occupational Hazard Control", "Safety Auditing"] },
-    { title: "Healthcare & Medical", icon: "🏥", subs: ["Nursing Administration", "Medical Billing & Coding", "Clinical Care Leadership", "Healthcare Operations"] },
-    { title: "Hospitality", icon: "🏨", subs: ["Hotel & Resort Management", "Culinary Arts & Services", "Guest Experience Optimization", "Event Coordination"] },
-    { title: "Human Resources", icon: "👥", subs: ["Talent Acquisition", "Payroll & Compliance Systems", "Employee Relations", "Performance Management"] },
-    { title: "Information Technology", icon: "💻", subs: ["Full-Stack Software Development", "Cybersecurity Protocols", "Cloud Architecture AWS/Azure", "Data Engineering"] },
-    { title: "International Studies", icon: "🌍", subs: ["Global Political Economics", "Cross-Cultural Communication", "International Trade Laws", "Diplomatic Relations"] },
-    { title: "Marine", icon: "⚓", subs: ["Oceanography & Marine Biology", "Maritime Logistics & Law", "Naval Architecture basics", "Offshore Operations"] },
-    { title: "Media", icon: "🎥", subs: ["Digital Journalism", "Broadcasting Techniques", "Video Production & Editing", "Mass Communication Strategies"] },
-    { title: "Science", icon: "🔬", subs: ["Biotechnology Fundamentals", "Applied Chemistry", "Environmental Tech Solutions", "Laboratory Data Analysis"] },
-    { title: "Security", icon: "🛡️", subs: ["Cyber Defense Strategies", "Physical Facility Security", "Intelligence & Threat Analysis", "CCTV & Surveillance Ops"] },
-    { title: "Social Care", icon: "🤝", subs: ["Youth Counseling & Development", "Elderly Care Administration", "Community Outreach & Support", "Child Welfare Programs"] },
-    { title: "Sport", icon: "⚽", subs: ["Sports Management & Economics", "Athletic Training Principles", "Coaching Methodologies", "Sport Psychology"] },
-    { title: "Telecommunications", icon: "📡", subs: ["Network Topologies", "5G Infrastructure Planning", "Satellite Communications", "Fiber Optics Deployment"] },
-    { title: "Tourism", icon: "✈️", subs: ["Travel Agency Operations", "Ecotourism Development", "Destination Management", "Cultural Heritage Travel"] },
-    { title: "Transport", icon: "🚆", subs: ["Logistics & Fleet Ops", "Supply Chain Management", "Aviation Basics & Guidelines", "Railway Network Operations"] },
-  ];
+
 
   return (
     <main className="min-h-screen bg-slate-50 dark:bg-[#0a0f1c]">
@@ -103,14 +82,14 @@ export default function ProgramsPage() {
                       
                       {/* Expandable Sub-Programs List */}
                       <div className={`transition-all duration-500 overflow-hidden ease-in-out w-full ${expandedCards[index] ? 'max-h-[500px] mb-8 opacity-100' : 'max-h-0 mb-0 opacity-0'}`}>
-                        <div className="space-y-4 pt-4 border-t border-slate-100 dark:border-primary-700">
+                        <div className="space-y-2 pt-4 border-t border-slate-100 dark:border-primary-700">
                           {prog.subs.map((sub, i) => (
-                            <div key={i} className="flex items-start gap-3">
-                              <div className="mt-1 w-5 h-5 rounded-full bg-brand-blue/10 dark:bg-brand-red/10 flex items-center justify-center shrink-0">
-                                <span className="text-brand-blue dark:text-brand-red text-xs">✓</span>
+                            <Link href={`/programs/${sub.slug}`} key={i} className="flex items-start gap-3 group/sub cursor-pointer hover:bg-slate-50 dark:hover:bg-primary-800 p-2 rounded-lg transition-colors">
+                              <div className="mt-1 w-5 h-5 rounded-full bg-brand-blue/10 dark:bg-brand-red/10 flex items-center justify-center shrink-0 group-hover/sub:bg-brand-blue transition-colors">
+                                <span className="text-brand-blue dark:text-brand-red text-xs group-hover/sub:text-white transition-colors">✓</span>
                               </div>
-                              <span className="text-slate-600 dark:text-slate-300 font-medium">{sub}</span>
-                            </div>
+                              <span className="text-slate-600 dark:text-slate-300 font-medium group-hover/sub:text-brand-blue dark:group-hover/sub:text-brand-red transition-colors">{sub.title}</span>
+                            </Link>
                           ))}
                         </div>
                       </div>

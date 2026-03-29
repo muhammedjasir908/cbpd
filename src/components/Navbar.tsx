@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import TiltCard from "@/components/TiltCard";
+import { programData } from "@/data/programs";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -22,30 +23,7 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const programData = [
-    { title: "Business", icon: "💼", subs: ["MBA Essentials", "Corporate Strategy & Leadership", "Business Ethics", "Organizational Behavior", "Entrepreneurship Fundamentals"] },
-    { title: "Construction", icon: "🏗️", subs: ["Project Management for Construction", "Site Safety Fundamentals", "Structural Planning", "Sustainable Building Methods"] },
-    { title: "Design", icon: "🎨", subs: ["UI/UX Masterclass", "Graphic & Layout Design", "Interior Space Planning", "Product Prototype Design", "Design Thinking"] },
-    { title: "Education", icon: "🎓", subs: ["Train the Trainer", "Digital & Distance Learning", "Special Education Needs", "Curriculum Development"] },
-    { title: "Energy", icon: "⚡", subs: ["Renewable Energy Sources", "Oil & Gas Management", "Solar Technology Fundamentals", "Energy Trading Policies"] },
-    { title: "Engineering", icon: "⚙️", subs: ["Mechanical Systems", "Electrical Engineering Basics", "Civil Planning & Infrastructure", "Mechatronics"] },
-    { title: "Finance", icon: "📈", subs: ["Accounting Principles", "Investment Strategies", "Risk Management & Compliance", "Corporate Finance"] },
-    { title: "Fire & Safety", icon: "🔥", subs: ["Fire Prevention Systems", "Emergency Response Tactics", "Occupational Hazard Control", "Safety Regulation Auditing"] },
-    { title: "Healthcare & Medical", icon: "🏥", subs: ["Nursing Administration", "Medical Billing & Coding", "Clinical Care Leadership", "Healthcare Operations"] },
-    { title: "Hospitality", icon: "🏨", subs: ["Hotel & Resort Management", "Culinary Arts & Services", "Guest Experience Optimization", "Event Coordination"] },
-    { title: "Human Resources", icon: "👥", subs: ["Talent Acquisition", "Payroll & Compliance Systems", "Employee Relations", "Performance Management"] },
-    { title: "Information Technology", icon: "💻", subs: ["Full-Stack Software Development", "Cybersecurity Protocols", "Cloud Architecture AWS/Azure", "Data Engineering"] },
-    { title: "International Studies", icon: "🌍", subs: ["Global Political Economics", "Cross-Cultural Communication", "International Trade Laws", "Diplomatic Relations"] },
-    { title: "Marine", icon: "⚓", subs: ["Oceanography & Marine Biology", "Maritime Logistics & Law", "Naval Architecture basics", "Offshore Operations"] },
-    { title: "Media", icon: "🎥", subs: ["Digital Journalism", "Broadcasting Techniques", "Video Production & Editing", "Mass Communication Strategies"] },
-    { title: "Science", icon: "🔬", subs: ["Biotechnology Fundamentals", "Applied Chemistry", "Environmental Tech Solutions", "Laboratory Data Analysis"] },
-    { title: "Security", icon: "🛡️", subs: ["Cyber Defense Strategies", "Physical Facility Security", "Intelligence & Threat Analysis", "CCTV & Surveillance Ops"] },
-    { title: "Social Care", icon: "🤝", subs: ["Youth Counseling & Development", "Elderly Care Administration", "Community Outreach & Support", "Child Welfare Programs"] },
-    { title: "Sport", icon: "⚽", subs: ["Sports Management & Economics", "Athletic Training Principles", "Coaching Methodologies", "Sport Psychology"] },
-    { title: "Telecommunications", icon: "📡", subs: ["Network Topologies", "5G Infrastructure Planning", "Satellite Communications", "Fiber Optics Deployment"] },
-    { title: "Tourism", icon: "✈️", subs: ["Travel Agency Operations", "Ecotourism Development", "Destination Management", "Cultural Heritage Travel"] },
-    { title: "Transport", icon: "🚆", subs: ["Logistics & Fleet Ops", "Supply Chain Management", "Aviation Basics & Guidelines", "Railway Network Operations"] },
-  ];
+
 
   let timeoutId: NodeJS.Timeout;
 
@@ -70,7 +48,7 @@ export default function Navbar() {
       <div className={`container mx-auto px-6 md:px-12 flex justify-between items-center transition-all duration-300 ${scrolled || programsOpen ? 'py-3' : 'py-5'}`}>
         
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-3 group">
+        <Link href="/" className="flex items-center gap-3 group" onClick={() => setMobileMenuOpen(false)}>
           <img src="https://www.cbpd.co.uk/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FCBPD_LOGO.7c42c792.png&w=256&q=75" alt="CBPD Logo" className="h-10 md:h-12 w-auto group-hover:scale-105 transition-transform bg-white rounded p-1" />
           <span className={`text-xl md:text-2xl font-black tracking-widest transition-colors ${scrolled || programsOpen ? 'text-brand-blue dark:text-white' : 'text-white'}`}>
             CBPD
@@ -79,18 +57,22 @@ export default function Navbar() {
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-8 h-full">
-          {["Home", "About Us"].map((item) => (
+          {[
+            { name: "Home", path: "/" },
+            { name: "About Us", path: "/about" },
+          ].map((item) => (
             <Link
-              key={item}
-              href={`/${item.toLowerCase().replace(" ", "-")}`}
+              key={item.name}
+              href={item.path}
               className="text-sm font-medium text-slate-200 hover:text-accent-gold transition-colors relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-accent-gold after:transition-all hover:after:w-full pb-1"
             >
-              {item}
+              {item.name}
             </Link>
           ))}
 
           {/* Programs Hover Trigger */}
-          <div 
+          <Link
+            href="/programs" 
             className="relative h-full py-4 flex items-center cursor-pointer"
             onMouseEnter={handleMouseEnter}
           >
@@ -98,15 +80,19 @@ export default function Navbar() {
               Programs
               <svg className={`w-4 h-4 transition-transform duration-300 ${programsOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
             </span>
-          </div>
+          </Link>
 
-          {["Partner", "Verifications", "Contact"].map((item) => (
+          {[
+            { name: "Partner", path: "/partner" },
+            { name: "Verifications", path: "/verifications" },
+            { name: "Contact", path: "/contact" },
+          ].map((item) => (
             <Link
-              key={item}
-              href={`/${item.toLowerCase().replace(" ", "-")}`}
+              key={item.name}
+              href={item.path}
               className="text-sm font-medium text-slate-200 hover:text-accent-gold transition-colors relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-accent-gold after:transition-all hover:after:w-full pb-1"
             >
-              {item}
+              {item.name}
             </Link>
           ))}
 
@@ -179,8 +165,8 @@ export default function Navbar() {
             <div className="grid grid-cols-2 gap-x-12 gap-y-6">
               {programData[activeCategory].subs.map((sub, i) => (
                 <TiltCard key={i} sensitivity={5}>
-                  <Link href={`/programs`} className="block px-6 py-5 rounded-2xl bg-white/5 border border-white/5 hover:bg-white/10 hover:border-brand-red/30 transition-all duration-300 group">
-                    <h3 className="text-white font-bold mb-2 group-hover:text-accent-gold transition-colors">{sub}</h3>
+                  <Link href={`/programs/${sub.slug}`} className="block px-6 py-5 rounded-2xl bg-white/5 border border-white/5 hover:bg-white/10 hover:border-brand-red/30 transition-all duration-300 group">
+                    <h3 className="text-white font-bold mb-2 group-hover:text-accent-gold transition-colors">{sub.title}</h3>
                     <p className="text-sm text-slate-400">Comprehensive curriculum designed for modern industry standards.</p>
                   </Link>
                 </TiltCard>
@@ -204,8 +190,11 @@ export default function Navbar() {
       {/* Mobile Menu */}
       {mobileMenuOpen && (
         <div className="md:hidden absolute top-full left-0 w-full glass-dark bg-primary-900/95 border-t border-white/10 py-4 flex flex-col px-6 shadow-2xl max-h-[85vh] overflow-y-auto custom-scrollbar-mega pb-10">
-           {["Home", "About Us"].map((item) => (
-            <Link key={item} href={`/${item.toLowerCase().replace(" ", "-")}`} className="text-white hover:text-accent-gold py-3 border-b border-white/5 font-medium" onClick={() => setMobileMenuOpen(false)}>{item}</Link>
+           {[
+            { name: "Home", path: "/" },
+            { name: "About Us", path: "/about" },
+          ].map((item) => (
+            <Link key={item.name} href={item.path} className="text-white hover:text-accent-gold py-3 border-b border-white/5 font-medium" onClick={() => setMobileMenuOpen(false)}>{item.name}</Link>
           ))}
 
           {/* Programs Accordion Container */}
@@ -240,12 +229,12 @@ export default function Navbar() {
                         {prog.subs.map((sub, i) => (
                           <Link 
                             key={i} 
-                            href="/programs" 
+                            href={`/programs/${sub.slug}`} 
                             className="text-xs text-slate-400 hover:text-accent-gold transition-colors flex items-start gap-2"
                             onClick={() => { setMobileProgramsOpen(false); setMobileMenuOpen(false); }}
                           >
                             <span className="text-brand-red opacity-80 mt-0.5 text-[0.6rem]">●</span>
-                            <span className="leading-tight">{sub}</span>
+                            <span className="leading-tight">{sub.title}</span>
                           </Link>
                         ))}
                       </div>
@@ -256,8 +245,12 @@ export default function Navbar() {
             </div>
           </div>
 
-          {["Partner", "Verifications", "Contact"].map((item) => (
-            <Link key={item} href={`/${item.toLowerCase().replace(" ", "-")}`} className="text-white hover:text-accent-gold py-3 border-b border-white/5 font-medium" onClick={() => setMobileMenuOpen(false)}>{item}</Link>
+          {[
+            { name: "Partner", path: "/partner" },
+            { name: "Verifications", path: "/verifications" },
+            { name: "Contact", path: "/contact" },
+          ].map((item) => (
+            <Link key={item.name} href={item.path} className="text-white hover:text-accent-gold py-3 border-b border-white/5 font-medium" onClick={() => setMobileMenuOpen(false)}>{item.name}</Link>
           ))}
            
           <Link href="/login" className="mt-8 text-center px-6 py-3.5 rounded-full bg-accent-gold text-primary-900 font-bold hover:bg-white hover:shadow-[0_0_20px_rgba(255,255,255,0.4)] transition-all">

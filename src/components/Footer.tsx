@@ -18,9 +18,14 @@ export default function Footer() {
           <div>
             <h4 className="text-white font-semibold mb-6 uppercase tracking-wider text-sm">Quick Links</h4>
             <ul className="space-y-3">
-              {['Home', 'About Us', 'Programs', 'Verify Certificate'].map((item) => (
-                <li key={item}>
-                  <Link href="#" className="hover:text-accent-gold transition-colors text-sm font-medium">{item}</Link>
+              {[
+                { name: 'Home', path: '/' },
+                { name: 'About Us', path: '/about' },
+                { name: 'Programs', path: '/programs' },
+                { name: 'Verify Certificate', path: '/verifications' }
+              ].map((item) => (
+                <li key={item.name}>
+                  <Link href={item.path} className="hover:text-accent-gold transition-colors text-sm font-medium">{item.name}</Link>
                 </li>
               ))}
             </ul>
@@ -29,9 +34,14 @@ export default function Footer() {
           <div>
             <h4 className="text-white font-semibold mb-6 uppercase tracking-wider text-sm">Support</h4>
             <ul className="space-y-3">
-              {['Contact Us', 'Become a Partner', 'Privacy Policy', 'Terms of Service'].map((item) => (
-                <li key={item}>
-                  <Link href="#" className="hover:text-accent-gold transition-colors text-sm font-medium">{item}</Link>
+              {[
+                { name: 'Contact Us', path: '/contact' },
+                { name: 'Become a Partner', path: '/partner' },
+                { name: 'Privacy Policy', path: '#' },
+                { name: 'Terms of Service', path: '#' }
+              ].map((item) => (
+                <li key={item.name}>
+                  <Link href={item.path} className="hover:text-accent-gold transition-colors text-sm font-medium">{item.name}</Link>
                 </li>
               ))}
             </ul>

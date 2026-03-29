@@ -1,4 +1,5 @@
 import MagneticButton from "@/components/MagneticButton";
+import Link from "next/link";
 
 export default function Hero() {
   return (
@@ -46,10 +47,10 @@ export default function Hero() {
 
         <div className="flex flex-col sm:flex-row items-center gap-6 animate-[fadeInUp_1.4s_ease-out]">
           <MagneticButton strength={20}>
-            <button className="px-8 py-4 rounded-full bg-brand-red text-white font-bold text-lg hover:bg-white hover:text-brand-red transition-all shadow-[0_0_20px_rgba(220,38,38,0.4)] flex items-center gap-2 group">
+            <Link href="/programs" className="px-8 py-4 rounded-full bg-brand-red text-white font-bold text-lg hover:bg-white hover:text-brand-red transition-all shadow-[0_0_20px_rgba(220,38,38,0.4)] inline-flex items-center gap-2 group">
               Explore Programs
               <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
-            </button>
+            </Link>
           </MagneticButton>
         </div>
       </div>
