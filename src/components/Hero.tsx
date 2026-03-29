@@ -5,17 +5,15 @@ export default function Hero() {
   return (
     <section className="relative h-screen w-full flex items-center justify-center overflow-hidden">
       {/* Video Background */}
-      <div className="absolute inset-0 w-full h-full z-0">
+      <div className="absolute inset-0 w-full h-full z-0 overflow-hidden bg-[#0A192F]">
         <video
           autoPlay
           loop
           muted
           playsInline
-          className="object-cover w-full h-full"
-          poster="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=2070&auto=format&fit=crop"
+          className="object-cover w-full h-full opacity-60"
         >
-          <source src="/hero-video.mp4" type="video/mp4" />
-          {/* Fallback to image if video fails */}
+          <source src="/hero-video-comp.mp4" type="video/mp4" />
         </video>
         {/* Dark opacity layer as requested */}
         <div className="absolute inset-0 bg-black/60 z-0"></div>
