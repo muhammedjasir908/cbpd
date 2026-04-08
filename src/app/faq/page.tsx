@@ -96,7 +96,7 @@ export default function FAQPage() {
 
           <div className="mt-16 text-center">
             <p className="text-slate-600 dark:text-slate-400 mb-6">Still have questions? Tell us about it.</p>
-            <a href="/contact" className="inline-flex px-8 py-4 rounded-full bg-brand-blue text-white font-bold hover:bg-brand-red transition-all shadow-[0_5px_15px_rgba(30,64,175,0.3)] hover:shadow-[0_10px_25px_rgba(220,38,38,0.4)] items-center gap-2 group">
+            <a href="/contact" className="inline-flex px-8 py-4 rounded-full bg-brand-blue text-white font-bold hover:bg-brand-red transition-all shadow-[0_5px_15px_rgba(30,64,175,0.3)] hover:shadow-[0_10px_25px_rgba(194,151,49,0.4)] items-center gap-2 group">
               Contact Support
               <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
             </a>

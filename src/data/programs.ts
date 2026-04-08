@@ -7,40 +7,26 @@ export interface SubProgram {
 export interface ProgramCategory {
   title: string;
   icon: string;
+  image: string;
   subs: SubProgram[];
 }
 
 export const generateSlug = (str: string) => str.toLowerCase().replace(/ & | /g, "-").replace(/[^a-z0-9-]/g, "");
 
-// Raw data array exactly matching prior definitions
+// Raw data array updated exactly to client specifications with premium images
 const rawData = [
-  { title: "Business", icon: "💼", subs: ["MBA Essentials", "Corporate Strategy & Leadership", "Business Ethics", "Organizational Behavior", "Entrepreneurship Fundamentals"] },
-  { title: "Construction", icon: "🏗️", subs: ["Project Management for Construction", "Site Safety Fundamentals", "Structural Planning", "Sustainable Building Methods"] },
-  { title: "Design", icon: "🎨", subs: ["UI/UX Masterclass", "Graphic & Layout Design", "Interior Space Planning", "Product Prototype Design", "Design Thinking"] },
-  { title: "Education", icon: "🎓", subs: ["Train the Trainer", "Digital & Distance Learning", "Special Education Needs", "Curriculum Development"] },
-  { title: "Energy", icon: "⚡", subs: ["Renewable Energy Sources", "Oil & Gas Management", "Solar Technology Fundamentals", "Energy Trading Policies"] },
-  { title: "Engineering", icon: "⚙️", subs: ["Mechanical Systems", "Electrical Engineering Basics", "Civil Planning & Infrastructure", "Mechatronics"] },
-  { title: "Finance", icon: "📈", subs: ["Accounting Principles", "Investment Strategies", "Risk Management & Compliance", "Corporate Finance"] },
-  { title: "Fire & Safety", icon: "🔥", subs: ["Fire Prevention Systems", "Emergency Response Tactics", "Occupational Hazard Control", "Safety Regulation Auditing"] },
-  { title: "Healthcare & Medical", icon: "🏥", subs: ["Nursing Administration", "Medical Billing & Coding", "Clinical Care Leadership", "Healthcare Operations"] },
-  { title: "Hospitality", icon: "🏨", subs: ["Hotel & Resort Management", "Culinary Arts & Services", "Guest Experience Optimization", "Event Coordination"] },
-  { title: "Human Resources", icon: "👥", subs: ["Talent Acquisition", "Payroll & Compliance Systems", "Employee Relations", "Performance Management"] },
-  { title: "Information Technology", icon: "💻", subs: ["Full-Stack Software Development", "Cybersecurity Protocols", "Cloud Architecture AWS/Azure", "Data Engineering"] },
-  { title: "International Studies", icon: "🌍", subs: ["Global Political Economics", "Cross-Cultural Communication", "International Trade Laws", "Diplomatic Relations"] },
-  { title: "Marine", icon: "⚓", subs: ["Oceanography & Marine Biology", "Maritime Logistics & Law", "Naval Architecture basics", "Offshore Operations"] },
-  { title: "Media", icon: "🎥", subs: ["Digital Journalism", "Broadcasting Techniques", "Video Production & Editing", "Mass Communication Strategies"] },
-  { title: "Science", icon: "🔬", subs: ["Biotechnology Fundamentals", "Applied Chemistry", "Environmental Tech Solutions", "Laboratory Data Analysis"] },
-  { title: "Security", icon: "🛡️", subs: ["Cyber Defense Strategies", "Physical Facility Security", "Intelligence & Threat Analysis", "CCTV & Surveillance Ops"] },
-  { title: "Social Care", icon: "🤝", subs: ["Youth Counseling & Development", "Elderly Care Administration", "Community Outreach & Support", "Child Welfare Programs"] },
-  { title: "Sport", icon: "⚽", subs: ["Sports Management & Economics", "Athletic Training Principles", "Coaching Methodologies", "Sport Psychology"] },
-  { title: "Telecommunications", icon: "📡", subs: ["Network Topologies", "5G Infrastructure Planning", "Satellite Communications", "Fiber Optics Deployment"] },
-  { title: "Tourism", icon: "✈️", subs: ["Travel Agency Operations", "Ecotourism Development", "Destination Management", "Cultural Heritage Travel"] },
-  { title: "Transport", icon: "🚆", subs: ["Logistics & Fleet Ops", "Supply Chain Management", "Aviation Basics & Guidelines", "Railway Network Operations"] },
+  { title: "Business & Management", icon: "💼", image: "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=800&auto=format&fit=crop", subs: ["MBA Essentials", "Corporate Strategy & Leadership", "Business Ethics", "Organizational Behavior", "Entrepreneurship Fundamentals"] },
+  { title: "Technology & Data Skills", icon: "💻", image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=800&auto=format&fit=crop", subs: ["Full-Stack Software Development", "Cybersecurity Protocols", "Cloud Architecture AWS/Azure", "Data Engineering", "AI & Machine Learning"] },
+  { title: "Education & Training", icon: "🎓", image: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=800&auto=format&fit=crop", subs: ["Train the Trainer", "Digital & Distance Learning", "Special Education Needs", "Curriculum Development"] },
+  { title: "Leadership & Professional Development", icon: "🚀", image: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=800&auto=format&fit=crop", subs: ["Executive Leadership", "Change Management", "Effective Communication", "Strategic Decision Making"] },
+  { title: "Health & Safety Compliance", icon: "🏥", image: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=800&auto=format&fit=crop", subs: ["Occupational Health & Safety", "Fire Prevention Systems", "Emergency Response Tactics", "Risk Management & Compliance"] },
+  { title: "Specialist Professional Skills", icon: "🎯", image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=800&auto=format&fit=crop", subs: ["Project Management Professional", "Design Thinking", "Cross-Cultural Communication", "Financial Accounting Principles"] },
 ];
 
 export const programData: ProgramCategory[] = rawData.map(cat => ({
   title: cat.title,
   icon: cat.icon,
+  image: cat.image,
   subs: cat.subs.map(sub => ({
     title: sub,
     slug: generateSlug(sub),

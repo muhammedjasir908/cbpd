@@ -79,7 +79,7 @@ export default function VerificationPage() {
                   <button 
                     type="submit" 
                     disabled={verifyStatus === "loading"}
-                    className="px-8 py-4 md:py-5 bg-brand-blue text-white font-bold rounded-2xl hover:bg-brand-red transition-all shadow-[0_5px_15px_rgba(30,64,175,0.3)] hover:shadow-[0_10px_25px_rgba(220,38,38,0.4)] disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center min-w-[160px]"
+                    className="px-8 py-4 md:py-5 bg-brand-blue text-white font-bold rounded-2xl hover:bg-brand-red transition-all shadow-[0_5px_15px_rgba(30,64,175,0.3)] hover:shadow-[0_10px_25px_rgba(194,151,49,0.4)] disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center min-w-[160px]"
                   >
                     {verifyStatus === "loading" ? (
                       <svg className="w-6 h-6 animate-spin" fill="none" viewBox="0 0 24 24">

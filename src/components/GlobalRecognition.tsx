@@ -60,7 +60,7 @@ export default function GlobalRecognition() {
             {principles.map((principle, index) => (
               <TiltCard key={index} sensitivity={8}>
                 <div 
-                  className="bg-white/5 backdrop-blur-md border border-white/10 p-6 rounded-2xl hover:bg-brand-red/20 hover:border-brand-red/50 shadow-[0_10px_30px_rgba(220,38,38,0)] hover:shadow-[0_10px_30px_rgba(220,38,38,0.15)] transition-colors duration-300 group flex items-center gap-4 cursor-pointer h-full"
+                  className="bg-white/5 backdrop-blur-md border border-white/10 p-6 rounded-2xl hover:bg-brand-red/20 hover:border-brand-red/50 shadow-[0_10px_30px_rgba(220,38,38,0)] hover:shadow-[0_10px_30px_rgba(194,151,49,0.15)] transition-colors duration-300 group flex items-center gap-4 cursor-pointer h-full"
                   style={{ transform: "translateZ(30px)" }}
                 >
                   <div className="w-12 h-12 rounded-full bg-brand-blue/20 flex items-center justify-center group-hover:bg-brand-red/20 transition-colors">

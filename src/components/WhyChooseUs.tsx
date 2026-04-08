@@ -23,32 +23,32 @@ export default function WhyChooseUs() {
 
   const reasons = [
     {
-      title: "Strive for Professional Mastery",
-      description: "Our certifications are designed to deliver in-depth subject mastery within a short time frame, ensuring you gain skills that matter.",
+      title: "Prestigious UK Recognition",
+      description: "CBPD delivers what employers demand: immediately applicable skills combined with UK-issued certificates trusted in over 100 countries.",
       icon: (
         <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
       ),
       color: "from-blue-500 to-blue-600"
     },
     {
-      title: "Greater Corporate Heights",
-      description: "Unlock your ideal career path and effortlessly climb to greater heights in the global corporate world.",
+      title: "Proven Pathways",
+      description: "Join over 3,000+ professionals who have already been certified through CBPD pathways, boasting a 100% learner satisfaction rate.",
       icon: (
         <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" /></svg>
       ),
       color: "from-red-500 to-brand-red"
     },
     {
-      title: "Career-Specific Skills",
-      description: "Develop exactly what you need. Our programs are carefully designed to deliver practical real-world applications.",
+      title: "Practical Programmes",
+      description: "With 120+ practical programmes available across various specialties, our focus is on real-world application, enabling faster upskilling.",
       icon: (
         <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" /></svg>
       ),
       color: "from-amber-500 to-accent-gold"
     },
     {
-      title: "Industry Experts Network",
-      description: "Connect with leading professionals and global organizations to drive innovation and open doors to exclusive opportunities.",
+      title: "Global Partner Network",
+      description: "Our credentials are delivered globally by 100+ authorised partners, ensuring high-quality education reaches professionals anywhere.",
       icon: (
         <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
       ),
@@ -67,11 +67,11 @@ export default function WhyChooseUs() {
             <span className="text-brand-blue font-semibold tracking-wide text-sm uppercase">Advantages</span>
           </div>
           <h2 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-6">
-            Why Choose <span className="text-brand-red">Us?</span>
+            Why Professionals Choose <span className="text-brand-red">CBPD</span>
           </h2>
           <div className="w-24 h-1 bg-brand-blue mx-auto mb-6"></div>
           <p className="text-lg text-slate-600 dark:text-slate-300">
-            Discover the innovative way of career building today. Turn learning into mastery with our proven approach to professional development.
+            CBPD stands out as the agile UK professional body specialising in practical professional development. Unlike traditional awarding organisations, CBPD focuses on real-world application, enabling faster upskilling and clearer career progression.
           </p>
         </div>
 

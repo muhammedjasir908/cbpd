@@ -34,120 +34,128 @@ export default function PartnerPage() {
     };
   }, []);
 
-  const responsibilities = [
-    {
-      title: "Establish and Manage",
-      desc: "Set up and oversee a network of certified testing centers within your designated region to facilitate high-quality education delivery.",
-      icon: "🏢"
-    },
-    {
-      title: "Enhance Service Portfolio",
-      desc: "Offer recognized CBPD certifications, expanding your own portfolio of services and providing value to your clients and students.",
-      icon: "📈"
-    },
-    {
-      title: "Expand Your Reach",
-      desc: "Integrate CBPD support centers and clients into your network, driving exponential growth and regional dominance in the education sector.",
-      icon: "🌍"
-    }
+  const benefits = [
+    { title: "Immediate Access", desc: "Gain instant, unrestricted access to CBPD's comprehensive programme content, expertly crafted curriculums, and rigorous assessment tools.", icon: "⚡" },
+    { title: "Delivery Rights", desc: "Acquire the exclusive rights to officially deliver high-level education and certify successful learners with prestigious CBPD credentials.", icon: "📜" },
+    { title: "Flexible Solutions", desc: "Capitalise on highly adaptable delivery options, successfully integrating dynamic voucher-based models and comprehensive e-learning solutions.", icon: "🔄" },
+    { title: "Regional Exclusivity", desc: "Unlock premium regional exclusivity opportunities within targeted geographical markets to firmly establish your competitive educational dominance.", icon: "🗺️" },
+    { title: "Dedicated Support", desc: "Receive ongoing, dedicated marketing guidance, operational streamlining, and comprehensive quality assurance support directly from CBPD.", icon: "🤝" },
+    { title: "Revenue Growth", desc: "Drive exceptional revenue growth and institutional expansion by offering highly demanded, globally trusted professional certification programmes.", icon: "📈" }
+  ];
+
+  const processSteps = [
+    { title: "Submit Enquiry", desc: "Initiate your journey by formally submitting your partnership enquiry through our dedicated portal.", icon: "📝" },
+    { title: "Documentation", desc: "Provide comprehensive supporting documentation detailing your institutional standing and track record.", icon: "📂" },
+    { title: "Capability Review", desc: "Successfully complete a rigorous quality and infrastructural capability review, conducted virtually or in-person.", icon: "🔍" },
+    { title: "Agreement", desc: "Sign the official CBPD partnership agreement upon successfully passing the quality assurance phase.", icon: "✍️" },
+    { title: "Launch Programmes", desc: "Officially launch your CBPD programmes to the market, fully backed by our continuous operational support.", icon: "🚀" }
   ];
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-[#0a0f1c] pt-20">
+    <div className="min-h-screen bg-slate-50 dark:bg-[#0a0f1c]">
       {/* Hero Section */}
-      <section className="relative pt-24 pb-20 md:pt-32 md:pb-28 overflow-hidden">
+      <section className="relative pt-40 pb-20 bg-primary-900 border-b border-primary-800 overflow-hidden">
         {/* Abstract Background Elements */}
-        <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
-          <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] rounded-full bg-brand-blue/20 blur-[120px] animate-[pulse_8s_infinite]"></div>
-          <div className="absolute bottom-[-20%] right-[-10%] w-[60%] h-[60%] rounded-full bg-brand-red/10 blur-[150px] animate-[pulse_10s_infinite_reverse]"></div>
-        </div>
+        <div className="absolute inset-0 opacity-20 bg-[url('https://images.unsplash.com/photo-1556761175-4b46a572b786?q=80&w=2000&auto=format&fit=crop')] bg-cover bg-center mix-blend-overlay z-0"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-primary-900 via-primary-900/80 to-transparent z-0"></div>
+
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-red/10 rounded-full blur-[150px] pointer-events-none z-0 animate-[pulse_8s_infinite]"></div>
+        <div className="absolute top-1/2 left-0 w-[500px] h-[500px] bg-brand-blue/10 rounded-full blur-[120px] pointer-events-none transform -translate-y-1/2 z-0 animate-[pulse_10s_infinite_reverse]"></div>
 
         <div className="container mx-auto px-6 md:px-12 relative z-10">
           <div className={`max-w-4xl mx-auto text-center transition-all duration-1000 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'}`}>
-            <div className="inline-block px-5 py-2 rounded-full bg-brand-blue/10 dark:bg-brand-blue/20 border border-brand-blue/20 text-brand-blue dark:text-brand-blue mb-8 backdrop-blur-sm">
+            <div className="inline-block px-5 py-2 rounded-full bg-accent-gold/10 border border-accent-gold/30 text-accent-gold mb-8 backdrop-blur-sm">
               <span className="text-sm font-bold tracking-wider uppercase">Partnership Program</span>
             </div>
             
-            <h1 className="text-5xl md:text-7xl font-bold text-slate-800 dark:text-white mb-8 leading-tight">
-              Become a <span className="text-brand-red bg-clip-text text-transparent bg-gradient-to-r from-brand-red to-accent-gold">CBPD</span> <br />
+            <h1 className="text-5xl md:text-7xl font-bold text-white mb-8 leading-tight">
+              Become a <span className="text-brand-red">CBPD</span> <br />
               Authorised Partner
             </h1>
             
-            <p className="text-xl md:text-2xl text-slate-600 dark:text-slate-300 mb-10 max-w-3xl mx-auto leading-relaxed">
-              Join our global network. Expand the reach of high-quality CBPD curriculum and certification programs in your region.
+            <p className="text-xl md:text-2xl text-slate-300 mb-10 max-w-3xl mx-auto leading-relaxed">
+              Join the Central Board of Professional Development (CBPD) global network as an authorised partner or approved centre, and dynamically expand your institutional offering with prestigious UK professional certifications.
             </p>
           </div>
         </div>
       </section>
 
-      {/* About Section */}
-      <section className="py-24 relative bg-white dark:bg-transparent border-t border-slate-200 dark:border-transparent">
+      {/* About / Who Can Become Section */}
+      <section className="py-24 relative bg-white dark:bg-[#050812] border-b border-slate-200 dark:border-primary-800">
         <div className="container mx-auto px-6 md:px-12 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div className="animate-on-scroll translate-y-12 opacity-0 transition-all duration-700 ease-out">
+            
+            <div className="space-y-8 animate-on-scroll translate-y-12 opacity-0 transition-all duration-700 ease-out">
+              <span className="text-brand-blue dark:text-brand-red font-bold tracking-wider text-sm uppercase mb-2 block">Our Network</span>
+              <h2 className="text-4xl md:text-5xl font-bold text-slate-800 dark:text-white">
+                Who Can Become a <span className="text-accent-gold">Partner?</span>
+              </h2>
+              <div className="w-20 h-1 bg-accent-gold"></div>
+              
+              <div className="space-y-6 text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+                <p>
+                  CBPD partners exclusively with highly capable educational entities that share our steadfast commitment to driving educational excellence and fostering professional growth.
+                </p>
+                <div className="border-l-[6px] border-brand-red pl-6 py-4 bg-slate-50 dark:bg-primary-800 rounded-r-2xl shadow-sm">
+                  <p className="font-semibold text-slate-800 dark:text-white m-0">
+                    We boldly welcome applications from distinguished Training Providers, esteemed Educational Institutions, and robust Corporate Organisations.
+                  </p>
+                </div>
+                <p>
+                  Ideal partnership candidates must powerfully demonstrate proven educational delivery capability, secure and suitable administrative infrastructure, and a profoundly shared commitment to maintaining rigorous quality standards. By meeting these critical criteria, you actively ensure that every learner experiences world-class support and transformative career outcomes.
+                </p>
+              </div>
+            </div>
+
+            <div className="animate-on-scroll translate-y-12 opacity-0 transition-all duration-700 delay-200 ease-out">
               <div className="relative rounded-3xl overflow-hidden shadow-2xl group border border-slate-200 dark:border-white/10">
                 <div className="absolute inset-0 bg-brand-blue/20 mix-blend-multiply z-10 group-hover:bg-transparent transition-all duration-500"></div>
                 <img 
                   src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=2070&auto=format&fit=crop" 
-                  alt="Business Partnership" 
+                  alt="Business Partnership Agreement" 
                   className="w-full h-[500px] object-cover transition-transform duration-700 group-hover:scale-105"
                 />
                 
                 {/* Floating Achievement Box */}
-                <div className="absolute bottom-8 left-8 bg-white/90 dark:bg-white/10 backdrop-blur-md border border-slate-200 dark:border-white/20 p-6 rounded-2xl z-20 shadow-[0_10px_40px_rgba(0,0,0,0.1)] dark:shadow-[0_10px_40px_rgba(0,0,0,0.3)]">
+                <div className="absolute bottom-8 left-8 bg-white/90 dark:bg-primary-900/90 backdrop-blur-md border border-slate-200 dark:border-primary-700 p-6 rounded-2xl z-20 shadow-xl">
                   <p className="text-slate-800 dark:text-white font-bold text-3xl mb-1">Global Reach</p>
-                  <p className="text-slate-500 dark:text-slate-300 text-sm font-medium">Empowering Local Centers</p>
+                  <p className="text-slate-500 dark:text-slate-300 text-sm font-medium">Empowering Local Centres</p>
                 </div>
               </div>
             </div>
-
-            <div className="space-y-8 animate-on-scroll translate-y-12 opacity-0 transition-all duration-700 delay-200 ease-out">
-              <h2 className="text-4xl md:text-5xl font-bold text-slate-800 dark:text-white">
-                About The <span className="text-brand-blue">Partnership</span>
-              </h2>
-              
-              <div className="space-y-6 text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
-                <p>
-                  An Authorized Partner is entrusted with promoting and managing CBPD centers within a designated geographical region of a country. The primary goal is to expand the reach of the CBPD curriculum and certification programs.
-                </p>
-                <p>
-                  Upon approval, partners gain immediate access to CBPD learning content and are authorized to deliver voucher-based and e-learning solutions, offering fast, flexible, and comprehensive education options.
-                </p>
-                <p>
-                  As a recognized CBPD Authorized Partner, you can offer your clients and associates the full advantages of a professionally developed and expertly delivered education platform. Whether you're a company, solution provider, or reseller, you'll gain access to a network of testing centers capable of distributing CBPD vouchers and services.
-                </p>
-              </div>
-            </div>
+            
           </div>
         </div>
       </section>
 
-      {/* Responsibilities Section */}
-      <section className="py-24 bg-[#0a0f1c] border-y border-white/5 relative overflow-hidden">
+      {/* Benefits Section */}
+      <section className="py-24 bg-[#0a0f1c] relative overflow-hidden">
         {/* Abstract Pattern overlay */}
         <div className="absolute inset-0 opacity-5" style={{ backgroundImage: "radial-gradient(#fff 1px, transparent 1px)", backgroundSize: "30px 30px" }}></div>
         
         <div className="container mx-auto px-6 md:px-12 relative z-10">
           <div className="text-center mb-20 animate-on-scroll translate-y-12 opacity-0 transition-all duration-700 ease-out">
+            <span className="text-brand-red font-bold tracking-wider text-sm uppercase mb-4 block">The Value</span>
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-              Key <span className="text-accent-gold">Responsibilities</span>
+              Benefits of Partnering with <span className="text-accent-gold">CBPD</span>
             </h2>
-            <p className="text-slate-400 max-w-2xl mx-auto text-xl">
-              As a CBPD Authorized Partner, you will play a pivotal role in the local educational ecosystem.
+            <div className="w-24 h-1 bg-brand-blue mx-auto mb-6"></div>
+            <p className="text-slate-400 max-w-2xl mx-auto text-xl leading-relaxed">
+              Unlock a comprehensive suite of institutional advantages designed specifically to accelerate your growth and firmly establish your regional authority in the professional education sector.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {responsibilities.map((req, idx) => (
-              <div key={idx} className={`animate-on-scroll translate-y-12 opacity-0 transition-all duration-700 ease-out`} style={{ transitionDelay: `${idx * 150}ms` }}>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {benefits.map((benefit, idx) => (
+              <div key={idx} className="animate-on-scroll translate-y-12 opacity-0 transition-all duration-700 ease-out" style={{ transitionDelay: `${idx * 100}ms` }}>
                 <TiltCard sensitivity={7} className="h-full">
-                  <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl p-10 h-full hover:bg-white/10 transition-all group shadow-xl">
-                    <div className="w-20 h-20 rounded-2xl bg-primary-800 border border-white/10 flex items-center justify-center text-4xl mb-8 shadow-inner group-hover:scale-110 transition-transform duration-300 group-hover:bg-primary-700">
-                      {req.icon}
+                  <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl p-10 h-full hover:bg-white/10 transition-all group shadow-xl flex flex-col items-center text-center">
+                    <div className="w-20 h-20 rounded-2xl bg-primary-800 border border-white/10 flex items-center justify-center text-4xl mb-8 shadow-inner group-hover:scale-110 transition-transform duration-300 group-hover:bg-primary-700 group-hover:border-accent-gold/50">
+                      {benefit.icon}
                     </div>
-                    <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-accent-gold transition-colors">{req.title}</h3>
-                    <p className="text-slate-400 leading-relaxed text-base">
-                      {req.desc}
+                    <h3 className="text-xl font-bold text-white mb-4 group-hover:text-accent-gold transition-colors">{benefit.title}</h3>
+                    <p className="text-slate-400 leading-relaxed text-sm font-medium">
+                      {benefit.desc}
                     </p>
                   </div>
                 </TiltCard>
@@ -157,23 +165,55 @@ export default function PartnerPage() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-32 relative text-center overflow-hidden">
-        {/* Decorative elements */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-brand-blue/5 dark:bg-brand-blue/10 rounded-full blur-[100px] pointer-events-none"></div>
-
-        <div className="container mx-auto px-6 md:px-12 relative z-10 animate-on-scroll translate-y-12 opacity-0 transition-all duration-700 ease-out delay-200">
-          <h2 className="text-4xl md:text-6xl font-black text-slate-800 dark:text-white mb-8 tracking-tight max-w-4xl mx-auto">
-            Ready to <span className="text-brand-red">Redefine</span> Your Professional Journey?
+      {/* The Process */}
+      <section className="py-24 bg-white dark:bg-[#050812] border-y border-slate-200 dark:border-primary-800">
+        <div className="container mx-auto px-6 md:px-12 text-center">
+          <span className="text-brand-blue dark:text-brand-red font-bold tracking-wider text-sm uppercase mb-4 block">Onboarding</span>
+          <h2 className="text-3xl md:text-5xl font-bold text-slate-900 dark:text-white mb-16">
+            CBPD Partnership Process
           </h2>
-          <p className="text-xl md:text-2xl text-slate-600 dark:text-slate-400 mb-12 max-w-2xl mx-auto">
-            Join the CBPD network today and be part of a global movement transforming education and professional growth.
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6 relative max-w-7xl mx-auto">
+            {/* Desktop connecting line */}
+            <div className="hidden lg:block absolute top-[48px] left-[10%] right-[10%] h-0 border-t-[2px] border-dashed border-slate-300 dark:border-primary-700 z-0"></div>
+            
+            {processSteps.map((step, idx) => (
+              <TiltCard key={idx} sensitivity={5} className="relative z-10 flex flex-col items-center group h-full">
+                <div className="flex flex-col items-center w-full h-full">
+                  <div className="w-24 h-24 bg-brand-blue dark:bg-primary-900 text-white rounded-full border-[4px] border-white dark:border-[#050812] flex items-center justify-center text-4xl shadow-xl mb-6 group-hover:bg-brand-red group-hover:scale-110 transition-all shrink-0">
+                    {step.icon}
+                  </div>
+                  <div className="bg-slate-50 dark:bg-primary-800 p-6 pt-8 rounded-3xl w-full border border-slate-200 dark:border-primary-700 shadow-sm relative grow flex flex-col">
+                    <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-accent-gold text-primary-900 font-black px-4 py-1 rounded-full text-xs whitespace-nowrap tracking-wider">
+                      STEP 0{idx + 1}
+                    </div>
+                    <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-3 mt-2 group-hover:text-brand-blue dark:group-hover:text-brand-red transition-colors">{step.title}</h3>
+                    <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed font-medium mt-auto">{step.desc}</p>
+                  </div>
+                </div>
+              </TiltCard>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-24 relative overflow-hidden bg-primary-900">
+        <div className="absolute inset-0 opacity-20 bg-[url('https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center mix-blend-overlay z-0"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-primary-900 via-primary-900/90 to-transparent z-0"></div>
+
+        <div className="container mx-auto px-6 md:px-12 relative z-10 animate-on-scroll translate-y-12 opacity-0 transition-all duration-700 ease-out delay-200 text-center max-w-4xl">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-8 tracking-tight mx-auto leading-tight">
+            Ready to <span className="text-accent-gold">Accelerate</span> Your Institution?
+          </h2>
+          <p className="text-xl md:text-2xl text-slate-300 mb-12 mx-auto leading-relaxed">
+            CBPD partners securely benefit from a modern, agile, and fiercely learner-focused model that guarantees faster, more tangible results than many established, traditional awarding bodies.
           </p>
           
           <div className="flex justify-center">
             <MagneticButton strength={15}>
-              <Link href="/contact" className="px-12 py-5 rounded-full bg-brand-blue text-white font-bold text-lg hover:bg-brand-red transition-all duration-300 shadow-[0_10px_30px_rgba(30,64,175,0.3)] hover:shadow-[0_15px_40px_rgba(220,38,38,0.4)] hover:-translate-y-1 flex items-center gap-3 group">
-                Contact Us to Apply
+              <Link href="/contact" className="px-10 py-5 rounded-full bg-brand-red text-white font-bold text-lg lg:text-xl hover:bg-white hover:text-brand-red transition-all duration-300 shadow-[0_10px_30px_rgba(220,38,38,0.5)] hover:shadow-[0_15px_40px_rgba(194,151,49,0.5)] flex items-center justify-center gap-3 group w-full md:w-auto">
+                Submit Your CBPD Partnership Enquiry Today
                 <svg className="w-6 h-6 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
               </Link>
             </MagneticButton>

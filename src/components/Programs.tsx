@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useRef } from "react";
 import TiltCard from "@/components/TiltCard";
+import Link from "next/link";
 
 export default function Programs() {
   const [isVisible, setIsVisible] = useState(false);
@@ -26,11 +27,12 @@ export default function Programs() {
   }, []);
 
   const disciplines = [
-    { name: "Technology and Data", number: "01", img: "https://www.cbpd.co.uk/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Ftech.601aab81.jpg&w=828&q=75" },
-    { name: "Education and Training", number: "02", img: "https://www.cbpd.co.uk/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FEducation.2396d363.jpg&w=828&q=75" },
-    { name: "Language and Creative Arts", number: "03", img: "https://www.cbpd.co.uk/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Farts.02687e03.jpg&w=828&q=75" },
-    { name: "Health and Safety", number: "04", img: "https://www.cbpd.co.uk/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FSafety.a73ddea3.jpg&w=828&q=75" },
-    { name: "Business and Management", number: "05", img: "https://www.cbpd.co.uk/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fbusiness.c8a73c15.jpg&w=828&q=75" },
+    { name: "Business & Management", number: "01", img: "https://www.cbpd.co.uk/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fbusiness.c8a73c15.jpg&w=828&q=75" },
+    { name: "Technology & Data Skills", number: "02", img: "https://www.cbpd.co.uk/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Ftech.601aab81.jpg&w=828&q=75" },
+    { name: "Education & Training", number: "03", img: "https://www.cbpd.co.uk/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FEducation.2396d363.jpg&w=828&q=75" },
+    { name: "Leadership & Professional Development", number: "04", img: "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=600&auto=format&fit=crop" },
+    { name: "Health & Safety Compliance", number: "05", img: "https://www.cbpd.co.uk/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FSafety.a73ddea3.jpg&w=828&q=75" },
+    { name: "Specialist Professional Skills", number: "06", img: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=600&auto=format&fit=crop" },
   ];
 
   return (
@@ -40,16 +42,16 @@ export default function Programs() {
         <div className={`lg:w-1/2 flex flex-col justify-center transition-all duration-1000 ${isVisible ? 'translate-x-0 opacity-100' : '-translate-x-12 opacity-0'}`}>
           <span className="text-brand-red font-bold tracking-wider text-sm uppercase mb-3 block">Disciplines</span>
           <h2 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-6 leading-tight">
-            Comprehensive Programs for <span className="text-brand-blue dark:text-brand-red">Every Discipline</span>
+            Popular CBPD <span className="text-brand-blue dark:text-brand-red">Programme Areas</span>
           </h2>
           <div className="w-24 h-1 bg-brand-red mb-8"></div>
           <p className="text-lg text-slate-600 dark:text-slate-300 leading-relaxed mb-10">
-            Across a variety of fields, our carefully curated categories are designed to align with both your personal interests and the demands of the global job market.
+            Business & Management • Technology & Data Skills • Education & Training • Leadership & Professional Development • Health & Safety Compliance • Specialist Professional Skills
           </p>
-          <button className="px-8 py-4 rounded-full bg-brand-blue text-white font-bold hover:bg-brand-red transition-all shadow-[0_5px_15px_rgba(30,64,175,0.3)] hover:shadow-[0_10px_25px_rgba(220,38,38,0.4)] self-start flex items-center gap-2 group">
-            View All Programs
+          <Link href="/programs" className="px-8 py-4 rounded-full bg-brand-blue text-white font-bold hover:bg-brand-red transition-all shadow-[0_5px_15px_rgba(30,64,175,0.3)] hover:shadow-[0_10px_25px_rgba(194,151,49,0.4)] self-start flex items-center gap-2 group">
+            View All Programmes
             <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
-          </button>
+          </Link>
         </div>
 
         <div className={`lg:w-1/2 flex flex-col gap-4 relative transition-all duration-1000 delay-300 ${isVisible ? 'translate-x-0 opacity-100' : 'translate-x-12 opacity-0'}`}>

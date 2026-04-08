@@ -1,31 +1,38 @@
 import TiltCard from "@/components/TiltCard";
 import MagneticButton from "@/components/MagneticButton";
+import Link from "next/link";
 
 export default function AboutPage() {
-  const benefits = [
-    { title: "Professional Mastery", desc: "Strive for Excellence", icon: "🏆" },
-    { title: "Greater Heights", desc: "Climbing the Corporate World", icon: "📈" },
-    { title: "Career-Specific Skills", desc: "Develop exactly what you need", icon: "🎯" },
-    { title: "Industry Experts", desc: "Connecting with top professionals", icon: "🤝" },
+  const strengths = [
+    { title: "Practical Focus", desc: "Real-world skills that deliver immediate results", icon: "🛠️" },
+    { title: "Global Reach", desc: "Certificates valued internationally", icon: "🌍" },
+    { title: "Flexibility", desc: "Multiple delivery modes through our authorised partner network", icon: "⏱️" },
+    { title: "Quality Assurance", desc: "Rigorous standards and ongoing monitoring", icon: "⭐" },
+    { title: "Accessibility", desc: "Affordable pathways designed for busy professionals", icon: "🎓" },
   ];
 
   return (
     <main className="min-h-screen">
-      {/* Mini Hero */}
-      <section className="relative pt-40 pb-20 bg-primary-900 border-b border-primary-800 overflow-hidden">
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-red/10 rounded-full blur-[150px] pointer-events-none"></div>
-        <div className="absolute top-1/2 left-0 w-[500px] h-[500px] bg-brand-blue/10 rounded-full blur-[120px] pointer-events-none transform -translate-y-1/2"></div>
+      {/* Mini Hero with Image Background */}
+      <section className="relative pt-40 pb-24 bg-primary-900 border-b border-primary-800 overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0 opacity-40 bg-[url('https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center mix-blend-overlay z-0"></div>
+        {/* Dark opacity layer overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-primary-900 via-primary-900/80 to-transparent z-0 pointer-events-none"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-transparent z-0 pointer-events-none"></div>
         
-        <div className="container mx-auto px-6 md:px-12 relative z-10">
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-red/10 rounded-full blur-[150px] pointer-events-none z-0"></div>
+        <div className="absolute top-1/2 left-0 w-[500px] h-[500px] bg-brand-blue/10 rounded-full blur-[120px] pointer-events-none transform -translate-y-1/2 z-0"></div>
+        
+        <div className="container mx-auto px-6 md:px-12 relative z-10 text-center flex flex-col items-center">
           <div className="inline-block px-4 py-1.5 rounded-full border border-brand-red/40 bg-brand-red/10 backdrop-blur-md mb-6 animate-[fadeInUp_0.8s_ease-out]">
-            <span className="text-accent-gold font-semibold tracking-wide text-sm uppercase">About CBPD</span>
+            <span className="text-accent-gold font-semibold tracking-wide text-sm uppercase">About Us</span>
           </div>
-          <h1 className="text-5xl md:text-7xl font-bold text-white max-w-4xl leading-tight mb-8 animate-[fadeInUp_1s_ease-out]">
-            Step into the future of <br/>
-            <span className="text-brand-red">career growth</span>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white max-w-4xl leading-tight mb-8 animate-[fadeInUp_1s_ease-out]">
+            About the <span className="text-brand-red">Central Board of Professional Development</span> (CBPD)
           </h1>
-          <p className="text-xl text-slate-300 max-w-2xl leading-relaxed animate-[fadeInUp_1.2s_ease-out]">
-            Turn learning into mastery with CBPD! Professional certifications designed for real-world impact in a short time. Join the innovative way of career building today!
+          <p className="text-xl text-slate-300 max-w-3xl leading-relaxed animate-[fadeInUp_1.2s_ease-out]">
+            The Central Board of Professional Development (CBPD) is a UK-registered professional body (Company No. 16442180) dedicated to excellence in professional certification and training accreditation.
           </p>
         </div>
       </section>
@@ -33,36 +40,52 @@ export default function AboutPage() {
       {/* Main Content */}
       <section className="py-24 bg-slate-50 dark:bg-[#0a0f1c]">
         <div className="container mx-auto px-6 md:px-12 flex flex-col lg:flex-row gap-16">
-          <div className="lg:w-1/2">
-            <span className="text-brand-blue dark:text-brand-red font-bold tracking-wider text-sm uppercase mb-4 block">Our Story</span>
-            <h2 className="text-3xl md:text-5xl font-bold text-slate-900 dark:text-white mb-8 leading-tight">
-              CBPD Accreditation for <span className="text-brand-blue dark:text-brand-red">Training and Events</span>
+          <div className="lg:w-1/2 order-2 lg:order-1">
+            <span className="text-brand-blue dark:text-brand-red font-bold tracking-wider text-sm uppercase mb-4 block">Introduction</span>
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-8 leading-tight">
+              Bridging the gap between <span className="text-brand-blue dark:text-brand-red">learning and real-world performance</span>
             </h2>
             <div className="w-20 h-1 bg-accent-gold mb-10"></div>
             
-            <div className="prose prose-lg dark:prose-invert text-slate-600 dark:text-slate-300">
+            <div className="prose prose-lg dark:prose-invert text-slate-600 dark:text-slate-300 max-w-none">
               <p className="mb-6">
-                In today’s competitive world, gaining international recognition in your profession is crucial for career growth and success. The Central Board of Professional Development (CBPD) is dedicated to providing global accreditation for professionals across various industries, ensuring that their expertise is recognized at every level.
+                In a fast-evolving global economy, continuous education is no longer an option but an absolute necessity. CBPD was strategically established to meet the rising demand for practical, accessible, and globally portable credentials. We specialise in targeted professional certification rather than theoretical or lengthy regulated qualifications, ensuring our approach fits the busy schedules of modern professionals.
               </p>
               <p className="mb-6">
-                By emphasizing practical experience, professional mastery, and academic relevance, CBPD offers a streamlined and cost-effective approach to building a globally competitive career profile. One of the key advantages of CBPD is its affordability and efficiency. Unlike traditional certification paths that require extensive time and financial investment, CBPD provides a shorter, more direct route to professional success.
+                Our dynamic programmes actively emphasise applied knowledge and immediate workplace relevance. By focusing squarely on competency-based methodologies, we allow professionals to gain fully recognised credentials significantly faster and more cost-effectively than with many traditional awarding bodies.
               </p>
-              <p>
-                At CBPD, we firmly believe that professional excellence is built on dedication, integrity, and expertise. We empower individuals by equipping them with the necessary credentials to boost their self-confidence, increase their earning potential, and achieve career milestones with distinction.
+              
+              <div className="my-8 p-6 bg-white dark:bg-primary-800 rounded-2xl border-l-[6px] border-accent-gold shadow-md group hover:-translate-y-1 transition-transform duration-300">
+                <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">Our Mission</h3>
+                <p className="m-0 text-base">CBPD exists to empower individuals and organisations through high-quality, practical certifications that drive measurable career milestones and expansive business success.</p>
+              </div>
+
+              <div className="my-6 p-6 bg-white dark:bg-primary-800 rounded-2xl border-l-[6px] border-brand-red shadow-md group hover:-translate-y-1 transition-transform duration-300">
+                <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">Our Vision</h3>
+                <p className="m-0 text-base">To be the undisputed leading UK professional body for agile, employer-focused professional development—recognised worldwide for uncompromising quality, rapid speed of delivery, and tangible real-world impact.</p>
+              </div>
+
+              <h3 className="text-2xl font-bold text-slate-900 dark:text-white mt-12 mb-4">What Makes CBPD Different</h3>
+              <p className="mb-6 leading-relaxed">
+                While others focus solely on academic theory, we bridge the gap between learning and actionable professional excellence. CBPD is proud to hold CPD Provider No. 21235 with The CPD Certification Service and operates seamlessly in alignment with established UK frameworks. This powerful endorsement means our credentials enjoy strong, respected recognition across the UK, GCC, Europe, Asia, Africa, Australia, and beyond.
+              </p>
+              <p className="leading-relaxed">
+                To maintain these rigorous standards, CBPD works exclusively with high-calibre authorised partners who profoundly share our commitment to educational excellence. This unified approach directly guarantees that every learner experiences outstanding support, enriching content, and highly successful outcomes at every stage of their educational journey.
               </p>
             </div>
           </div>
 
-          <div className="lg:w-1/2">
+          <div className="lg:w-1/2 order-1 lg:order-2">
+            <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-8">Core Strengths of CBPD</h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              {benefits.map((item, index) => (
+              {strengths.map((item, index) => (
                 <TiltCard key={index} className="h-full" sensitivity={10}>
-                  <div className="bg-white dark:bg-primary-800 rounded-3xl p-8 border border-slate-100 dark:border-primary-700 shadow-sm hover:shadow-xl hover:border-brand-red/50 transition-all duration-300 h-full flex flex-col animate-[float_6s_ease-in-out_infinite]" style={{ transform: "translateZ(20px)", transitionDelay: `${index * 150}ms` }}>
-                    <div className="text-4xl mb-6 bg-slate-50 dark:bg-primary-900 w-16 h-16 rounded-2xl flex items-center justify-center border border-slate-100 dark:border-primary-700 shadow-inner group-hover:scale-110 transition-transform">
+                  <div className="bg-white dark:bg-primary-800 rounded-3xl p-6 border border-slate-100 dark:border-primary-700 shadow-sm hover:shadow-xl hover:border-brand-red/50 transition-all duration-300 h-full flex flex-col group" style={{ transform: "translateZ(20px)", transitionDelay: `${index * 150}ms` }}>
+                    <div className="text-3xl mb-4 bg-slate-50 dark:bg-primary-900 w-14 h-14 rounded-2xl flex items-center justify-center border border-slate-100 dark:border-primary-700 shadow-inner group-hover:scale-110 transition-transform">
                       {item.icon}
                     </div>
-                    <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">{item.title}</h3>
-                    <p className="text-slate-500 dark:text-slate-400 font-medium">{item.desc}</p>
+                    <h4 className="text-lg font-bold text-slate-900 dark:text-white mb-2 group-hover:text-brand-blue dark:group-hover:text-brand-red transition-colors">{item.title}</h4>
+                    <p className="text-sm text-slate-500 dark:text-slate-400 font-medium leading-relaxed">{item.desc}</p>
                   </div>
                 </TiltCard>
               ))}
@@ -73,21 +96,26 @@ export default function AboutPage() {
 
       {/* CTA Section */}
       <section className="py-24 bg-primary-900 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-20 bg-[url('https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center mix-blend-overlay"></div>
-        <div className="absolute inset-0 bg-gradient-to-t from-primary-900 via-primary-900/80 to-transparent"></div>
+        <div className="absolute inset-0 opacity-30 bg-[url('https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center mix-blend-overlay z-0"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-primary-900 via-primary-950/80 to-transparent z-0"></div>
         <div className="container mx-auto px-6 md:px-12 relative z-10 text-center max-w-4xl">
-          <h2 className="text-4xl md:text-6xl font-bold text-white mb-8">
-            Join CBPD and Redefine Your <span className="text-accent-gold">Professional Journey</span>
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-8">
+            <span className="text-accent-gold">Advance</span> with CBPD
           </h2>
           <p className="text-xl text-slate-300 mb-12">
-            Choosing CBPD means choosing a faster, more affordable, and globally recognized route to professional success.
+            CBPD exists to empower individuals and organisations through high-quality, practical certifications. Start your journey with us today.
           </p>
-          <div className="flex justify-center">
+          <div className="flex flex-col sm:flex-row justify-center items-center gap-6">
             <MagneticButton strength={20}>
-              <button className="px-10 py-5 rounded-full bg-brand-red text-white font-bold text-lg hover:bg-white hover:text-brand-red transition-all duration-300 shadow-[0_0_30px_rgba(220,38,38,0.5)] hover:shadow-[0_0_40px_rgba(255,255,255,0.8)] flex items-center gap-3 mx-auto group">
-                Contact Us Today
-                <svg className="w-6 h-6 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
-              </button>
+              <Link href="/programs" className="w-full sm:w-auto px-8 py-4 rounded-full bg-brand-red text-white font-bold text-lg hover:bg-brand-blue transition-all duration-300 shadow-[0_0_30px_rgba(194,151,49,0.5)] flex justify-center items-center gap-3 group whitespace-nowrap">
+                Discover CBPD Programmes
+                <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+              </Link>
+            </MagneticButton>
+            <MagneticButton strength={20}>
+              <Link href="/partners" className="w-full sm:w-auto px-8 py-4 rounded-full bg-transparent border-2 border-white/30 text-white font-bold text-lg hover:bg-white hover:text-brand-blue transition-all duration-300 flex justify-center items-center gap-3 group whitespace-nowrap">
+                Become a CBPD Authorised Partner
+              </Link>
             </MagneticButton>
           </div>
         </div>

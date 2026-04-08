@@ -1,5 +1,4 @@
-import MagneticButton from "@/components/MagneticButton";
-import Link from "next/link";
+
 
 export default function Hero() {
   return (
@@ -26,35 +25,17 @@ export default function Hero() {
       <div className="relative z-10 container mx-auto px-6 md:px-12 flex flex-col lg:flex-row items-center justify-between pt-20 h-full gap-12 w-full">
         
         {/* Text Area */}
-        <div className="flex flex-col items-start w-full lg:w-1/2">
-          {/* Hero Logo */}
-          <div className="mb-8 animate-[fadeInUp_0.6s_ease-out]">
-            <div className="bg-white/10 backdrop-blur-md p-4 rounded-3xl border border-white/20 shadow-[-10px_10px_30px_rgba(0,0,0,0.2)]">
-              <img 
-                src="https://www.cbpd.co.uk/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FCBPD_LOGO.7c42c792.png&w=256&q=75" 
-                alt="CBPD Large Logo"
-                className="h-20 md:h-28 w-auto object-contain filter drop-shadow-lg"
-              />
-            </div>
-          </div>
+        <div className="flex flex-col items-start justify-center w-full lg:w-1/2 h-full pb-10">
           
-          <h1 className="text-5xl md:text-6xl font-bold text-white max-w-5xl leading-tight mb-6 animate-[fadeInUp_1s_ease-out]">
-            Education Meets Personality & <br className="hidden md:block" />
-            <span className="text-brand-red">Professional Growth</span>
+          <div className="inline-block px-4 py-2 rounded-full border border-accent-gold/30 bg-accent-gold/10 text-accent-gold font-bold tracking-wide text-xs md:text-sm mb-6 animate-[fadeInUp_0.8s_ease-out]">
+            Central Board of Professional Development (CBPD)
+          </div>
+
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white max-w-3xl leading-[1.1] mb-5 animate-[fadeInUp_1s_ease-out]">
+            UK Professional Body Delivering Practical, <br className="hidden md:block" />
+            <span className="text-brand-red">Globally Recognised Credentials</span>
           </h1>
           
-          <p className="text-lg md:text-xl text-slate-300 max-w-3xl mb-10 animate-[fadeInUp_1.2s_ease-out]">
-            Master the Art of Living a Remarkable Life. Claim Your Renowned Certifications & Membership. Unlock Your Ideal Career Path.
-          </p>
-
-          <div className="flex flex-col sm:flex-row items-center gap-6 animate-[fadeInUp_1.4s_ease-out]">
-            <MagneticButton strength={20}>
-              <Link href="/programs" className="px-8 py-4 rounded-full bg-brand-red text-white font-bold text-lg hover:bg-white hover:text-brand-red transition-all shadow-[0_0_20px_rgba(220,38,38,0.4)] inline-flex items-center gap-2 group">
-                Explore Programs
-                <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
-              </Link>
-            </MagneticButton>
-          </div>
         </div>
 
         {/* Floating Images Area */}

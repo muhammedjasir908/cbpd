@@ -10,10 +10,12 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [programsOpen, setProgramsOpen] = useState(false);
+  const [moreOpen, setMoreOpen] = useState(false);
   const [activeCategory, setActiveCategory] = useState(0);
   
   // Mobile accordion states
   const [mobileProgramsOpen, setMobileProgramsOpen] = useState(false);
+  const [mobileMoreOpen, setMobileMoreOpen] = useState(false);
   const [mobileActiveCategory, setMobileActiveCategory] = useState<number | null>(null);
 
   useEffect(() => {
@@ -25,6 +27,7 @@ export default function Navbar() {
   }, []);
 
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const moreTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const handleMouseEnter = () => {
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
@@ -37,28 +40,39 @@ export default function Navbar() {
     }, 200);
   };
 
+  const handleMoreEnter = () => {
+    if (moreTimeoutRef.current) clearTimeout(moreTimeoutRef.current);
+    setMoreOpen(true);
+  };
+
+  const handleMoreLeave = () => {
+    moreTimeoutRef.current = setTimeout(() => {
+      setMoreOpen(false);
+    }, 200);
+  };
+
   return (
     <header
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-        scrolled || programsOpen ? "glass-dark bg-primary-900/95 shadow-xl border-b border-white/10" : "bg-transparent py-3"
+        scrolled || programsOpen || moreOpen ? "glass-dark bg-primary-900/95 shadow-xl border-b border-white/10" : "bg-transparent py-3"
       }`}
-      onMouseLeave={handleMouseLeave}
     >
-      <div className={`container mx-auto px-6 md:px-12 flex justify-between items-center transition-all duration-300 ${scrolled || programsOpen ? 'py-3' : 'py-5'}`}>
+      <div className={`container mx-auto px-6 md:px-12 flex justify-between items-center transition-all duration-300 ${scrolled || programsOpen || moreOpen ? 'py-3' : 'py-5'}`}>
         
         {/* Logo */}
         <Link href="/" className="flex items-center gap-3 group" onClick={() => setMobileMenuOpen(false)}>
           <img src="https://www.cbpd.co.uk/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FCBPD_LOGO.7c42c792.png&w=256&q=75" alt="CBPD Logo" className="h-10 md:h-12 w-auto group-hover:scale-105 transition-transform bg-white rounded p-1" />
-          <span className={`text-xl md:text-2xl font-black tracking-widest transition-colors ${scrolled || programsOpen ? 'text-brand-blue dark:text-white' : 'text-white'}`}>
+          <span className={`text-xl md:text-2xl font-black tracking-widest transition-colors ${scrolled || programsOpen || moreOpen ? 'text-brand-blue dark:text-white' : 'text-white'}`}>
             CBPD
           </span>
         </Link>
 
         {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-8 h-full">
+        <nav className="hidden xl:flex items-center gap-6 h-full">
           {[
             { name: "Home", path: "/" },
             { name: "About Us", path: "/about" },
+            { name: "Why Choose CBPD", path: "/why-cbpd" },
           ].map((item) => (
             <Link
               key={item.name}
@@ -70,46 +84,68 @@ export default function Navbar() {
           ))}
 
           {/* Programs Hover Trigger */}
-          <Link
-            href="/programs" 
+          <div
             className="relative h-full py-4 flex items-center cursor-pointer"
             onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
           >
-            <span className={`text-sm font-medium transition-colors relative after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:bg-accent-gold after:transition-all pb-1 flex items-center gap-1 ${programsOpen ? 'text-accent-gold after:w-full' : 'text-slate-200 hover:text-accent-gold after:w-0 hover:after:w-full'}`}>
+            <Link href="/programs" className={`text-sm font-medium transition-colors relative after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:bg-accent-gold after:transition-all pb-1 flex items-center gap-1 ${programsOpen ? 'text-accent-gold after:w-full' : 'text-slate-200 hover:text-accent-gold after:w-0 hover:after:w-full'}`}>
               Programs
               <svg className={`w-4 h-4 transition-transform duration-300 ${programsOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
-            </span>
-          </Link>
+            </Link>
+          </div>
 
           {[
             { name: "Become a Partner", path: "/partner" },
-            { name: "Testimonials", path: "/testimonials" },
-            { name: "FAQs", path: "/faq" },
-            { name: "Blogs", path: "/blog" },
-            { name: "Verifications", path: "/verifications" },
+            { name: "For Learners", path: "/learners" },
             { name: "Contact", path: "/contact" },
           ].map((item) => (
             <Link
               key={item.name}
               href={item.path}
-              className="text-sm font-medium text-slate-200 hover:text-accent-gold transition-colors relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-accent-gold after:transition-all hover:after:w-full pb-1"
+              className="text-sm font-medium text-slate-200 hover:text-accent-gold transition-colors relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-accent-gold after:transition-all hover:after:w-full pb-1 whitespace-nowrap"
             >
               {item.name}
             </Link>
           ))}
 
-          <ThemeToggle />
-          <Link
-            href="/login"
-            className="px-6 py-2.5 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-white font-medium transition-all hover:-translate-y-0.5 hover:shadow-lg hover:shadow-accent-gold/20"
+          {/* More Hover Trigger */}
+          <div
+            className="relative h-full py-4 flex items-center cursor-pointer"
+            onMouseEnter={handleMoreEnter}
+            onMouseLeave={handleMoreLeave}
           >
-            Register / Login
-          </Link>
+            <span className={`text-sm font-medium transition-colors relative after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:bg-accent-gold after:transition-all pb-1 flex items-center gap-1 ${moreOpen ? 'text-accent-gold after:w-full' : 'text-slate-200 hover:text-accent-gold after:w-0 hover:after:w-full'}`}>
+              More
+              <svg className={`w-4 h-4 transition-transform duration-300 ${moreOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+            </span>
+            
+            {/* Standard Dropdown Menu */}
+            <div className={`absolute top-full right-0 mt-0 w-56 glass-dark bg-primary-900/95 border border-white/10 rounded-2xl shadow-2xl transition-all duration-300 transform origin-top overflow-hidden ${moreOpen ? 'scale-y-100 opacity-100 visible' : 'scale-y-90 opacity-0 invisible'}`}>
+              <div className="flex flex-col py-2">
+                <Link href="/accreditation" className="px-5 py-3 text-sm text-slate-200 hover:bg-white/10 hover:text-accent-gold transition-colors block">Accreditation</Link>
+                <Link href="/verifications" className="px-5 py-3 text-sm text-slate-200 hover:bg-white/10 hover:text-accent-gold transition-colors block">Verifications</Link>
+                <Link href="/testimonials" className="px-5 py-3 text-sm text-slate-200 hover:bg-white/10 hover:text-accent-gold transition-colors block">Testimonials</Link>
+                <Link href="/blog" className="px-5 py-3 text-sm text-slate-200 hover:bg-white/10 hover:text-accent-gold transition-colors block">Blogs</Link>
+                <Link href="/faq" className="px-5 py-3 text-sm text-slate-200 hover:bg-white/10 hover:text-accent-gold transition-colors block border-b border-white/5">FAQs</Link>
+              </div>
+            </div>
+          </div>
+
+          <div className="pl-4 border-l border-white/20 flex items-center gap-4">
+            <ThemeToggle />
+            <Link
+              href="/login"
+              className="px-6 py-2.5 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-white font-medium transition-all hover:-translate-y-0.5 hover:shadow-lg hover:shadow-accent-gold/20 whitespace-nowrap"
+            >
+              Register / Login
+            </Link>
+          </div>
         </nav>
 
         {/* Mobile Toggle */}
         <button 
-          className="md:hidden text-white p-2"
+          className="xl:hidden flex text-white p-2"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
         >
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -122,14 +158,15 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Full Screen Desktop Mega Menu (Split-Pane Layout) */}
+      {/* Full Screen Desktop Mega Menu for Programs */}
       <div 
-        className={`hidden md:block absolute left-0 w-full overflow-hidden transition-all duration-500 ease-in-out bg-[#0a0f1c] border-t border-white/5 shadow-[0_20px_50px_rgba(0,0,0,0.5)] ${programsOpen ? 'max-h-[700px] opacity-100 visible' : 'max-h-0 opacity-0 invisible'}`}
+        className={`hidden xl:block absolute left-0 w-full overflow-hidden transition-all duration-500 ease-in-out bg-[#0a0f1c] border-t border-white/5 shadow-[0_20px_50px_rgba(0,0,0,0.5)] ${programsOpen ? 'max-h-[700px] opacity-100 visible' : 'max-h-0 opacity-0 invisible'}`}
         onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
       >
         <div className="container mx-auto px-6 md:px-12 flex h-[500px]">
           
-          {/* Left Sidebar: 22 Faculties/Disciplines */}
+          {/* Left Sidebar */}
           <div className="w-1/4 h-full overflow-y-auto py-6 pr-4 border-r border-white/10 custom-scrollbar-mega hide-scrollbars">
             <style jsx>{`
               .hide-scrollbars::-webkit-scrollbar { width: 4px; }
@@ -153,7 +190,7 @@ export default function Navbar() {
             </div>
           </div>
 
-          {/* Right Content Area: Sub-programs display */}
+          {/* Right Content Area */}
           <div className="w-3/4 h-full p-10 overflow-y-auto">
             <div className="flex items-center gap-6 mb-10 border-b border-white/10 pb-6">
               <div className="w-16 h-16 rounded-2xl bg-white/10 flex items-center justify-center text-3xl shadow-inner border border-white/5">
@@ -175,7 +212,6 @@ export default function Navbar() {
                 </TiltCard>
               ))}
               
-              {/* "View All" placeholder card */}
               <TiltCard sensitivity={5}>
                 <Link href={`/programs`} className="block px-6 py-5 rounded-2xl border border-dashed border-white/20 hover:border-accent-gold/50 bg-transparent hover:bg-accent-gold/5 transition-all duration-300 group flex items-center justify-center h-full min-h-[100px]">
                   <span className="text-slate-300 font-bold group-hover:text-accent-gold transition-colors flex items-center gap-2">
@@ -192,15 +228,16 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 w-full glass-dark bg-primary-900/95 border-t border-white/10 py-4 flex flex-col px-6 shadow-2xl max-h-[85vh] overflow-y-auto custom-scrollbar-mega pb-10">
+        <div className="xl:hidden absolute top-full left-0 w-full glass-dark bg-primary-900/95 border-t border-white/10 py-4 flex flex-col px-6 shadow-2xl max-h-[85vh] overflow-y-auto custom-scrollbar-mega pb-10">
            {[
             { name: "Home", path: "/" },
             { name: "About Us", path: "/about" },
+            { name: "Why Choose CBPD", path: "/why-cbpd" },
           ].map((item) => (
             <Link key={item.name} href={item.path} className="text-white hover:text-accent-gold py-3 border-b border-white/5 font-medium" onClick={() => setMobileMenuOpen(false)}>{item.name}</Link>
           ))}
 
-          {/* Programs Accordion Container */}
+          {/* Programs Accordion */}
           <div className="py-1 border-b border-white/5">
             <button 
               className="w-full flex items-center justify-between py-2 text-white font-medium focus:outline-none" 
@@ -209,8 +246,6 @@ export default function Navbar() {
               Programs
               <svg className={`w-5 h-5 transition-transform duration-300 ${mobileProgramsOpen ? 'rotate-180 text-accent-gold' : 'text-slate-400'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
             </button>
-            
-            {/* Multi-level Dropdown for Mobile Programs */}
             <div className={`overflow-hidden transition-all duration-500 ease-in-out ${mobileProgramsOpen ? 'max-h-[3000px] mt-2 mb-4 opacity-100' : 'max-h-0 opacity-0'}`}>
               <div className="bg-white/5 rounded-2xl p-2 flex flex-col gap-1 border border-white/10">
                 {programData.map((prog, idx) => (
@@ -225,8 +260,6 @@ export default function Navbar() {
                       </div>
                       <svg className={`w-4 h-4 transition-transform duration-300 ${mobileActiveCategory === idx ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
                     </button>
-                    
-                    {/* Inner Sub-programs Dropdown */}
                     <div className={`overflow-hidden transition-all duration-300 ease-in-out ${mobileActiveCategory === idx ? 'max-h-[500px] opacity-100 mt-2 mb-3' : 'max-h-0 opacity-0'}`}>
                       <div className="pl-12 pr-4 flex flex-col gap-4 py-2 border-l border-white/10 ml-6">
                         {prog.subs.map((sub, i) => (
@@ -250,18 +283,49 @@ export default function Navbar() {
 
           {[
             { name: "Become a Partner", path: "/partner" },
-            { name: "Testimonials", path: "/testimonials" },
-            { name: "FAQs", path: "/faq" },
-            { name: "Blogs", path: "/blog" },
-            { name: "Verifications", path: "/verifications" },
+            { name: "For Learners", path: "/learners" },
             { name: "Contact", path: "/contact" },
           ].map((item) => (
             <Link key={item.name} href={item.path} className="text-white hover:text-accent-gold py-3 border-b border-white/5 font-medium" onClick={() => setMobileMenuOpen(false)}>{item.name}</Link>
           ))}
+
+          {/* More Accordion */}
+          <div className="py-1 border-b border-white/5">
+            <button 
+              className="w-full flex items-center justify-between py-2 text-white font-medium focus:outline-none" 
+              onClick={() => setMobileMoreOpen(!mobileMoreOpen)}
+            >
+              More
+              <svg className={`w-5 h-5 transition-transform duration-300 ${mobileMoreOpen ? 'rotate-180 text-accent-gold' : 'text-slate-400'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+            </button>
+            <div className={`overflow-hidden transition-all duration-300 ease-in-out ${mobileMoreOpen ? 'max-h-[500px] mt-2 mb-2 opacity-100' : 'max-h-0 opacity-0'}`}>
+              <div className="bg-white/5 rounded-xl p-3 flex flex-col gap-3 border border-white/10 ml-2">
+                {[
+                  { name: "Accreditation", path: "/accreditation" },
+                  { name: "Verifications", path: "/verifications" },
+                  { name: "Testimonials", path: "/testimonials" },
+                  { name: "FAQs", path: "/faq" },
+                  { name: "Blogs", path: "/blog" },
+                ].map(sub => (
+                   <Link 
+                     key={sub.name} 
+                     href={sub.path} 
+                     className="text-sm text-slate-300 hover:text-accent-gold transition-colors pl-2"
+                     onClick={() => { setMobileMoreOpen(false); setMobileMenuOpen(false); }}
+                   >
+                     {sub.name}
+                   </Link>
+                ))}
+              </div>
+            </div>
+          </div>
            
-          <Link href="/login" className="mt-8 text-center px-6 py-3.5 rounded-full bg-accent-gold text-primary-900 font-bold hover:bg-white hover:shadow-[0_0_20px_rgba(255,255,255,0.4)] transition-all">
-            Register / Login
-          </Link>
+          <div className="mt-8 flex justify-between items-center px-2">
+            <ThemeToggle />
+            <Link href="/login" className="px-6 py-3 rounded-full bg-accent-gold text-primary-900 font-bold hover:bg-white hover:shadow-[0_0_20px_rgba(255,255,255,0.4)] transition-all">
+              Register / Login
+            </Link>
+          </div>
         </div>
       )}
     </header>

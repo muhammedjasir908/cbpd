@@ -124,7 +124,7 @@ export default function ApplicationForm({ programTitle }: { programTitle: string
         <button 
           type="submit"
           disabled={status === "loading"}
-          className="w-full py-4 rounded-xl bg-blend-normal bg-gradient-to-r from-brand-blue to-primary-800 hover:from-brand-red hover:to-brand-red text-white font-bold text-lg transition-all shadow-lg hover:shadow-brand-red/30 disabled:opacity-70 flex items-center justify-center gap-2 group"
+          className="w-full py-4 rounded-xl bg-blend-normal bg-gradient-to-r from-brand-blue to-primary-800 hover:from-brand-red hover:to-brand-red text-white font-bold text-lg transition-all shadow-lg hover:shadow-accent-gold/40 disabled:opacity-70 flex items-center justify-center gap-2 group"
         >
           {status === "loading" ? (
             <svg className="w-6 h-6 animate-spin" fill="none" viewBox="0 0 24 24">

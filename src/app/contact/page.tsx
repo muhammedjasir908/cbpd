@@ -108,7 +108,7 @@ export default function ContactPage() {
                     </div>
 
                     <MagneticButton strength={15}>
-                      <button className="px-10 py-5 rounded-full bg-brand-blue text-white font-bold text-lg hover:bg-brand-red transition-colors shadow-[0_5px_20px_rgba(30,64,175,0.4)] hover:shadow-[0_10px_30px_rgba(220,38,38,0.5)] flex items-center gap-2 group w-full md:w-auto mt-4">
+                      <button className="px-10 py-5 rounded-full bg-brand-blue text-white font-bold text-lg hover:bg-brand-red transition-colors shadow-[0_5px_20px_rgba(30,64,175,0.4)] hover:shadow-[0_10px_30px_rgba(194,151,49,0.5)] flex items-center gap-2 group w-full md:w-auto mt-4">
                         Send Message
                         <svg className="w-5 h-5 group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
                       </button>
