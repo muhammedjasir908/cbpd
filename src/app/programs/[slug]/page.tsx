@@ -79,8 +79,10 @@ export default async function SubProgramPage({ params }: { params: Promise<{ slu
   }
 
   // Render specific Sub-Program template
-  const content = getProgramContent(program!);
-  const heroImage = `https://picsum.photos/seed/${program!.category.replace(/ & | /g, "")}/1920/600`;
+  if (!program) return notFound();
+
+  const content = getProgramContent(program);
+  const heroImage = `https://picsum.photos/seed/${program.category.replace(/ & | /g, "")}/1920/600`;
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-[#0a0f1c] pt-20">
