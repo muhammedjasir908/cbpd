@@ -42,7 +42,7 @@ export default function ProgramsPage() {
           <div className="flex flex-col lg:flex-row gap-12 items-center">
             <div className="lg:w-1/2 text-left">
               <div className="inline-block px-4 py-1.5 rounded-full border border-brand-red/40 bg-brand-red/10 backdrop-blur-md mb-6 animate-[fadeInUp_0.8s_ease-out]">
-                <span className="text-accent-gold font-semibold tracking-wide text-sm uppercase">CBPD Portfolio</span>
+                <span className="text-brand-red font-semibold tracking-wide text-sm uppercase">CBPD Portfolio</span>
               </div>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6 animate-[fadeInUp_1s_ease-out]">
                 Our Programmes <span className="text-brand-red">&</span> <br/>Certifications
@@ -100,7 +100,7 @@ export default function ProgramsPage() {
                   >
                     
                     {/* Header Image */}
-                    <div className="relative h-56 w-full overflow-hidden shrink-0">
+                    <Link href={`/programs/${prog.slug}`} className="relative h-56 w-full overflow-hidden shrink-0 block">
                       <div className="absolute inset-0 bg-brand-blue/20 z-10 group-hover:opacity-0 transition-opacity duration-500"></div>
                       <img 
                         src={prog.image} 
@@ -113,13 +113,15 @@ export default function ProgramsPage() {
                       <div className="absolute -bottom-6 right-8 bg-white dark:bg-primary-800 w-16 h-16 rounded-2xl flex items-center justify-center text-3xl shadow-xl z-20 border border-slate-100 dark:border-primary-700 group-hover:-translate-y-2 transition-transform duration-500">
                         {prog.icon}
                       </div>
-                    </div>
+                    </Link>
 
                     {/* Content */}
                     <div className="p-8 pt-10 flex flex-col flex-grow">
-                      <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4 group-hover:text-brand-blue dark:group-hover:text-brand-red transition-colors">
-                        {prog.title}
-                      </h2>
+                      <Link href={`/programs/${prog.slug}`}>
+                        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4 group-hover:text-brand-blue dark:group-hover:text-brand-red transition-colors">
+                          {prog.title}
+                        </h2>
+                      </Link>
                       
                       <p className="text-sm text-slate-500 dark:text-slate-400 mb-6 shrink-0">
                         Master the principles of {prog.title.toLowerCase()} with our globally accredited industry curriculum. 
@@ -167,7 +169,7 @@ export default function ProgramsPage() {
               <h2 className="text-3xl md:text-5xl font-bold text-slate-900 dark:text-white mb-6 leading-tight">
                 Benefits of Earning a <span className="text-brand-blue dark:text-brand-red">CBPD Certification</span>
               </h2>
-              <div className="w-20 h-1 bg-accent-gold mb-8"></div>
+              <div className="w-20 h-1 bg-brand-red mb-8"></div>
               <p className="text-lg text-slate-600 dark:text-slate-300 mb-8 leading-relaxed">
                 CBPD provides a remarkably faster and significantly more practical route to recognised professional credentials when compared against many traditional awarding bodies. We empower you to prove your worth instantly.
               </p>
@@ -175,11 +177,11 @@ export default function ProgramsPage() {
             
             <div className="lg:w-2/3 grid grid-cols-1 md:grid-cols-2 gap-6">
               {benefits.map((benefit, i) => (
-                <div key={i} className="p-6 bg-slate-50 dark:bg-primary-800 rounded-2xl border border-slate-100 dark:border-primary-700 hover:border-brand-red/30 transition-all duration-300 group hover:shadow-lg">
+                <div key={i} className="p-6 bg-slate-50 dark:bg-primary-800 rounded-2xl border-[2px] border-slate-100 dark:border-primary-700 hover:border-brand-red transition-all duration-300 group hover:shadow-lg">
                   <div className="w-12 h-12 bg-white dark:bg-primary-900 rounded-xl flex flex-col justify-center items-center text-brand-blue dark:text-brand-red font-black text-xl mb-4 group-hover:scale-110 transition-transform">
                     {i + 1}
                   </div>
-                  <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">{benefit.title}</h3>
+                  <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2 group-hover:text-brand-red transition-colors">{benefit.title}</h3>
                   <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">{benefit.desc}</p>
                 </div>
               ))}
@@ -207,7 +209,7 @@ export default function ProgramsPage() {
                 </div>
                 <div className="bg-white dark:bg-primary-800 p-6 rounded-2xl w-full border border-slate-100 dark:border-primary-700 shadow-sm transition-shadow hover:shadow-md">
                   <span className="text-brand-red font-black block mb-2">Step 0{idx + 1}</span>
-                  <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-3 group-hover:text-brand-blue transition-colors">{step.title}</h3>
+                  <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-3 group-hover:text-brand-red transition-colors">{step.title}</h3>
                   <p className="text-sm text-slate-600 dark:text-slate-400">{step.desc}</p>
                 </div>
               </div>
@@ -222,7 +224,7 @@ export default function ProgramsPage() {
         <div className="absolute inset-0 bg-gradient-to-t from-primary-900 via-primary-900/80 to-transparent z-0"></div>
         <div className="container mx-auto px-6 md:px-12 relative z-10 text-center max-w-4xl">
           <h2 className="text-4xl md:text-6xl font-bold text-white mb-8">
-            Ready to Begin <span className="text-accent-gold">Your Journey?</span>
+            Ready to Begin <span className="text-brand-red">Your Journey?</span>
           </h2>
           <p className="text-xl text-slate-300 mb-12">
             Accelerate your career trajectory and empower your organisation today with CBPD's world-class credentials.

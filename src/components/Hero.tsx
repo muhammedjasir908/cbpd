@@ -27,7 +27,7 @@ export default function Hero() {
         {/* Text Area */}
         <div className="flex flex-col items-start justify-center w-full lg:w-1/2 h-full pb-10">
           
-          <div className="inline-block px-4 py-2 rounded-full border border-accent-gold/30 bg-accent-gold/10 text-accent-gold font-bold tracking-wide text-xs md:text-sm mb-6 animate-[fadeInUp_0.8s_ease-out]">
+          <div className="inline-block px-4 py-2 rounded-full border border-brand-red/30 bg-brand-red/10 text-brand-red font-bold tracking-wide text-xs md:text-sm mb-6 animate-[fadeInUp_0.8s_ease-out]">
             Central Board of Professional Development (CBPD)
           </div>
 
@@ -62,7 +62,7 @@ export default function Hero() {
           </div>
           
           {/* Image 3: Graduation/Professional */}
-          <div className="absolute top-24 left-4 w-56 h-64 rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)] border-2 border-accent-gold/40 animate-[float_7s_ease-in-out_infinite] z-30 hover:scale-105 transition-transform duration-500 delay-300">
+          <div className="absolute top-24 left-4 w-56 h-64 rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)] border-2 border-brand-red/40 animate-[float_7s_ease-in-out_infinite] z-30 hover:scale-105 transition-transform duration-500 delay-300">
             <img 
               src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=600&auto=format&fit=crop" 
               alt="Professional graduation" 
@@ -72,7 +72,7 @@ export default function Hero() {
           </div>
 
           {/* Decorative Elements */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-accent-gold/20 rounded-full blur-[80px] z-0"></div>
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-brand-red/20 rounded-full blur-[80px] z-0"></div>
           <div className="absolute top-10 left-20 w-8 h-8 rounded-full bg-brand-red/50 animate-[ping_3s_cubic-bezier(0,0,0.2,1)_infinite] z-40"></div>
         </div>
       </div>
@@ -81,7 +81,7 @@ export default function Hero() {
       <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 animate-[fadeInUp_1.6s_ease-out]">
         <span className="text-white/60 text-xs uppercase tracking-widest font-semibold">Scroll</span>
         <div className="w-[1px] h-12 bg-white/20 relative overflow-hidden">
-          <div className="absolute top-0 left-0 w-full h-1/2 bg-accent-gold animate-[translateY_2s_infinite]"></div>
+          <div className="absolute top-0 left-0 w-full h-1/2 bg-brand-red animate-[translateY_2s_infinite]"></div>
         </div>
       </div>
     </section>

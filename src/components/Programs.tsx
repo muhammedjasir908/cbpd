@@ -1,5 +1,6 @@
 "use client";
 
+import { programData } from "@/data/programs";
 import { useEffect, useState, useRef } from "react";
 import TiltCard from "@/components/TiltCard";
 import Link from "next/link";
@@ -26,14 +27,11 @@ export default function Programs() {
     return () => observer.disconnect();
   }, []);
 
-  const disciplines = [
-    { name: "Business & Management", number: "01", img: "https://www.cbpd.co.uk/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fbusiness.c8a73c15.jpg&w=828&q=75" },
-    { name: "Technology & Data Skills", number: "02", img: "https://www.cbpd.co.uk/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Ftech.601aab81.jpg&w=828&q=75" },
-    { name: "Education & Training", number: "03", img: "https://www.cbpd.co.uk/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FEducation.2396d363.jpg&w=828&q=75" },
-    { name: "Leadership & Professional Development", number: "04", img: "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=600&auto=format&fit=crop" },
-    { name: "Health & Safety Compliance", number: "05", img: "https://www.cbpd.co.uk/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FSafety.a73ddea3.jpg&w=828&q=75" },
-    { name: "Specialist Professional Skills", number: "06", img: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=600&auto=format&fit=crop" },
-  ];
+  const disciplines = programData.map((prog, i) => ({
+    name: prog.title,
+    number: String(i + 1).padStart(2, '0'),
+    img: prog.image,
+  }));
 
   return (
     <section ref={sectionRef} className="py-24 bg-white dark:bg-primary-900 border-y border-slate-200 dark:border-primary-800">
@@ -46,9 +44,9 @@ export default function Programs() {
           </h2>
           <div className="w-24 h-1 bg-brand-red mb-8"></div>
           <p className="text-lg text-slate-600 dark:text-slate-300 leading-relaxed mb-10">
-            Business & Management • Technology & Data Skills • Education & Training • Leadership & Professional Development • Health & Safety Compliance • Specialist Professional Skills
+            {programData.map(p => p.title).join(" • ")}
           </p>
-          <Link href="/programs" className="px-8 py-4 rounded-full bg-brand-blue text-white font-bold hover:bg-brand-red transition-all shadow-[0_5px_15px_rgba(30,64,175,0.3)] hover:shadow-[0_10px_25px_rgba(194,151,49,0.4)] self-start flex items-center gap-2 group">
+          <Link href="/programs" className="px-8 py-4 rounded-full bg-brand-blue text-white font-bold hover:bg-brand-red transition-all shadow-[0_5px_15px_rgba(30,64,175,0.3)] hover:shadow-[0_10px_25px_rgba(212, 53, 28,0.4)] self-start flex items-center gap-2 group">
             View All Programmes
             <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
           </Link>

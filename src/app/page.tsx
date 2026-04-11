@@ -26,7 +26,7 @@ export default function Home() {
       {/* Education meets personality could be another section, but we've covered the main ones for the redesign demo */}
       <section className="py-24 relative overflow-hidden bg-primary-900">
         <div className="absolute inset-0 z-0">
-          <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-accent-gold/5 rounded-full blur-[100px]"></div>
+          <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-red/5 rounded-full blur-[100px]"></div>
           <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-blue-500/5 rounded-full blur-[100px]"></div>
         </div>
         <div className="container mx-auto px-6 md:px-12 relative z-10 text-center">
@@ -38,7 +38,7 @@ export default function Home() {
             CBPD delivers what employers demand: immediately applicable skills combined with prestigious UK recognition. Start your journey today.
           </p>
           <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-4">
-            <Link href="/programs" className="px-8 py-4 w-full sm:w-auto rounded-full bg-accent-gold text-primary-900 font-bold hover:bg-white transition-all shadow-[0_0_20px_rgba(245,158,11,0.3)] hover:scale-105 inline-flex justify-center items-center gap-2">
+            <Link href="/programs" className="px-8 py-4 w-full sm:w-auto rounded-full bg-brand-red text-white font-bold hover:bg-white hover:text-brand-red transition-all shadow-[0_0_20px_rgba(212, 53, 28,0.3)] hover:scale-105 inline-flex justify-center items-center gap-2">
               Browse CBPD Programmes
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
             </Link>

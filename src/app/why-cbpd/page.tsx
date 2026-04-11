@@ -34,10 +34,10 @@ export default function WhyChooseCBPDPage() {
 
   const features = [
     { title: "More Practical", desc: "Strong emphasis on applied skills and real, measurable professional outcomes rather than just academic theory.", icon: "🎯", color: "from-brand-blue" },
-    { title: "Faster & Flexible", desc: "Shorter, highly-focused development pathways explicitly designed for busy professionals.", icon: "⚡", color: "from-accent-gold" },
+    { title: "Faster & Flexible", desc: "Shorter, highly-focused development pathways explicitly designed for busy professionals.", icon: "⚡", color: "from-brand-red" },
     { title: "Globally Trusted", desc: "Prestigious UK credentials internationally recognized and accepted across 100+ countries.", icon: "🌍", color: "from-brand-red" },
     { title: "Learner & Partner Focused", desc: "Providing agile, responsive support alongside highly adaptable modern delivery models.", icon: "🤝", color: "from-primary-600" },
-    { title: "Quality Assured", desc: "Uncompromising rigorous standards fully backed by high-level CPD Provider recognition.", icon: "⭐", color: "from-accent-gold" }
+    { title: "Quality Assured", desc: "Uncompromising rigorous standards fully backed by high-level CPD Provider recognition.", icon: "⭐", color: "from-brand-red" }
   ];
 
   return (
@@ -48,7 +48,7 @@ export default function WhyChooseCBPDPage() {
         <div className="absolute inset-0 bg-gradient-to-t from-primary-900 via-primary-900/80 to-transparent z-0"></div>
 
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-red/10 rounded-full blur-[150px] pointer-events-none z-0 animate-[pulse_8s_infinite]"></div>
-        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-accent-gold/10 rounded-full blur-[150px] pointer-events-none transform translate-y-1/2 z-0 animate-[pulse_10s_infinite_reverse]"></div>
+        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-brand-red/10 rounded-full blur-[150px] pointer-events-none transform translate-y-1/2 z-0 animate-[pulse_10s_infinite_reverse]"></div>
 
         <div className="container mx-auto px-6 md:px-12 relative z-10">
           <div className={`max-w-4xl mx-auto text-center transition-all duration-1000 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'}`}>
@@ -57,7 +57,7 @@ export default function WhyChooseCBPDPage() {
             </div>
             
             <h1 className="text-5xl md:text-7xl font-bold text-white mb-8 leading-tight">
-              Why Choose <span className="text-accent-gold">CBPD</span>
+              Why Choose <span className="text-brand-red">CBPD</span>
             </h1>
             
             <p className="text-xl md:text-2xl text-slate-300 mb-10 max-w-3xl mx-auto leading-relaxed">
@@ -71,9 +71,9 @@ export default function WhyChooseCBPDPage() {
       <section className="py-20 relative bg-white dark:bg-[#050812] z-20">
         <div className="container mx-auto px-6 md:px-12 relative z-10 text-center animate-on-scroll translate-y-12 opacity-0 transition-all duration-700">
           <h2 className="text-3xl md:text-5xl font-bold text-slate-800 dark:text-white mb-10 max-w-4xl mx-auto leading-relaxed">
-            Professionals and dynamic organisations worldwide are actively choosing CBPD for its perfect balance of <span className="text-brand-red">prestige</span>, <span className="text-brand-blue">practicality</span>, and <span className="text-accent-gold">accessibility</span>.
+            Professionals and dynamic organisations worldwide are actively choosing CBPD for its perfect balance of <span className="text-brand-red">prestige</span>, <span className="text-brand-blue">practicality</span>, and <span className="text-brand-red">accessibility</span>.
           </h2>
-          <div className="w-24 h-1 bg-accent-gold mx-auto rounded-full"></div>
+          <div className="w-24 h-1 bg-brand-red mx-auto rounded-full"></div>
         </div>
       </section>
 
@@ -133,7 +133,7 @@ export default function WhyChooseCBPDPage() {
             <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-2xl transform translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
             
             <h3 className="text-4xl md:text-5xl font-bold text-white mb-6 animate-on-scroll translate-y-12 opacity-0 transition-all duration-700">
-              Trusted in Over <span className="text-accent-gold">100+ Countries</span>
+              Trusted in Over <span className="text-brand-red">100+ Countries</span>
             </h3>
             <p className="text-xl text-red-100 mb-10 leading-relaxed animate-on-scroll translate-y-12 opacity-0 transition-all duration-700 delay-100">
               Our UK-issued professional credentials carry serious weight universally. We work alongside highly respected CPD frameworks to ensure total, unquestionable international validity.
@@ -141,7 +141,7 @@ export default function WhyChooseCBPDPage() {
             
             <div className="animate-on-scroll translate-y-12 opacity-0 transition-all duration-700 delay-200">
               <MagneticButton strength={20}>
-                <Link href="/programs" className="inline-flex px-8 py-4 rounded-full bg-white text-brand-red font-bold text-lg hover:bg-brand-blue hover:text-white transition-all shadow-lg hover:shadow-accent-gold/40 flex-row items-center gap-3 group">
+                <Link href="/programs" className="inline-flex px-8 py-4 rounded-full bg-white text-brand-red font-bold text-lg hover:bg-brand-blue hover:text-white transition-all shadow-lg hover:shadow-brand-red/40 flex-row items-center gap-3 group">
                   Explore The CBPD Difference
                   <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
                 </Link>

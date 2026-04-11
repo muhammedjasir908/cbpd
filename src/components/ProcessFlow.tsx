@@ -30,21 +30,21 @@ export default function ProcessFlow() {
       title: "Accreditation",
       description: "All learning partners should meet the minimum eligibility criteria for being accredited. We ensure the highest standard of educational facilities.",
       icon: (
-        <svg className="w-8 h-8 text-accent-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+        <svg className="w-8 h-8 text-brand-red" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
       )
     },
     {
       title: "Assessments",
       description: "Training partners are authorised to conduct proctored assessments with periodic evaluation to guarantee skill mastery.",
       icon: (
-        <svg className="w-8 h-8 text-accent-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" /></svg>
+        <svg className="w-8 h-8 text-brand-red" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" /></svg>
       )
     },
     {
       title: "Certification",
       description: "Candidates meeting the minimum skill requirements are issued a digitally verifiable credential recognised globally.",
       icon: (
-        <svg className="w-8 h-8 text-accent-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" /></svg>
+        <svg className="w-8 h-8 text-brand-red" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" /></svg>
       )
     }
   ];
@@ -53,9 +53,9 @@ export default function ProcessFlow() {
     <section ref={sectionRef} className="py-24 bg-slate-50 dark:bg-primary-900 border-b border-slate-200 dark:border-primary-800">
       <div className="container mx-auto px-6 md:px-12">
         <div className={`text-center max-w-3xl mx-auto mb-16 transition-all duration-1000 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-          <span className="text-accent-gold font-bold tracking-wider uppercase text-sm mb-2 block">Our Methodology</span>
+          <span className="text-brand-red font-bold tracking-wider uppercase text-sm mb-2 block">Our Methodology</span>
           <h2 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-6">The Process Flow</h2>
-          <div className="w-24 h-1 bg-accent-gold mx-auto mb-6"></div>
+          <div className="w-24 h-1 bg-brand-red mx-auto mb-6"></div>
           <p className="text-lg text-slate-600 dark:text-slate-300">
             A seamless journey from institutional accreditation to empowering students with globally recognised certifications.
           </p>

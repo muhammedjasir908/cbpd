@@ -26,7 +26,7 @@ export default function AboutPage() {
         
         <div className="container mx-auto px-6 md:px-12 relative z-10 text-center flex flex-col items-center">
           <div className="inline-block px-4 py-1.5 rounded-full border border-brand-red/40 bg-brand-red/10 backdrop-blur-md mb-6 animate-[fadeInUp_0.8s_ease-out]">
-            <span className="text-accent-gold font-semibold tracking-wide text-sm uppercase">About Us</span>
+            <span className="text-brand-red font-semibold tracking-wide text-sm uppercase">About Us</span>
           </div>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white max-w-4xl leading-tight mb-8 animate-[fadeInUp_1s_ease-out]">
             About the <span className="text-brand-red">Central Board of Professional Development</span> (CBPD)
@@ -45,7 +45,7 @@ export default function AboutPage() {
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-8 leading-tight">
               Bridging the gap between <span className="text-brand-blue dark:text-brand-red">learning and real-world performance</span>
             </h2>
-            <div className="w-20 h-1 bg-accent-gold mb-10"></div>
+            <div className="w-20 h-1 bg-brand-red mb-10"></div>
             
             <div className="prose prose-lg dark:prose-invert text-slate-600 dark:text-slate-300 max-w-none">
               <p className="mb-6">
@@ -55,7 +55,7 @@ export default function AboutPage() {
                 Our dynamic programmes actively emphasise applied knowledge and immediate workplace relevance. By focusing squarely on competency-based methodologies, we allow professionals to gain fully recognised credentials significantly faster and more cost-effectively than with many traditional awarding bodies.
               </p>
               
-              <div className="my-8 p-6 bg-white dark:bg-primary-800 rounded-2xl border-l-[6px] border-accent-gold shadow-md group hover:-translate-y-1 transition-transform duration-300">
+              <div className="my-8 p-6 bg-white dark:bg-primary-800 rounded-2xl border-l-[6px] border-brand-red shadow-md group hover:-translate-y-1 transition-transform duration-300">
                 <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">Our Mission</h3>
                 <p className="m-0 text-base">CBPD exists to empower individuals and organisations through high-quality, practical certifications that drive measurable career milestones and expansive business success.</p>
               </div>
@@ -100,14 +100,14 @@ export default function AboutPage() {
         <div className="absolute inset-0 bg-gradient-to-t from-primary-900 via-primary-950/80 to-transparent z-0"></div>
         <div className="container mx-auto px-6 md:px-12 relative z-10 text-center max-w-4xl">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-8">
-            <span className="text-accent-gold">Advance</span> with CBPD
+            <span className="text-brand-red">Advance</span> with CBPD
           </h2>
           <p className="text-xl text-slate-300 mb-12">
             CBPD exists to empower individuals and organisations through high-quality, practical certifications. Start your journey with us today.
           </p>
           <div className="flex flex-col sm:flex-row justify-center items-center gap-6">
             <MagneticButton strength={20}>
-              <Link href="/programs" className="w-full sm:w-auto px-8 py-4 rounded-full bg-brand-red text-white font-bold text-lg hover:bg-brand-blue transition-all duration-300 shadow-[0_0_30px_rgba(194,151,49,0.5)] flex justify-center items-center gap-3 group whitespace-nowrap">
+              <Link href="/programs" className="w-full sm:w-auto px-8 py-4 rounded-full bg-brand-red text-white font-bold text-lg hover:bg-brand-blue transition-all duration-300 shadow-[0_0_30px_rgba(212, 53, 28,0.5)] flex justify-center items-center gap-3 group whitespace-nowrap">
                 Discover CBPD Programmes
                 <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
               </Link>

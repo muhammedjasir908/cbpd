@@ -7,6 +7,10 @@ import ApplicationForm from "./ApplicationForm";
 export function generateStaticParams() {
   const params: { slug: string }[] = [];
   programData.forEach(cat => {
+    // Add category slug itself so Next.js can pre-render it
+    params.push({ slug: cat.slug });
+    
+    // Add all sub-program slugs
     cat.subs.forEach(sub => {
       params.push({ slug: sub.slug });
     });
@@ -14,15 +18,69 @@ export function generateStaticParams() {
   return params;
 }
 
-export default function SubProgramPage({ params }: { params: { slug: string } }) {
-  const program = getSubProgramBySlug(params.slug);
+export default async function SubProgramPage({ params }: { params: Promise<{ slug: string }> }) {
+  const resolvedParams = await params;
+  const program = getSubProgramBySlug(resolvedParams.slug);
+  const category = programData.find(c => c.slug === resolvedParams.slug);
   
-  if (!program) {
+  if (!program && !category) {
     notFound();
   }
 
-  const content = getProgramContent(program);
-  const heroImage = `https://picsum.photos/seed/${program.category.replace(/ & | /g, "")}/1920/600`;
+  // If it's a category page (and doesn't have a dedicated page like /business already), render a generic generic category template
+  if (category && !program) {
+    return (
+      <main className="min-h-screen bg-slate-50 dark:bg-primary-900 pb-20">
+        <div className="bg-white dark:bg-primary-900 pt-32 pb-4 border-b border-slate-200 dark:border-primary-800">
+          <div className="container mx-auto px-6 md:px-12 flex items-center gap-3 text-sm text-slate-500 font-medium">
+            <Link href="/" className="hover:text-brand-red border-transparent transition-colors">Home</Link>
+            <span className="text-slate-300">/</span>
+            <Link href="/programs" className="hover:text-brand-red border-transparent transition-colors">Programmes</Link>
+            <span className="text-slate-300">/</span>
+            <span className="text-slate-900 dark:text-white">{category.title}</span>
+          </div>
+        </div>
+
+        <section className="bg-primary-900 py-20 relative overflow-hidden">
+          <div className="container mx-auto px-6 md:px-12 relative z-10 text-center">
+            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
+              {category.title}
+            </h1>
+            <p className="text-xl text-slate-300 mb-8 max-w-2xl mx-auto">
+              Master the principles of {category.title.toLowerCase()} with our globally accredited industry curriculum. 
+            </p>
+          </div>
+        </section>
+
+        <section className="py-16">
+          <div className="container mx-auto px-6 md:px-12 max-w-4xl">
+            <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-8">Available Sub-Programmes</h2>
+            <div className="space-y-4">
+              {category.subs.map((sub, i) => (
+                <Link key={i} href={`/programs/${sub.slug}`} className="block p-6 bg-white dark:bg-primary-800 border border-slate-200 dark:border-primary-700 rounded-lg hover:border-brand-red dark:hover:border-brand-red transition-all group shadow-sm">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h3 className="text-xl font-bold text-slate-900 dark:text-white group-hover:text-brand-red transition-colors mb-2">
+                        {sub.title}
+                      </h3>
+                      <p className="text-slate-500 dark:text-slate-400">Click to explore the core curriculum, market insights, and enrolment steps.</p>
+                    </div>
+                    <div className="w-10 h-10 rounded-full bg-slate-50 dark:bg-primary-900 flex items-center justify-center text-slate-400 group-hover:bg-brand-red group-hover:text-white transition-colors">
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7"/></svg>
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      </main>
+    );
+  }
+
+  // Render specific Sub-Program template
+  const content = getProgramContent(program!);
+  const heroImage = `https://picsum.photos/seed/${program!.category.replace(/ & | /g, "")}/1920/600`;
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-[#0a0f1c] pt-20">
@@ -36,7 +94,7 @@ export default function SubProgramPage({ params }: { params: { slug: string } })
         
         <div className="container mx-auto px-6 md:px-12 relative z-10">
           <div className="max-w-3xl">
-            <Link href="/programs" className="inline-flex items-center gap-2 text-brand-blue dark:text-accent-gold font-bold mb-6 hover:-translate-x-1 transition-transform bg-white/10 px-4 py-2 rounded-full backdrop-blur-md">
+            <Link href="/programs" className="inline-flex items-center gap-2 text-brand-blue dark:text-brand-red font-bold mb-6 hover:-translate-x-1 transition-transform bg-white/10 px-4 py-2 rounded-full backdrop-blur-md">
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
               View All Programs
             </Link>
@@ -96,10 +154,10 @@ export default function SubProgramPage({ params }: { params: { slug: string } })
             <div className="lg:w-1/3">
               <div className="sticky top-32">
                 <div className="bg-gradient-to-br from-primary-900 to-slate-900 rounded-3xl p-8 text-white shadow-2xl relative overflow-hidden border border-white/10">
-                  <div className="absolute top-0 right-0 w-32 h-32 bg-accent-gold/20 rounded-full blur-3xl"></div>
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-brand-red/20 rounded-full blur-3xl"></div>
                   
                   <h3 className="text-2xl font-bold mb-8 flex items-center gap-3 relative z-10">
-                    <svg className="w-6 h-6 text-accent-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+                    <svg className="w-6 h-6 text-brand-red" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
                     Job Market Insights
                   </h3>
                   
@@ -110,7 +168,7 @@ export default function SubProgramPage({ params }: { params: { slug: string } })
 
                     <div className="bg-white/5 p-5 rounded-2xl border border-white/10 backdrop-blur-sm">
                       <div className="text-sm text-slate-400 mb-1">Average Salary Range</div>
-                      <div className="text-2xl font-bold text-accent-gold">{content.jobMarket.salaryRange}</div>
+                      <div className="text-2xl font-bold text-brand-red">{content.jobMarket.salaryRange}</div>
                     </div>
 
                     <div className="bg-white/5 p-5 rounded-2xl border border-white/10 backdrop-blur-sm">
@@ -153,7 +211,7 @@ export default function SubProgramPage({ params }: { params: { slug: string } })
                 Secure Your Place
               </h2>
               <p className="text-lg text-slate-600 dark:text-slate-400">
-                Submit an application for <strong className="text-brand-blue dark:text-accent-gold">{program.title}</strong> today to step onto the path of mastery. Spaces are strictly limited per cohort.
+                Submit an application for <strong className="text-brand-blue dark:text-brand-red">{program.title}</strong> today to step onto the path of mastery. Spaces are strictly limited per cohort.
               </p>
             </div>
             

@@ -11,7 +11,7 @@ export default function ContactPage() {
         
         <div className="container mx-auto px-6 md:px-12 relative z-10 text-center">
           <div className="inline-block px-4 py-1.5 rounded-full border border-brand-red/40 bg-brand-red/10 backdrop-blur-md mb-6 animate-[fadeInUp_0.8s_ease-out]">
-            <span className="text-accent-gold font-semibold tracking-wide text-sm uppercase">Contact Us</span>
+            <span className="text-brand-red font-semibold tracking-wide text-sm uppercase">Contact Us</span>
           </div>
           <h1 className="text-5xl md:text-7xl font-bold text-white max-w-4xl mx-auto leading-tight mb-8 animate-[fadeInUp_1s_ease-out]">
             Let's start a <br/>
@@ -32,7 +32,7 @@ export default function ContactPage() {
             <div className="lg:w-1/3 flex flex-col gap-6">
               <span className="text-brand-blue dark:text-brand-red font-bold tracking-wider text-sm uppercase mb-2 block">Get in touch!</span>
               <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-6">Contact Info</h2>
-              <div className="w-20 h-1 bg-accent-gold mb-8"></div>
+              <div className="w-20 h-1 bg-brand-red mb-8"></div>
 
               <TiltCard sensitivity={15}>
                 <div className="bg-white dark:bg-primary-900 p-8 rounded-3xl shadow-sm border border-slate-100 dark:border-primary-800 group hover:border-brand-blue/50 dark:hover:border-brand-red/50 transition-colors h-full" style={{ transform: "translateZ(20px)" }}>
@@ -108,7 +108,7 @@ export default function ContactPage() {
                     </div>
 
                     <MagneticButton strength={15}>
-                      <button className="px-10 py-5 rounded-full bg-brand-blue text-white font-bold text-lg hover:bg-brand-red transition-colors shadow-[0_5px_20px_rgba(30,64,175,0.4)] hover:shadow-[0_10px_30px_rgba(194,151,49,0.5)] flex items-center gap-2 group w-full md:w-auto mt-4">
+                      <button className="px-10 py-5 rounded-full bg-brand-blue text-white font-bold text-lg hover:bg-brand-red transition-colors shadow-[0_5px_20px_rgba(30,64,175,0.4)] hover:shadow-[0_10px_30px_rgba(212, 53, 28,0.5)] flex items-center gap-2 group w-full md:w-auto mt-4">
                         Send Message
                         <svg className="w-5 h-5 group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
                       </button>

@@ -45,7 +45,7 @@ export default function ApplicationForm({ programTitle }: { programTitle: string
   return (
     <div className="bg-white dark:bg-white/5 backdrop-blur-xl border border-slate-200 dark:border-white/10 p-8 md:p-12 rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.05)] relative">
       
-      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-blue to-accent-gold rounded-t-3xl"></div>
+      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-blue to-brand-red rounded-t-3xl"></div>
       
       <form onSubmit={handleSubmit} className="space-y-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -124,7 +124,7 @@ export default function ApplicationForm({ programTitle }: { programTitle: string
         <button 
           type="submit"
           disabled={status === "loading"}
-          className="w-full py-4 rounded-xl bg-blend-normal bg-gradient-to-r from-brand-blue to-primary-800 hover:from-brand-red hover:to-brand-red text-white font-bold text-lg transition-all shadow-lg hover:shadow-accent-gold/40 disabled:opacity-70 flex items-center justify-center gap-2 group"
+          className="w-full py-4 rounded-xl bg-blend-normal bg-gradient-to-r from-brand-blue to-primary-800 hover:from-brand-red hover:to-brand-red text-white font-bold text-lg transition-all shadow-lg hover:shadow-brand-red/40 disabled:opacity-70 flex items-center justify-center gap-2 group"
         >
           {status === "loading" ? (
             <svg className="w-6 h-6 animate-spin" fill="none" viewBox="0 0 24 24">

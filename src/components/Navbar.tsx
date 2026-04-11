@@ -77,7 +77,7 @@ export default function Navbar() {
             <Link
               key={item.name}
               href={item.path}
-              className="text-sm font-medium text-slate-200 hover:text-accent-gold transition-colors relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-accent-gold after:transition-all hover:after:w-full pb-1"
+              className="text-sm font-medium text-slate-200 hover:text-brand-red transition-colors relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-brand-red after:transition-all hover:after:w-full pb-1"
             >
               {item.name}
             </Link>
@@ -89,7 +89,7 @@ export default function Navbar() {
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
           >
-            <Link href="/programs" className={`text-sm font-medium transition-colors relative after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:bg-accent-gold after:transition-all pb-1 flex items-center gap-1 ${programsOpen ? 'text-accent-gold after:w-full' : 'text-slate-200 hover:text-accent-gold after:w-0 hover:after:w-full'}`}>
+            <Link href="/programs" className={`text-sm font-medium transition-colors relative after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:bg-brand-red after:transition-all pb-1 flex items-center gap-1 ${programsOpen ? 'text-brand-red after:w-full' : 'text-slate-200 hover:text-brand-red after:w-0 hover:after:w-full'}`}>
               Programs
               <svg className={`w-4 h-4 transition-transform duration-300 ${programsOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
             </Link>
@@ -103,7 +103,7 @@ export default function Navbar() {
             <Link
               key={item.name}
               href={item.path}
-              className="text-sm font-medium text-slate-200 hover:text-accent-gold transition-colors relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-accent-gold after:transition-all hover:after:w-full pb-1 whitespace-nowrap"
+              className="text-sm font-medium text-slate-200 hover:text-brand-red transition-colors relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-brand-red after:transition-all hover:after:w-full pb-1 whitespace-nowrap"
             >
               {item.name}
             </Link>
@@ -115,7 +115,7 @@ export default function Navbar() {
             onMouseEnter={handleMoreEnter}
             onMouseLeave={handleMoreLeave}
           >
-            <span className={`text-sm font-medium transition-colors relative after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:bg-accent-gold after:transition-all pb-1 flex items-center gap-1 ${moreOpen ? 'text-accent-gold after:w-full' : 'text-slate-200 hover:text-accent-gold after:w-0 hover:after:w-full'}`}>
+            <span className={`text-sm font-medium transition-colors relative after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:bg-brand-red after:transition-all pb-1 flex items-center gap-1 ${moreOpen ? 'text-brand-red after:w-full' : 'text-slate-200 hover:text-brand-red after:w-0 hover:after:w-full'}`}>
               More
               <svg className={`w-4 h-4 transition-transform duration-300 ${moreOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
             </span>
@@ -123,11 +123,11 @@ export default function Navbar() {
             {/* Standard Dropdown Menu */}
             <div className={`absolute top-full right-0 mt-0 w-56 glass-dark bg-primary-900/95 border border-white/10 rounded-2xl shadow-2xl transition-all duration-300 transform origin-top overflow-hidden ${moreOpen ? 'scale-y-100 opacity-100 visible' : 'scale-y-90 opacity-0 invisible'}`}>
               <div className="flex flex-col py-2">
-                <Link href="/accreditation" className="px-5 py-3 text-sm text-slate-200 hover:bg-white/10 hover:text-accent-gold transition-colors block">Accreditation</Link>
-                <Link href="/verifications" className="px-5 py-3 text-sm text-slate-200 hover:bg-white/10 hover:text-accent-gold transition-colors block">Verifications</Link>
-                <Link href="/testimonials" className="px-5 py-3 text-sm text-slate-200 hover:bg-white/10 hover:text-accent-gold transition-colors block">Testimonials</Link>
-                <Link href="/blog" className="px-5 py-3 text-sm text-slate-200 hover:bg-white/10 hover:text-accent-gold transition-colors block">Blogs</Link>
-                <Link href="/faq" className="px-5 py-3 text-sm text-slate-200 hover:bg-white/10 hover:text-accent-gold transition-colors block border-b border-white/5">FAQs</Link>
+                <Link href="/accreditation" className="px-5 py-3 text-sm text-slate-200 hover:bg-white/10 hover:text-brand-red transition-colors block">Accreditation</Link>
+                <Link href="/verifications" className="px-5 py-3 text-sm text-slate-200 hover:bg-white/10 hover:text-brand-red transition-colors block">Verifications</Link>
+                <Link href="/testimonials" className="px-5 py-3 text-sm text-slate-200 hover:bg-white/10 hover:text-brand-red transition-colors block">Testimonials</Link>
+                <Link href="/blog" className="px-5 py-3 text-sm text-slate-200 hover:bg-white/10 hover:text-brand-red transition-colors block">Blogs</Link>
+                <Link href="/faq" className="px-5 py-3 text-sm text-slate-200 hover:bg-white/10 hover:text-brand-red transition-colors block border-b border-white/5">FAQs</Link>
               </div>
             </div>
           </div>
@@ -136,7 +136,7 @@ export default function Navbar() {
             <ThemeToggle />
             <Link
               href="/login"
-              className="px-6 py-2.5 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-white font-medium transition-all hover:-translate-y-0.5 hover:shadow-lg hover:shadow-accent-gold/20 whitespace-nowrap"
+              className="px-6 py-2.5 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-white font-medium transition-all hover:-translate-y-0.5 hover:shadow-lg hover:shadow-brand-red/20 whitespace-nowrap"
             >
               Register / Login
             </Link>
@@ -177,14 +177,14 @@ export default function Navbar() {
               {programData.map((prog, idx) => (
                 <button
                   key={idx}
-                  className={`w-full text-left px-4 py-3 rounded-xl transition-all duration-200 flex items-center justify-between group ${activeCategory === idx ? 'bg-white/10 text-white font-bold border-l-2 border-accent-gold' : 'text-slate-400 hover:bg-white/5 hover:text-white border-l-2 border-transparent'}`}
+                  className={`w-full text-left px-4 py-3 rounded-xl transition-all duration-200 flex items-center justify-between group ${activeCategory === idx ? 'bg-white/10 text-white font-bold border-l-2 border-brand-red' : 'text-slate-400 hover:bg-white/5 hover:text-white border-l-2 border-transparent'}`}
                   onMouseEnter={() => setActiveCategory(idx)}
                 >
                   <div className="flex items-center gap-3">
                     <span className="text-xl opacity-80 group-hover:opacity-100">{prog.icon}</span>
                     <span className="text-sm tracking-wide">{prog.title}</span>
                   </div>
-                  <svg className={`w-4 h-4 transition-transform ${activeCategory === idx ? 'translate-x-1 text-accent-gold opacity-100' : 'opacity-0 -translate-x-2 group-hover:opacity-50 group-hover:translate-x-0'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+                  <svg className={`w-4 h-4 transition-transform ${activeCategory === idx ? 'translate-x-1 text-brand-red opacity-100' : 'opacity-0 -translate-x-2 group-hover:opacity-50 group-hover:translate-x-0'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
                 </button>
               ))}
             </div>
@@ -197,7 +197,9 @@ export default function Navbar() {
                 {programData[activeCategory].icon}
               </div>
               <div>
-                <h2 className="text-3xl font-bold text-white mb-2">{programData[activeCategory].title} <span className="text-brand-red">Programs</span></h2>
+                <h2 className="text-3xl font-bold text-white mb-2">
+                  {programData[activeCategory].title.replace(/ Programmes/i, '')} <span className="text-brand-red">Programmes</span>
+                </h2>
                 <p className="text-slate-400 text-sm">Explore specialized certifications within this discipline.</p>
               </div>
             </div>
@@ -206,16 +208,16 @@ export default function Navbar() {
               {programData[activeCategory].subs.map((sub, i) => (
                 <TiltCard key={i} sensitivity={5}>
                   <Link href={`/programs/${sub.slug}`} className="block px-6 py-5 rounded-2xl bg-white/5 border border-white/5 hover:bg-white/10 hover:border-brand-red/30 transition-all duration-300 group">
-                    <h3 className="text-white font-bold mb-2 group-hover:text-accent-gold transition-colors">{sub.title}</h3>
+                    <h3 className="text-white font-bold mb-2 group-hover:text-brand-red transition-colors">{sub.title}</h3>
                     <p className="text-sm text-slate-400">Comprehensive curriculum designed for modern industry standards.</p>
                   </Link>
                 </TiltCard>
               ))}
               
               <TiltCard sensitivity={5}>
-                <Link href={`/programs`} className="block px-6 py-5 rounded-2xl border border-dashed border-white/20 hover:border-accent-gold/50 bg-transparent hover:bg-accent-gold/5 transition-all duration-300 group flex items-center justify-center h-full min-h-[100px]">
-                  <span className="text-slate-300 font-bold group-hover:text-accent-gold transition-colors flex items-center gap-2">
-                    View All {programData[activeCategory].title} Programs
+                <Link href={`/programs/${programData[activeCategory].slug}`} className="block px-6 py-5 rounded-2xl border border-dashed border-white/20 hover:border-brand-red/50 bg-transparent hover:bg-brand-red/5 transition-all duration-300 group flex items-center justify-center h-full min-h-[100px]">
+                  <span className="text-slate-300 font-bold group-hover:text-brand-red transition-colors flex items-center gap-2">
+                    View All {programData[activeCategory].title}
                     <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
                   </span>
                 </Link>
@@ -234,7 +236,7 @@ export default function Navbar() {
             { name: "About Us", path: "/about" },
             { name: "Why Choose CBPD", path: "/why-cbpd" },
           ].map((item) => (
-            <Link key={item.name} href={item.path} className="text-white hover:text-accent-gold py-3 border-b border-white/5 font-medium" onClick={() => setMobileMenuOpen(false)}>{item.name}</Link>
+            <Link key={item.name} href={item.path} className="text-white hover:text-brand-red py-3 border-b border-white/5 font-medium" onClick={() => setMobileMenuOpen(false)}>{item.name}</Link>
           ))}
 
           {/* Programs Accordion */}
@@ -244,14 +246,14 @@ export default function Navbar() {
               onClick={() => setMobileProgramsOpen(!mobileProgramsOpen)}
             >
               Programs
-              <svg className={`w-5 h-5 transition-transform duration-300 ${mobileProgramsOpen ? 'rotate-180 text-accent-gold' : 'text-slate-400'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+              <svg className={`w-5 h-5 transition-transform duration-300 ${mobileProgramsOpen ? 'rotate-180 text-brand-red' : 'text-slate-400'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
             </button>
             <div className={`overflow-hidden transition-all duration-500 ease-in-out ${mobileProgramsOpen ? 'max-h-[3000px] mt-2 mb-4 opacity-100' : 'max-h-0 opacity-0'}`}>
               <div className="bg-white/5 rounded-2xl p-2 flex flex-col gap-1 border border-white/10">
                 {programData.map((prog, idx) => (
                   <div key={idx} className="flex flex-col">
                     <button 
-                      className={`w-full text-left flex items-center justify-between p-3 rounded-xl transition-all duration-300 focus:outline-none ${mobileActiveCategory === idx ? 'bg-white/10 text-accent-gold font-bold shadow-sm' : 'text-slate-300 hover:bg-white/5 hover:text-white'}`}
+                      className={`w-full text-left flex items-center justify-between p-3 rounded-xl transition-all duration-300 focus:outline-none ${mobileActiveCategory === idx ? 'bg-white/10 text-brand-red font-bold shadow-sm' : 'text-slate-300 hover:bg-white/5 hover:text-white'}`}
                       onClick={() => setMobileActiveCategory(mobileActiveCategory === idx ? null : idx)}
                     >
                       <div className="flex items-center gap-3">
@@ -266,7 +268,7 @@ export default function Navbar() {
                           <Link 
                             key={i} 
                             href={`/programs/${sub.slug}`} 
-                            className="text-xs text-slate-400 hover:text-accent-gold transition-colors flex items-start gap-2"
+                            className="text-xs text-slate-400 hover:text-brand-red transition-colors flex items-start gap-2"
                             onClick={() => { setMobileProgramsOpen(false); setMobileMenuOpen(false); }}
                           >
                             <span className="text-brand-red opacity-80 mt-0.5 text-[0.6rem]">●</span>
@@ -286,7 +288,7 @@ export default function Navbar() {
             { name: "For Learners", path: "/learners" },
             { name: "Contact", path: "/contact" },
           ].map((item) => (
-            <Link key={item.name} href={item.path} className="text-white hover:text-accent-gold py-3 border-b border-white/5 font-medium" onClick={() => setMobileMenuOpen(false)}>{item.name}</Link>
+            <Link key={item.name} href={item.path} className="text-white hover:text-brand-red py-3 border-b border-white/5 font-medium" onClick={() => setMobileMenuOpen(false)}>{item.name}</Link>
           ))}
 
           {/* More Accordion */}
@@ -296,7 +298,7 @@ export default function Navbar() {
               onClick={() => setMobileMoreOpen(!mobileMoreOpen)}
             >
               More
-              <svg className={`w-5 h-5 transition-transform duration-300 ${mobileMoreOpen ? 'rotate-180 text-accent-gold' : 'text-slate-400'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+              <svg className={`w-5 h-5 transition-transform duration-300 ${mobileMoreOpen ? 'rotate-180 text-brand-red' : 'text-slate-400'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
             </button>
             <div className={`overflow-hidden transition-all duration-300 ease-in-out ${mobileMoreOpen ? 'max-h-[500px] mt-2 mb-2 opacity-100' : 'max-h-0 opacity-0'}`}>
               <div className="bg-white/5 rounded-xl p-3 flex flex-col gap-3 border border-white/10 ml-2">
@@ -310,7 +312,7 @@ export default function Navbar() {
                    <Link 
                      key={sub.name} 
                      href={sub.path} 
-                     className="text-sm text-slate-300 hover:text-accent-gold transition-colors pl-2"
+                     className="text-sm text-slate-300 hover:text-brand-red transition-colors pl-2"
                      onClick={() => { setMobileMoreOpen(false); setMobileMenuOpen(false); }}
                    >
                      {sub.name}
@@ -322,7 +324,7 @@ export default function Navbar() {
            
           <div className="mt-8 flex justify-between items-center px-2">
             <ThemeToggle />
-            <Link href="/login" className="px-6 py-3 rounded-full bg-accent-gold text-primary-900 font-bold hover:bg-white hover:shadow-[0_0_20px_rgba(255,255,255,0.4)] transition-all">
+            <Link href="/login" className="px-6 py-3 rounded-full bg-brand-red text-white font-bold hover:bg-white hover:shadow-[0_0_20px_rgba(255,255,255,0.4)] transition-all">
               Register / Login
             </Link>
           </div>

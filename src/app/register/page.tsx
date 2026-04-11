@@ -83,7 +83,7 @@ export default function RegisterPage() {
       {/* Background Decor */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
         <div className="absolute top-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full bg-brand-blue/20 blur-[120px] animate-[pulse_8s_infinite] delay-75"></div>
-        <div className="absolute bottom-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-accent-gold/10 blur-[150px] animate-[pulse_10s_infinite_reverse]"></div>
+        <div className="absolute bottom-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-brand-red/10 blur-[150px] animate-[pulse_10s_infinite_reverse]"></div>
       </div>
 
       <div className="container mx-auto max-w-5xl relative z-10 w-full">
@@ -103,7 +103,7 @@ export default function RegisterPage() {
         {/* Form Container */}
         <div className="bg-white dark:bg-primary-900 border border-slate-200 dark:border-white/10 rounded-3xl shadow-[0_10px_40px_rgba(0,0,0,0.05)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.3)] overflow-hidden w-full p-8 md:p-12 animate-[fadeInUp_0.7s_ease-out] min-h-[500px] flex flex-col justify-between relative">
           
-          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-blue via-accent-gold to-brand-red"></div>
+          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-blue via-brand-red to-brand-red"></div>
 
           {/* Stepper Wizard */}
           <div className="flex flex-col md:flex-row items-center justify-between mb-12 relative">

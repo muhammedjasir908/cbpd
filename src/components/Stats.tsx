@@ -37,7 +37,7 @@ export default function Stats() {
         <div className="flex flex-col md:flex-row justify-between items-center text-center md:text-left gap-10">
           <div className={`md:w-1/3 transition-all duration-1000 transform ${isVisible ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'}`}>
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">Our Global Impact & Success</h2>
-            <div className="w-20 h-1 bg-accent-gold mb-6 mx-auto md:mx-0"></div>
+            <div className="w-20 h-1 bg-brand-red mb-6 mx-auto md:mx-0"></div>
             <p className="text-slate-600 dark:text-slate-400">
               Honoring outstanding achievement and professional excellence across the globe.
             </p>

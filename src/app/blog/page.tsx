@@ -55,7 +55,7 @@ export default function BlogPage() {
         
         <div className="container mx-auto px-6 md:px-12 relative z-10 text-center">
           <div className="inline-block px-4 py-1.5 rounded-full border border-brand-red/40 bg-brand-red/10 backdrop-blur-md mb-6 animate-[fadeInUp_0.8s_ease-out]">
-            <span className="text-accent-gold font-semibold tracking-wide text-sm uppercase">Insights & News</span>
+            <span className="text-brand-red font-semibold tracking-wide text-sm uppercase">Insights & News</span>
           </div>
           <h1 className="text-5xl md:text-7xl font-bold text-white max-w-4xl mx-auto leading-tight mb-8 animate-[fadeInUp_1s_ease-out]">
             The CBPD <span className="text-brand-red">Journal</span>

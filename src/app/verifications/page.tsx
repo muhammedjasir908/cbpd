@@ -38,7 +38,7 @@ export default function VerificationPage() {
         {/* Abstract Background Elements */}
         <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
           <div className="absolute top-[10%] left-[20%] w-[40%] h-[60%] rounded-full bg-brand-blue/10 blur-[120px] animate-[pulse_8s_infinite]"></div>
-          <div className="absolute bottom-[20%] right-[10%] w-[30%] h-[50%] rounded-full bg-accent-gold/10 blur-[100px] animate-[pulse_10s_infinite_reverse]"></div>
+          <div className="absolute bottom-[20%] right-[10%] w-[30%] h-[50%] rounded-full bg-brand-red/10 blur-[100px] animate-[pulse_10s_infinite_reverse]"></div>
         </div>
 
         <div className="container mx-auto px-6 md:px-12 relative z-10">
@@ -58,7 +58,7 @@ export default function VerificationPage() {
 
             {/* Verification Form Card */}
             <div className="bg-white dark:bg-white/5 backdrop-blur-xl border border-slate-200 dark:border-white/10 p-8 md:p-12 rounded-3xl shadow-2xl relative overflow-hidden">
-              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-blue via-accent-gold to-brand-red"></div>
+              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-blue via-brand-red to-brand-red"></div>
               
               <form onSubmit={handleVerify} className="relative z-10">
                 <div className="flex flex-col md:flex-row gap-4">
@@ -79,7 +79,7 @@ export default function VerificationPage() {
                   <button 
                     type="submit" 
                     disabled={verifyStatus === "loading"}
-                    className="px-8 py-4 md:py-5 bg-brand-blue text-white font-bold rounded-2xl hover:bg-brand-red transition-all shadow-[0_5px_15px_rgba(30,64,175,0.3)] hover:shadow-[0_10px_25px_rgba(194,151,49,0.4)] disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center min-w-[160px]"
+                    className="px-8 py-4 md:py-5 bg-brand-blue text-white font-bold rounded-2xl hover:bg-brand-red transition-all shadow-[0_5px_15px_rgba(30,64,175,0.3)] hover:shadow-[0_10px_25px_rgba(212, 53, 28,0.4)] disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center min-w-[160px]"
                   >
                     {verifyStatus === "loading" ? (
                       <svg className="w-6 h-6 animate-spin" fill="none" viewBox="0 0 24 24">

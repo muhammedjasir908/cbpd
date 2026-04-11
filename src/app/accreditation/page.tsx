@@ -31,7 +31,7 @@ export default function AccreditationPage() {
         
         <div className="container mx-auto px-6 md:px-12 relative z-10 text-center">
           <div className="inline-block px-4 py-1.5 rounded-full border border-brand-red/40 bg-brand-red/10 backdrop-blur-md mb-6 animate-[fadeInUp_0.8s_ease-out]">
-            <span className="text-accent-gold font-semibold tracking-wide text-sm uppercase">Global Accreditation</span>
+            <span className="text-brand-red font-semibold tracking-wide text-sm uppercase">Global Accreditation</span>
           </div>
           <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold text-white max-w-5xl mx-auto leading-tight mb-8 animate-[fadeInUp_1s_ease-out]">
             CBPD Accreditation <br className="hidden md:block"/>
@@ -52,7 +52,7 @@ export default function AccreditationPage() {
               <h2 className="text-3xl md:text-5xl font-bold text-slate-900 dark:text-white mb-8 leading-tight">
                 Stand out with <span className="text-brand-blue dark:text-brand-red">uncompromising quality</span>
               </h2>
-              <div className="w-20 h-1 bg-accent-gold mb-8"></div>
+              <div className="w-20 h-1 bg-brand-red mb-8"></div>
               <div className="prose prose-lg dark:prose-invert text-slate-600 dark:text-slate-300 max-w-none">
                 <p className="leading-relaxed mb-6">
                   The Central Board of Professional Development (CBPD) extends its hallmark of excellence by offering elite professional accreditation services. We collaborate closely with top-tier training providers, corporate Learning & Development teams, highly-rated educational institutions, and premier event organisers internationally.
@@ -121,7 +121,7 @@ export default function AccreditationPage() {
                     {step.icon}
                   </div>
                   <div className="bg-slate-50 dark:bg-primary-800 p-8 pt-10 rounded-3xl w-full border border-slate-200 dark:border-primary-700 shadow-sm relative grow">
-                    <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-accent-gold text-primary-900 font-black px-4 py-1 rounded-full text-sm shrink-0 whitespace-nowrap">
+                    <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-brand-red text-white font-black px-4 py-1 rounded-full text-sm shrink-0 whitespace-nowrap">
                       Phase 0{idx + 1}
                     </div>
                     <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3 mt-2 group-hover:text-brand-blue dark:group-hover:text-brand-red transition-colors">{step.title}</h3>
@@ -140,7 +140,7 @@ export default function AccreditationPage() {
         <div className="absolute inset-0 bg-gradient-to-t from-primary-900 via-primary-900/80 to-transparent z-0"></div>
         <div className="container mx-auto px-6 md:px-12 relative z-10 text-center max-w-4xl">
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-8">
-            Signal Uncompromising <span className="text-accent-gold">Quality</span>
+            Signal Uncompromising <span className="text-brand-red">Quality</span>
           </h2>
           <p className="text-xl text-slate-300 mb-12 leading-relaxed">
             CBPD accreditation vividly signals uncompromising quality and practical relevance — helping your educational provision successfully stand out in a competitive global market.

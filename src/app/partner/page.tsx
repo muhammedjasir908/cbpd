@@ -64,7 +64,7 @@ export default function PartnerPage() {
 
         <div className="container mx-auto px-6 md:px-12 relative z-10">
           <div className={`max-w-4xl mx-auto text-center transition-all duration-1000 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'}`}>
-            <div className="inline-block px-5 py-2 rounded-full bg-accent-gold/10 border border-accent-gold/30 text-accent-gold mb-8 backdrop-blur-sm">
+            <div className="inline-block px-5 py-2 rounded-full bg-brand-red/10 border border-brand-red/30 text-brand-red mb-8 backdrop-blur-sm">
               <span className="text-sm font-bold tracking-wider uppercase">Partnership Program</span>
             </div>
             
@@ -88,9 +88,9 @@ export default function PartnerPage() {
             <div className="space-y-8 animate-on-scroll translate-y-12 opacity-0 transition-all duration-700 ease-out">
               <span className="text-brand-blue dark:text-brand-red font-bold tracking-wider text-sm uppercase mb-2 block">Our Network</span>
               <h2 className="text-4xl md:text-5xl font-bold text-slate-800 dark:text-white">
-                Who Can Become a <span className="text-accent-gold">Partner?</span>
+                Who Can Become a <span className="text-brand-red">Partner?</span>
               </h2>
-              <div className="w-20 h-1 bg-accent-gold"></div>
+              <div className="w-20 h-1 bg-brand-red"></div>
               
               <div className="space-y-6 text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
                 <p>
@@ -137,7 +137,7 @@ export default function PartnerPage() {
           <div className="text-center mb-20 animate-on-scroll translate-y-12 opacity-0 transition-all duration-700 ease-out">
             <span className="text-brand-red font-bold tracking-wider text-sm uppercase mb-4 block">The Value</span>
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-              Benefits of Partnering with <span className="text-accent-gold">CBPD</span>
+              Benefits of Partnering with <span className="text-brand-red">CBPD</span>
             </h2>
             <div className="w-24 h-1 bg-brand-blue mx-auto mb-6"></div>
             <p className="text-slate-400 max-w-2xl mx-auto text-xl leading-relaxed">
@@ -150,10 +150,10 @@ export default function PartnerPage() {
               <div key={idx} className="animate-on-scroll translate-y-12 opacity-0 transition-all duration-700 ease-out" style={{ transitionDelay: `${idx * 100}ms` }}>
                 <TiltCard sensitivity={7} className="h-full">
                   <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl p-10 h-full hover:bg-white/10 transition-all group shadow-xl flex flex-col items-center text-center">
-                    <div className="w-20 h-20 rounded-2xl bg-primary-800 border border-white/10 flex items-center justify-center text-4xl mb-8 shadow-inner group-hover:scale-110 transition-transform duration-300 group-hover:bg-primary-700 group-hover:border-accent-gold/50">
+                    <div className="w-20 h-20 rounded-2xl bg-primary-800 border border-white/10 flex items-center justify-center text-4xl mb-8 shadow-inner group-hover:scale-110 transition-transform duration-300 group-hover:bg-primary-700 group-hover:border-brand-red/50">
                       {benefit.icon}
                     </div>
-                    <h3 className="text-xl font-bold text-white mb-4 group-hover:text-accent-gold transition-colors">{benefit.title}</h3>
+                    <h3 className="text-xl font-bold text-white mb-4 group-hover:text-brand-red transition-colors">{benefit.title}</h3>
                     <p className="text-slate-400 leading-relaxed text-sm font-medium">
                       {benefit.desc}
                     </p>
@@ -184,7 +184,7 @@ export default function PartnerPage() {
                     {step.icon}
                   </div>
                   <div className="bg-slate-50 dark:bg-primary-800 p-6 pt-8 rounded-3xl w-full border border-slate-200 dark:border-primary-700 shadow-sm relative grow flex flex-col">
-                    <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-accent-gold text-primary-900 font-black px-4 py-1 rounded-full text-xs whitespace-nowrap tracking-wider">
+                    <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-brand-red text-white font-black px-4 py-1 rounded-full text-xs whitespace-nowrap tracking-wider">
                       STEP 0{idx + 1}
                     </div>
                     <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-3 mt-2 group-hover:text-brand-blue dark:group-hover:text-brand-red transition-colors">{step.title}</h3>
@@ -204,7 +204,7 @@ export default function PartnerPage() {
 
         <div className="container mx-auto px-6 md:px-12 relative z-10 animate-on-scroll translate-y-12 opacity-0 transition-all duration-700 ease-out delay-200 text-center max-w-4xl">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-8 tracking-tight mx-auto leading-tight">
-            Ready to <span className="text-accent-gold">Accelerate</span> Your Institution?
+            Ready to <span className="text-brand-red">Accelerate</span> Your Institution?
           </h2>
           <p className="text-xl md:text-2xl text-slate-300 mb-12 mx-auto leading-relaxed">
             CBPD partners securely benefit from a modern, agile, and fiercely learner-focused model that guarantees faster, more tangible results than many established, traditional awarding bodies.
@@ -212,7 +212,7 @@ export default function PartnerPage() {
           
           <div className="flex justify-center">
             <MagneticButton strength={15}>
-              <Link href="/contact" className="px-10 py-5 rounded-full bg-brand-red text-white font-bold text-lg lg:text-xl hover:bg-white hover:text-brand-red transition-all duration-300 shadow-[0_10px_30px_rgba(220,38,38,0.5)] hover:shadow-[0_15px_40px_rgba(194,151,49,0.5)] flex items-center justify-center gap-3 group w-full md:w-auto">
+              <Link href="/contact" className="px-10 py-5 rounded-full bg-brand-red text-white font-bold text-lg lg:text-xl hover:bg-white hover:text-brand-red transition-all duration-300 shadow-[0_10px_30px_rgba(220,38,38,0.5)] hover:shadow-[0_15px_40px_rgba(212, 53, 28,0.5)] flex items-center justify-center gap-3 group w-full md:w-auto">
                 Submit Your CBPD Partnership Enquiry Today
                 <svg className="w-6 h-6 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
               </Link>

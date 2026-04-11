@@ -54,11 +54,11 @@ export default function LearnersPage() {
         <div className="absolute inset-0 bg-gradient-to-t from-primary-900 via-primary-900/80 to-transparent z-0"></div>
 
         <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-brand-blue/20 rounded-full blur-[150px] pointer-events-none z-0 animate-[pulse_8s_infinite]"></div>
-        <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-accent-gold/10 rounded-full blur-[150px] pointer-events-none transform translate-y-1/2 z-0 animate-[pulse_10s_infinite_reverse]"></div>
+        <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-brand-red/10 rounded-full blur-[150px] pointer-events-none transform translate-y-1/2 z-0 animate-[pulse_10s_infinite_reverse]"></div>
 
         <div className="container mx-auto px-6 md:px-12 relative z-10">
           <div className={`max-w-4xl mx-auto text-center transition-all duration-1000 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'}`}>
-            <div className="inline-block px-5 py-2 rounded-full bg-accent-gold/10 border border-accent-gold/30 text-accent-gold mb-8 backdrop-blur-sm">
+            <div className="inline-block px-5 py-2 rounded-full bg-brand-red/10 border border-brand-red/30 text-brand-red mb-8 backdrop-blur-sm">
               <span className="text-sm font-bold tracking-wider uppercase">Professional Development</span>
             </div>
             
@@ -73,32 +73,7 @@ export default function LearnersPage() {
         </div>
       </section>
 
-      {/* Intro / Search Banner (Half-overlapping layout trick) */}
-      <section className="pb-16 bg-white dark:bg-[#050812] relative z-20">
-        <div className="container mx-auto px-6 md:px-12 relative z-10">
-          <div className="bg-brand-blue dark:bg-primary-900 rounded-3xl p-8 md:p-12 shadow-2xl flex flex-col lg:flex-row items-center gap-10 -mt-20 relative overflow-hidden border border-brand-blue dark:border-primary-700">
-            {/* Background elements for banner */}
-            <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] z-0"></div>
-            <div className="absolute -top-24 -right-24 w-64 h-64 bg-accent-gold/20 rounded-full blur-3xl pointer-events-none z-0"></div>
-            
-            <div className="lg:w-1/2 text-center lg:text-left relative z-10">
-              <h2 className="text-3xl font-bold text-white mb-4">Find Your Perfect Programme</h2>
-              <p className="text-blue-100">Easily search and discover over 120 targeted professional programmes custom-tailored directly to elevate your career capability to the next level.</p>
-            </div>
-            
-            <div className="lg:w-1/2 w-full flex flex-col sm:flex-row gap-3 relative z-10">
-              <input 
-                type="text" 
-                placeholder="Search programmes (e.g. Leadership, Finance...)" 
-                className="flex-grow px-6 py-4 rounded-xl bg-white dark:bg-primary-950 text-slate-900 border-none focus:outline-none focus:ring-4 focus:ring-brand-red/50 dark:text-white transition-shadow"
-              />
-              <Link href="/programs" className="px-8 py-4 bg-accent-gold hover:bg-white text-primary-900 rounded-xl font-bold transition-all shadow-[0_0_20px_rgba(194,151,49,0.3)] hover:shadow-[0_0_30px_rgba(255,255,255,0.4)] flex items-center justify-center shrink-0">
-                Search
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
+
 
       {/* Benefits Section */}
       <section className="py-24 relative bg-white dark:bg-[#050812]">
@@ -106,7 +81,7 @@ export default function LearnersPage() {
           <div className="text-center mb-20 animate-on-scroll translate-y-12 opacity-0 transition-all duration-700 ease-out">
             <span className="text-brand-blue dark:text-brand-red font-bold tracking-wider text-sm uppercase mb-4 block">The Advantage</span>
             <h2 className="text-4xl md:text-5xl font-bold text-slate-800 dark:text-white mb-6">
-              Why Learners Choose <span className="text-accent-gold">CBPD</span>
+              Why Learners Choose <span className="text-brand-red">CBPD</span>
             </h2>
             <div className="w-24 h-1 bg-brand-blue mx-auto mb-6"></div>
           </div>
@@ -116,7 +91,7 @@ export default function LearnersPage() {
               <div key={idx} className={`animate-on-scroll translate-y-12 opacity-0 transition-all duration-700 ease-out ${idx === 3 ? 'lg:col-start-1 lg:col-end-auto md:col-span-1' : ''} ${idx === 4 ? 'lg:col-start-2 lg:col-end-auto md:col-span-1' : ''}`} style={{ transitionDelay: `${idx * 100}ms` }}>
                 <TiltCard sensitivity={7} className="h-full">
                   <div className="bg-slate-50 dark:bg-primary-900 border border-slate-200 dark:border-primary-800 rounded-3xl p-10 h-full hover:shadow-2xl transition-all group shadow-sm flex flex-col items-center text-center">
-                    <div className="w-20 h-20 rounded-2xl bg-white dark:bg-primary-800 border border-slate-200 dark:border-primary-700 flex items-center justify-center text-4xl mb-8 shadow-inner group-hover:scale-110 transition-transform duration-300 group-hover:border-accent-gold/50">
+                    <div className="w-20 h-20 rounded-2xl bg-white dark:bg-primary-800 border border-slate-200 dark:border-primary-700 flex items-center justify-center text-4xl mb-8 shadow-inner group-hover:scale-110 transition-transform duration-300 group-hover:border-brand-red/50">
                       {benefit.icon}
                     </div>
                     <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4 group-hover:text-brand-blue dark:group-hover:text-brand-red transition-colors">{benefit.title}</h3>
@@ -136,7 +111,7 @@ export default function LearnersPage() {
         <div className="absolute inset-0 opacity-5" style={{ backgroundImage: "radial-gradient(#fff 1px, transparent 1px)", backgroundSize: "30px 30px" }}></div>
         <div className="container mx-auto px-6 md:px-12 relative z-10 flex flex-col items-center">
           <div className="text-center mb-16 animate-on-scroll translate-y-12 opacity-0 transition-all duration-700 ease-out max-w-4xl">
-            <span className="text-accent-gold font-bold tracking-wider text-sm uppercase mb-4 block">Proven Results</span>
+            <span className="text-brand-red font-bold tracking-wider text-sm uppercase mb-4 block">Proven Results</span>
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
               Learner <span className="text-brand-blue">Success Stories</span>
             </h2>
@@ -150,7 +125,7 @@ export default function LearnersPage() {
               <div key={idx} className="animate-on-scroll translate-y-12 opacity-0 transition-all duration-700 ease-out" style={{ transitionDelay: `${idx * 150}ms` }}>
                 <TiltCard sensitivity={5} className="h-full">
                   <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl p-8 h-full hover:bg-white/10 transition-all group shadow-xl relative mt-8 flex flex-col justify-between">
-                    <div className="absolute -top-8 left-8 w-16 h-16 rounded-full border-[3px] border-accent-gold overflow-hidden shadow-lg">
+                    <div className="absolute -top-8 left-8 w-16 h-16 rounded-full border-[3px] border-brand-red overflow-hidden shadow-lg">
                       <img src={testi.image} alt={testi.name} className="w-full h-full object-cover" />
                     </div>
                     <div className="absolute top-4 right-6 text-brand-red opacity-30 text-6xl font-serif">"</div>
@@ -168,7 +143,7 @@ export default function LearnersPage() {
           </div>
           
           <div className="mt-16 text-center animate-on-scroll translate-y-12 opacity-0 transition-all duration-700 delay-300">
-             <Link href="/testimonials" className="text-accent-gold hover:text-white transition-colors border-b border-accent-gold/30 hover:border-white font-medium text-lg tracking-wide uppercase">
+             <Link href="/testimonials" className="text-brand-red hover:text-white transition-colors border-b border-brand-red/30 hover:border-white font-medium text-lg tracking-wide uppercase">
                Read More Global Testimonials &rarr;
              </Link>
           </div>
@@ -182,7 +157,7 @@ export default function LearnersPage() {
 
         <div className="container mx-auto px-6 md:px-12 relative z-10 animate-on-scroll translate-y-12 opacity-0 transition-all duration-700 ease-out delay-200 text-center max-w-4xl">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-8 tracking-tight mx-auto leading-tight">
-            Take the <span className="text-accent-gold">Next Step</span> in Your Career
+            Take the <span className="text-brand-red">Next Step</span> in Your Career
           </h2>
           <p className="text-xl text-slate-300 mb-12 mx-auto leading-relaxed">
             Stand out to employers globally with credentials explicitly bridging the gap between rigorous learning and commanding real-world performance.
@@ -190,7 +165,7 @@ export default function LearnersPage() {
           
           <div className="flex justify-center">
             <MagneticButton strength={15}>
-              <Link href="/programs" className="px-10 py-5 rounded-full bg-brand-red text-white font-bold text-xl hover:bg-white hover:text-brand-red transition-all duration-300 shadow-[0_10px_30px_rgba(220,38,38,0.5)] hover:shadow-[0_15px_40px_rgba(194,151,49,0.5)] flex items-center justify-center gap-3 group w-full md:w-auto text-center">
+              <Link href="/programs" className="px-10 py-5 rounded-full bg-brand-red text-white font-bold text-xl hover:bg-white hover:text-brand-red transition-all duration-300 shadow-[0_10px_30px_rgba(220,38,38,0.5)] hover:shadow-[0_15px_40px_rgba(212, 53, 28,0.5)] flex items-center justify-center gap-3 group w-full md:w-auto text-center">
                 Browse CBPD Programmes for Learners
                 <svg className="w-6 h-6 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
               </Link>
