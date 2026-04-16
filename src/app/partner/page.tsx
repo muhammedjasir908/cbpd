@@ -4,6 +4,7 @@ import MagneticButton from "@/components/MagneticButton";
 import TiltCard from "@/components/TiltCard";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { countryCodes } from "@/data/countries";
 
 export default function PartnerPage() {
   const [isVisible, setIsVisible] = useState(false);
@@ -212,11 +213,77 @@ export default function PartnerPage() {
           
           <div className="flex justify-center">
             <MagneticButton strength={15}>
-              <Link href="/contact" className="px-10 py-5 rounded-full bg-brand-red text-white font-bold text-lg lg:text-xl hover:bg-white hover:text-brand-red transition-all duration-300 shadow-[0_10px_30px_rgba(220,38,38,0.5)] hover:shadow-[0_15px_40px_rgba(212, 53, 28,0.5)] flex items-center justify-center gap-3 group w-full md:w-auto">
+              <a href="#enquiry" onClick={(e) => {
+                e.preventDefault();
+                document.getElementById('enquiry')?.scrollIntoView({ behavior: 'smooth' });
+              }} className="px-10 py-5 rounded-full bg-brand-red text-white font-bold text-lg lg:text-xl hover:bg-white hover:text-brand-red transition-all duration-300 shadow-[0_10px_30px_rgba(220,38,38,0.5)] hover:shadow-[0_15px_40px_rgba(212, 53, 28,0.5)] flex items-center justify-center gap-3 group w-full md:w-auto mt-4 cursor-pointer">
                 Submit Your CBPD Partnership Enquiry Today
                 <svg className="w-6 h-6 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
-              </Link>
+              </a>
             </MagneticButton>
+          </div>
+        </div>
+      </section>
+
+      {/* Enquiry Form */}
+      <section id="enquiry" className="py-24 bg-slate-50 dark:bg-[#0a0f1c] relative border-t border-slate-200 dark:border-primary-800">
+        <div className="container mx-auto px-6 md:px-12 max-w-4xl">
+          <div className="bg-white dark:bg-primary-900 rounded-[2.5rem] p-8 md:p-12 shadow-[0_5px_40px_rgba(0,0,0,0.05)] border border-slate-100 dark:border-primary-800 relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-64 h-64 bg-brand-red/5 rounded-bl-full pointer-events-none"></div>
+            <div className="relative z-10 text-center mb-10">
+              <span className="text-brand-red font-bold tracking-wider text-sm uppercase mb-2 block">Partnership Enquiry</span>
+              <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white">Begin the Conversation</h2>
+            </div>
+                  
+            <form className="space-y-6 relative z-10" onSubmit={(e) => e.preventDefault()}>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <label className="text-sm font-semibold text-slate-600 dark:text-slate-300 text-left block">First Name *</label>
+                  <input type="text" required className="w-full px-5 py-4 rounded-xl bg-slate-50 dark:bg-primary-800 border border-slate-200 dark:border-primary-700 focus:outline-none focus:border-brand-blue dark:focus:border-brand-red focus:ring-1 focus:ring-brand-blue dark:focus:ring-brand-red transition-colors text-slate-900 dark:text-white" placeholder="John" />
+                </div>
+                <div className="space-y-2">
+                  <label className="text-sm font-semibold text-slate-600 dark:text-slate-300 text-left block">Last Name *</label>
+                  <input type="text" required className="w-full px-5 py-4 rounded-xl bg-slate-50 dark:bg-primary-800 border border-slate-200 dark:border-primary-700 focus:outline-none focus:border-brand-blue dark:focus:border-brand-red focus:ring-1 focus:ring-brand-blue dark:focus:ring-brand-red transition-colors text-slate-900 dark:text-white" placeholder="Doe" />
+                </div>
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <label className="text-sm font-semibold text-slate-600 dark:text-slate-300 text-left block">Email Address *</label>
+                  <input type="email" required className="w-full px-5 py-4 rounded-xl bg-slate-50 dark:bg-primary-800 border border-slate-200 dark:border-primary-700 focus:outline-none focus:border-brand-blue dark:focus:border-brand-red focus:ring-1 focus:ring-brand-blue dark:focus:ring-brand-red transition-colors text-slate-900 dark:text-white" placeholder="work@example.com" />
+                </div>
+                <div className="space-y-2">
+                  <label className="text-sm font-semibold text-slate-600 dark:text-slate-300 text-left block">Phone</label>
+                  <div className="flex">
+                    <select className="w-1/3 px-3 py-4 bg-slate-100 dark:bg-primary-800 border border-r-0 border-slate-200 dark:border-primary-700 rounded-l-xl focus:outline-none focus:border-brand-blue dark:focus:border-brand-red focus:ring-1 focus:ring-brand-blue dark:focus:ring-brand-red transition-colors text-slate-900 dark:text-white">
+                      {countryCodes.map((c, i) => (
+                        <option key={i} value={c.code}>{c.label}</option>
+                      ))}
+                    </select>
+                    <input type="tel" className="w-2/3 pl-3 pr-5 py-4 rounded-r-xl bg-slate-50 dark:bg-primary-800 border border-slate-200 dark:border-primary-700 focus:outline-none focus:border-brand-blue dark:focus:border-brand-red focus:ring-1 focus:ring-brand-blue dark:focus:ring-brand-red transition-colors text-slate-900 dark:text-white" placeholder="20..." />
+                  </div>
+                </div>
+              </div>
+              
+              <div className="space-y-2">
+                <label className="text-sm font-semibold text-slate-600 dark:text-slate-300 text-left block">Institution / Company Name *</label>
+                <input type="text" required className="w-full px-5 py-4 rounded-xl bg-slate-50 dark:bg-primary-800 border border-slate-200 dark:border-primary-700 focus:outline-none focus:border-brand-blue dark:focus:border-brand-red focus:ring-1 focus:ring-brand-blue dark:focus:ring-brand-red transition-colors text-slate-900 dark:text-white" placeholder="Your Institution" />
+              </div>
+              
+              <div className="space-y-2">
+                <label className="text-sm font-semibold text-slate-600 dark:text-slate-300 text-left block">Tell us about your requirements</label>
+                <textarea rows={4} className="w-full px-5 py-4 rounded-xl bg-slate-50 dark:bg-primary-800 border border-slate-200 dark:border-primary-700 focus:outline-none focus:border-brand-blue dark:focus:border-brand-red focus:ring-1 focus:ring-brand-blue dark:focus:ring-brand-red transition-colors text-slate-900 dark:text-white resize-none" placeholder="We are interested in delivering CBPD programs..."></textarea>
+              </div>
+
+              <div className="flex justify-center mt-8">
+                <MagneticButton strength={15}>
+                  <button type="submit" className="px-10 py-5 rounded-full bg-brand-red text-white font-bold text-lg hover:bg-brand-blue transition-colors shadow-[0_5px_20px_rgba(212,53,28,0.4)] hover:shadow-[0_10px_30px_rgba(30,64,175,0.5)] flex items-center gap-2 group w-full md:w-auto">
+                    Submit Enquiry
+                    <svg className="w-5 h-5 group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+                  </button>
+                </MagneticButton>
+              </div>
+            </form>
           </div>
         </div>
       </section>

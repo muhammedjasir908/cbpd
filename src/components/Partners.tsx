@@ -22,8 +22,8 @@ export default function Partners() {
     return () => observer.disconnect();
   }, []);
 
-  // Exact logos from CBPD website
   const partners = [
+    { name: "CIMAA", url: "/cimaa-logo.jpg" },
     { name: "CPD Logo", url: "https://www.cbpd.co.uk/_next/image?url=%2Fimages%2Ffooter%2Fcpdlogo.png&w=640&q=75" },
     { name: "AOHT", url: "https://www.cbpd.co.uk/_next/image?url=%2Fimages%2Ffooter%2Faoht.png&w=640&q=75" },
     { name: "UKRLP", url: "https://www.cbpd.co.uk/_next/image?url=%2Fimages%2Ffooter%2Fukrlp.jpg&w=384&q=75" },

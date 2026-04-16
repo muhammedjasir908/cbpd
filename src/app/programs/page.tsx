@@ -1,21 +1,11 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
 import TiltCard from "@/components/TiltCard";
 import MagneticButton from "@/components/MagneticButton";
 import { programData } from "@/data/programs";
 
 export default function ProgramsPage() {
-  const [expandedCards, setExpandedCards] = useState<Record<number, boolean>>({});
-
-  const toggleExpanded = (index: number) => {
-    setExpandedCards(prev => ({
-      ...prev,
-      [index]: !prev[index]
-    }));
-  };
-
   const benefits = [
     { title: "Prestigious Credential", desc: "A distinguished UK-issued credential from CBPD that elevates your global standing." },
     { title: "Digital Verification", desc: "Receive a secure digital certificate equipped with unique, instantaneous verification." },
@@ -127,27 +117,13 @@ export default function ProgramsPage() {
                         Master the principles of {prog.title.toLowerCase()} with our globally accredited industry curriculum. 
                       </p>
                       
-                      {/* Expandable Sub-Programs List */}
-                      <div className={`transition-all duration-500 overflow-hidden ease-in-out w-full ${expandedCards[index] ? 'max-h-[500px] mb-8 opacity-100' : 'max-h-0 mb-0 opacity-0'}`}>
-                        <div className="space-y-2 pt-4 border-t border-slate-100 dark:border-primary-700">
-                          {prog.subs.map((sub, i) => (
-                            <Link href={`/programs/${sub.slug}`} key={i} className="flex items-start gap-3 group/sub cursor-pointer hover:bg-slate-50 dark:hover:bg-primary-800 p-2 rounded-lg transition-colors">
-                              <div className="mt-1 w-5 h-5 rounded-full bg-brand-blue/10 dark:bg-brand-red/10 flex items-center justify-center shrink-0 group-hover/sub:bg-brand-blue transition-colors">
-                                <span className="text-brand-blue dark:text-brand-red text-xs group-hover/sub:text-white transition-colors">✓</span>
-                              </div>
-                              <span className="text-slate-600 dark:text-slate-300 font-medium group-hover/sub:text-brand-blue dark:group-hover/sub:text-brand-red transition-colors">{sub.title}</span>
-                            </Link>
-                          ))}
-                        </div>
-                      </div>
-
-                      <button 
-                        onClick={() => toggleExpanded(index)}
-                        className={`w-full py-4 rounded-xl font-bold flex items-center justify-center gap-2 mt-auto transition-all duration-300 ${expandedCards[index] ? 'bg-brand-red text-white shadow-lg shadow-brand-red/30' : 'bg-slate-50 dark:bg-primary-800 text-brand-blue dark:text-white hover:bg-brand-blue hover:text-white dark:hover:bg-brand-red'}`}
+                      <Link 
+                        href={`/programs/${prog.slug}`}
+                        className="w-full py-4 rounded-xl font-bold flex items-center justify-center gap-2 mt-auto transition-all duration-300 bg-slate-50 dark:bg-primary-800 text-brand-blue dark:text-white hover:bg-brand-blue hover:text-white dark:hover:bg-brand-red group/btn"
                       >
-                        {expandedCards[index] ? 'Hide Sub-Programmes' : 'Explore Full Programme'}
-                        <svg className={`w-5 h-5 transition-transform duration-300 ${expandedCards[index] ? 'rotate-180' : 'group-hover:translate-x-1'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={expandedCards[index] ? "M5 15l7-7 7 7" : "M14 5l7 7m0 0l-7 7m7-7H3"} /></svg>
-                      </button>
+                        Explore Full Programme
+                        <svg className="w-5 h-5 transition-transform duration-300 group-hover/btn:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+                      </Link>
                     </div>
 
                   </div>

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { countryCodes } from "@/data/countries";
 
 export default function RegisterPage() {
   const [step, setStep] = useState(1);
@@ -203,9 +204,9 @@ export default function RegisterPage() {
                 <InputWrapper label="Main Telephone Number" required>
                   <div className="flex">
                     <select name="phoneCode" value={formData.phoneCode} onChange={handleChange} className="w-1/3 px-3 py-3 bg-slate-100 dark:bg-primary-800 border border-r-0 border-slate-300 dark:border-white/10 rounded-l-xl focus:ring-2 focus:ring-brand-blue text-slate-800 dark:text-white">
-                      <option value="+91">IN +91</option>
-                      <option value="+1">US +1</option>
-                      <option value="+44">UK +44</option>
+                      {countryCodes.map((c, i) => (
+                        <option key={i} value={c.code}>{c.label}</option>
+                      ))}
                     </select>
                     <input type="tel" name="phone" value={formData.phone} onChange={handleChange} required placeholder="Enter number" className="w-2/3 pl-3 pr-4 py-3 bg-slate-50 dark:bg-primary-800 border border-slate-200 dark:border-white/10 rounded-r-xl focus:ring-2 focus:ring-brand-blue transition-all text-slate-800 dark:text-white" />
                   </div>
@@ -241,9 +242,9 @@ export default function RegisterPage() {
                 <InputWrapper label="Phone Number" required>
                   <div className="flex">
                     <select name="mcPhoneCode" value={formData.mcPhoneCode} onChange={handleChange} className="w-1/3 px-2 py-3 bg-slate-100 dark:bg-primary-800 border border-r-0 border-slate-300 dark:border-white/10 rounded-l-xl focus:ring-2 focus:ring-brand-blue text-slate-800 dark:text-white">
-                      <option value="+91">IN +91</option>
-                      <option value="+1">US +1</option>
-                      <option value="+44">UK +44</option>
+                      {countryCodes.map((c, i) => (
+                        <option key={i} value={c.code}>{c.label}</option>
+                      ))}
                     </select>
                     <input type="tel" name="mcPhone" value={formData.mcPhone} onChange={handleChange} required placeholder="Enter number" className="w-2/3 pl-3 pr-4 py-3 bg-slate-50 dark:bg-primary-800 border border-slate-200 dark:border-white/10 rounded-r-xl focus:ring-2 focus:ring-brand-blue transition-all text-slate-800 dark:text-white" />
                   </div>
@@ -252,9 +253,9 @@ export default function RegisterPage() {
                 <InputWrapper label="Mobile Number">
                   <div className="flex">
                     <select name="mcMobileCode" value={formData.mcMobileCode} onChange={handleChange} className="w-1/3 px-2 py-3 bg-slate-100 dark:bg-primary-800 border border-r-0 border-slate-300 dark:border-white/10 rounded-l-xl focus:ring-2 focus:ring-brand-blue text-slate-800 dark:text-white">
-                      <option value="+91">IN +91</option>
-                      <option value="+1">US +1</option>
-                      <option value="+44">UK +44</option>
+                      {countryCodes.map((c, i) => (
+                        <option key={i} value={c.code}>{c.label}</option>
+                      ))}
                     </select>
                     <input type="tel" name="mcMobile" value={formData.mcMobile} onChange={handleChange} placeholder="Enter mobile" className="w-2/3 pl-3 pr-4 py-3 bg-slate-50 dark:bg-primary-800 border border-slate-200 dark:border-white/10 rounded-r-xl focus:ring-2 focus:ring-brand-blue transition-all text-slate-800 dark:text-white" />
                   </div>
@@ -290,9 +291,9 @@ export default function RegisterPage() {
                 <InputWrapper label="Phone Number" required>
                   <div className="flex">
                     <select name="scPhoneCode" value={formData.scPhoneCode} onChange={handleChange} className="w-1/3 px-2 py-3 bg-slate-100 dark:bg-primary-800 border border-r-0 border-slate-300 dark:border-white/10 rounded-l-xl focus:ring-2 focus:ring-brand-blue text-slate-800 dark:text-white">
-                      <option value="+91">IN +91</option>
-                      <option value="+1">US +1</option>
-                      <option value="+44">UK +44</option>
+                      {countryCodes.map((c, i) => (
+                        <option key={i} value={c.code}>{c.label}</option>
+                      ))}
                     </select>
                     <input type="tel" name="scPhone" value={formData.scPhone} onChange={handleChange} required placeholder="Enter number" className="w-2/3 pl-3 pr-4 py-3 bg-slate-50 dark:bg-primary-800 border border-slate-200 dark:border-white/10 rounded-r-xl focus:ring-2 focus:ring-brand-blue transition-all text-slate-800 dark:text-white" />
                   </div>
@@ -301,9 +302,9 @@ export default function RegisterPage() {
                 <InputWrapper label="Mobile Number">
                   <div className="flex">
                     <select name="scMobileCode" value={formData.scMobileCode} onChange={handleChange} className="w-1/3 px-2 py-3 bg-slate-100 dark:bg-primary-800 border border-r-0 border-slate-300 dark:border-white/10 rounded-l-xl focus:ring-2 focus:ring-brand-blue text-slate-800 dark:text-white">
-                      <option value="+91">IN +91</option>
-                      <option value="+1">US +1</option>
-                      <option value="+44">UK +44</option>
+                      {countryCodes.map((c, i) => (
+                        <option key={i} value={c.code}>{c.label}</option>
+                      ))}
                     </select>
                     <input type="tel" name="scMobile" value={formData.scMobile} onChange={handleChange} placeholder="Enter mobile" className="w-2/3 pl-3 pr-4 py-3 bg-slate-50 dark:bg-primary-800 border border-slate-200 dark:border-white/10 rounded-r-xl focus:ring-2 focus:ring-brand-blue transition-all text-slate-800 dark:text-white" />
                   </div>

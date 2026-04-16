@@ -1,5 +1,6 @@
 import TiltCard from "@/components/TiltCard";
 import MagneticButton from "@/components/MagneticButton";
+import { countryCodes } from "@/data/countries";
 
 export default function ContactPage() {
   return (
@@ -99,7 +100,14 @@ export default function ContactPage() {
                     
                     <div className="space-y-2">
                       <label className="text-sm font-semibold text-slate-600 dark:text-slate-300">Phone</label>
-                      <input type="tel" className="w-full px-5 py-4 rounded-xl bg-slate-50 dark:bg-primary-800 border border-slate-200 dark:border-primary-700 focus:outline-none focus:border-brand-blue dark:focus:border-brand-red focus:ring-1 focus:ring-brand-blue dark:focus:ring-brand-red transition-colors text-slate-900 dark:text-white" placeholder="+44 20..." />
+                      <div className="flex">
+                        <select className="w-1/3 px-3 py-4 bg-slate-100 dark:bg-primary-800 border border-r-0 border-slate-200 dark:border-primary-700 rounded-l-xl focus:outline-none focus:border-brand-blue dark:focus:border-brand-red focus:ring-1 focus:ring-brand-blue dark:focus:ring-brand-red transition-colors text-slate-900 dark:text-white">
+                          {countryCodes.map((c, i) => (
+                            <option key={i} value={c.code}>{c.label}</option>
+                          ))}
+                        </select>
+                        <input type="tel" className="w-2/3 pl-3 pr-5 py-4 rounded-r-xl bg-slate-50 dark:bg-primary-800 border border-slate-200 dark:border-primary-700 focus:outline-none focus:border-brand-blue dark:focus:border-brand-red focus:ring-1 focus:ring-brand-blue dark:focus:ring-brand-red transition-colors text-slate-900 dark:text-white" placeholder="20..." />
+                      </div>
                     </div>
                     
                     <div className="space-y-2">

@@ -25,8 +25,8 @@ export default function Stats() {
   }, []);
 
   const stats = [
-    { number: "3K+", label: "Learners Worldwide" },
-    { number: "80+", label: "Global Partners" },
+    { number: "5K+", label: "Learners Worldwide" },
+    { number: "200+", label: "Global Partners" },
     { number: "100%", label: "Satisfaction Rate" },
     { number: "100+", label: "Programs Offered" },
   ];

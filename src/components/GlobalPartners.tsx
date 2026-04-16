@@ -21,8 +21,8 @@ export default function GlobalPartners() {
     return () => observer.disconnect();
   }, []);
 
-  // Lymax Progression Logos
   const partnersRow1 = [
+    { name: "CREATE+", url: "/create-plus.jpg" },
     { name: "Anglia", url: "https://lymaxlearning.com/img/home/progressions/anglia.webp" },
     { name: "Bloomsbury", url: "https://lymaxlearning.com/img/home/progressions/bloomsberry.webp" },
     { name: "Brooks", url: "https://lymaxlearning.com/img/home/progressions/brooks.webp" },
@@ -34,6 +34,7 @@ export default function GlobalPartners() {
     { name: "Leicester", url: "https://lymaxlearning.com/img/home/progressions/leicester.webp" },
     { name: "Midland", url: "https://lymaxlearning.com/img/home/progressions/midland.webp" },
   ];
+
 
   const partnersRow2 = [
     { name: "Northumbria", url: "https://lymaxlearning.com/img/home/progressions/northum.webp" },

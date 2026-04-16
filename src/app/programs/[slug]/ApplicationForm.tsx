@@ -1,11 +1,13 @@
 "use client";
 
 import { useState } from "react";
+import { countryCodes } from "@/data/countries";
 
 export default function ApplicationForm({ programTitle }: { programTitle: string }) {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    phoneCode: "+44",
     phone: "",
     country: "",
     message: ""
@@ -78,15 +80,27 @@ export default function ApplicationForm({ programTitle }: { programTitle: string
 
           <div className="space-y-2">
             <label className="text-sm font-semibold text-slate-700 dark:text-slate-300">Phone Number <span className="text-brand-red">*</span></label>
-            <input 
-              type="tel" 
-              name="phone"
-              required
-              value={formData.phone}
-              onChange={handleChange}
-              className="w-full px-4 py-3 bg-slate-50 dark:bg-primary-900 border border-slate-200 dark:border-white/10 rounded-xl focus:ring-2 focus:ring-brand-blue transition-all dark:text-white"
-              placeholder="+1 234 567 890"
-            />
+            <div className="flex">
+              <select 
+                name="phoneCode"
+                value={formData.phoneCode}
+                onChange={handleChange}
+                className="w-1/3 px-2 py-3 bg-slate-100 dark:bg-primary-900 border border-r-0 border-slate-200 dark:border-white/10 rounded-l-xl focus:ring-2 focus:ring-brand-blue transition-all dark:text-white"
+              >
+                {countryCodes.map((c, i) => (
+                  <option key={i} value={c.code}>{c.label}</option>
+                ))}
+              </select>
+              <input 
+                type="tel" 
+                name="phone"
+                required
+                value={formData.phone}
+                onChange={handleChange}
+                className="w-2/3 pl-3 pr-4 py-3 bg-slate-50 dark:bg-primary-900 border border-slate-200 dark:border-white/10 rounded-r-xl focus:ring-2 focus:ring-brand-blue transition-all dark:text-white"
+                placeholder="234 567 890"
+              />
+            </div>
           </div>
 
           <div className="space-y-2">

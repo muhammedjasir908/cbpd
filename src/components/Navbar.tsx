@@ -4,7 +4,6 @@ import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import TiltCard from "@/components/TiltCard";
 import { programData } from "@/data/programs";
-import { ThemeToggle } from "@/components/ThemeToggle";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -61,7 +60,7 @@ export default function Navbar() {
         
         {/* Logo */}
         <Link href="/" className="flex items-center gap-3 group" onClick={() => setMobileMenuOpen(false)}>
-          <img src="https://www.cbpd.co.uk/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FCBPD_LOGO.7c42c792.png&w=256&q=75" alt="CBPD Logo" className="h-10 md:h-12 w-auto group-hover:scale-105 transition-transform bg-white rounded p-1" />
+          <img src="/cbpd-logo-transparent.png" alt="CBPD Logo" className="h-10 md:h-12 w-auto group-hover:scale-105 transition-transform drop-shadow-[0_0_10px_rgba(255,255,255,0.4)]" />
           <span className={`text-xl md:text-2xl font-black tracking-widest transition-colors ${scrolled || programsOpen || moreOpen ? 'text-brand-blue dark:text-white' : 'text-white'}`}>
             CBPD
           </span>
@@ -133,7 +132,6 @@ export default function Navbar() {
           </div>
 
           <div className="pl-4 border-l border-white/20 flex items-center gap-4">
-            <ThemeToggle />
             <Link
               href="/login"
               className="px-6 py-2.5 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-white font-medium transition-all hover:-translate-y-0.5 hover:shadow-lg hover:shadow-brand-red/20 whitespace-nowrap"
@@ -322,9 +320,8 @@ export default function Navbar() {
             </div>
           </div>
            
-          <div className="mt-8 flex justify-between items-center px-2">
-            <ThemeToggle />
-            <Link href="/login" className="px-6 py-3 rounded-full bg-brand-red text-white font-bold hover:bg-white hover:shadow-[0_0_20px_rgba(255,255,255,0.4)] transition-all">
+          <div className="mt-8 flex justify-center items-center px-2">
+            <Link href="/login" className="px-6 py-3 w-full text-center rounded-full bg-brand-red text-white font-bold hover:bg-white hover:shadow-[0_0_20px_rgba(255,255,255,0.4)] transition-all">
               Register / Login
             </Link>
           </div>
