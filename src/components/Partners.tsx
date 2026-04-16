@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useRef } from "react";
 import TiltCard from "@/components/TiltCard";
+import cimaaLogo from "../../public/cimaa-logo.jpg";
 
 export default function Partners() {
   const [isVisible, setIsVisible] = useState(false);
@@ -23,7 +24,7 @@ export default function Partners() {
   }, []);
 
   const partners = [
-    { name: "CIMAA", url: "/cimaa-logo.jpg" },
+    { name: "CIMAA", url: cimaaLogo.src },
     { name: "CPD Logo", url: "https://www.cbpd.co.uk/_next/image?url=%2Fimages%2Ffooter%2Fcpdlogo.png&w=640&q=75" },
     { name: "AOHT", url: "https://www.cbpd.co.uk/_next/image?url=%2Fimages%2Ffooter%2Faoht.png&w=640&q=75" },
     { name: "UKRLP", url: "https://www.cbpd.co.uk/_next/image?url=%2Fimages%2Ffooter%2Fukrlp.jpg&w=384&q=75" },

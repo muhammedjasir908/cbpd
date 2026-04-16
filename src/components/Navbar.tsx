@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
+import cbpdLogo from "../../public/cbpd-logo-transparent.png";
 import TiltCard from "@/components/TiltCard";
 import { programData } from "@/data/programs";
 
@@ -60,7 +61,7 @@ export default function Navbar() {
         
         {/* Logo */}
         <Link href="/" className="flex items-center gap-3 group" onClick={() => setMobileMenuOpen(false)}>
-          <img src="/cbpd-logo-transparent.png" alt="CBPD Logo" className="h-10 md:h-12 w-auto group-hover:scale-105 transition-transform drop-shadow-[0_0_10px_rgba(255,255,255,0.4)]" />
+          <img src={cbpdLogo.src} alt="CBPD Logo" className="h-10 md:h-12 w-auto group-hover:scale-105 transition-transform drop-shadow-[0_0_10px_rgba(255,255,255,0.4)]" />
           <span className={`text-xl md:text-2xl font-black tracking-widest transition-colors ${scrolled || programsOpen || moreOpen ? 'text-brand-blue dark:text-white' : 'text-white'}`}>
             CBPD
           </span>
