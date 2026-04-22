@@ -184,7 +184,7 @@ export default function Navbar() {
                 >
                   <div className="flex items-center gap-3">
                     <span className="text-xl opacity-80 group-hover:opacity-100">{prog.icon}</span>
-                    <span className="text-sm tracking-wide">{prog.title}</span>
+                    <span className="text-sm tracking-wide">{prog.title.replace(/\s*Programmes?/i, '')}</span>
                   </div>
                   <svg className={`w-4 h-4 transition-transform ${activeCategory === idx ? 'translate-x-1 text-brand-red opacity-100' : 'opacity-0 -translate-x-2 group-hover:opacity-50 group-hover:translate-x-0'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
                 </button>
@@ -219,7 +219,7 @@ export default function Navbar() {
               <TiltCard sensitivity={5}>
                 <Link href={`/programs/${programData[activeCategory].slug}`} className="block px-6 py-5 rounded-2xl border border-dashed border-white/20 hover:border-brand-red/50 bg-transparent hover:bg-brand-red/5 transition-all duration-300 group flex items-center justify-center h-full min-h-[100px]">
                   <span className="text-slate-300 font-bold group-hover:text-brand-red transition-colors flex items-center gap-2">
-                    View All {programData[activeCategory].title}
+                    View All {programData[activeCategory].title.replace(/\s*Programmes?/i, '')}
                     <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
                   </span>
                 </Link>
@@ -260,7 +260,7 @@ export default function Navbar() {
                     >
                       <div className="flex items-center gap-3">
                         <span className="text-xl bg-primary-900/50 p-1.5 rounded-lg border border-white/5">{prog.icon}</span>
-                        <span className="text-sm tracking-wide">{prog.title}</span>
+                        <span className="text-sm tracking-wide">{prog.title.replace(/\s*Programmes?/i, '')}</span>
                       </div>
                       <svg className={`w-4 h-4 transition-transform duration-300 ${mobileActiveCategory === idx ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
                     </button>
