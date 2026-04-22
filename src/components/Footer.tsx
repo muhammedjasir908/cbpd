@@ -9,7 +9,7 @@ export default function Footer() {
           
           <div className="col-span-1 md:col-span-1">
             <Link href="/" className="flex items-center gap-2 mb-6 inline-flex">
-              <img src={cbpdLogo.src} alt="CBPD Logo" className="h-16 w-auto drop-shadow-sm" />
+              <img src={cbpdLogo.src} alt="CBPD Logo" className="h-16 w-auto" />
             </Link>
             <p className="text-sm text-slate-400 leading-relaxed mb-6">
               Global Recognition and Prestige. Professional association dedicated to awarding certification based on the practical application of knowledge.

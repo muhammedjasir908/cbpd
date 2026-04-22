@@ -64,7 +64,7 @@ export default function Navbar() {
           <img 
             src={cbpdLogo.src} 
             alt="CBPD Logo" 
-            className={`w-auto group-hover:scale-105 transition-all duration-500 drop-shadow-[0_0_10px_rgba(255,255,255,0.4)] origin-left ${
+            className={`w-auto group-hover:scale-105 transition-all duration-500 origin-left ${
               scrolled || programsOpen || moreOpen ? "h-12 md:h-14" : "h-24 md:h-32 lg:h-40"
             }`} 
           />
