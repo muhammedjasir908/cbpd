@@ -1,8 +1,53 @@
+"use client";
+
 import TiltCard from "@/components/TiltCard";
 import MagneticButton from "@/components/MagneticButton";
 import { countryCodes } from "@/data/countries";
+import { useState } from "react";
 
 export default function ContactPage() {
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    phoneCode: "+44",
+    phone: "",
+    message: ""
+  });
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus("loading");
+    
+    const formUrl = "https://docs.google.com/forms/d/e/1FAIpQLSc6SBmxH3-nNKqgPn1_UuH0M_7b39h4YhiBWMBe-d5VEb5z1Q/formResponse";
+    
+    const data = new FormData();
+    data.append("entry.1706561623", formData.firstName);
+    data.append("entry.1777583790", formData.lastName);
+    data.append("entry.972689318", formData.email);
+    data.append("entry.983455282", `${formData.phoneCode} ${formData.phone}`);
+    data.append("entry.443280545", formData.message);
+
+    try {
+      await fetch(formUrl, {
+        method: "POST",
+        mode: "no-cors",
+        body: data
+      });
+      setStatus("success");
+      setFormData({ firstName: "", lastName: "", email: "", phoneCode: "+44", phone: "", message: "" });
+      setTimeout(() => setStatus("idle"), 5000);
+    } catch (err) {
+      console.error(err);
+      setStatus("error");
+    }
+  };
   return (
     <main className="min-h-screen">
       {/* Mini Hero */}
@@ -81,46 +126,57 @@ export default function ContactPage() {
                 <div className="relative z-10">
                   <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-8">Drop A Line!</h2>
                   
-                  <form className="space-y-6">
+                  <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="space-y-2">
-                        <label className="text-sm font-semibold text-slate-600 dark:text-slate-300">First Name</label>
-                        <input type="text" className="w-full px-5 py-4 rounded-xl bg-slate-50 dark:bg-primary-800 border border-slate-200 dark:border-primary-700 focus:outline-none focus:border-brand-blue dark:focus:border-brand-red focus:ring-1 focus:ring-brand-blue dark:focus:ring-brand-red transition-colors text-slate-900 dark:text-white" placeholder="John" />
+                        <label className="text-sm font-semibold text-slate-600 dark:text-slate-300">First Name *</label>
+                        <input type="text" name="firstName" value={formData.firstName} onChange={handleChange} required className="w-full px-5 py-4 rounded-xl bg-slate-50 dark:bg-primary-800 border border-slate-200 dark:border-primary-700 focus:outline-none focus:border-brand-blue dark:focus:border-brand-red focus:ring-1 focus:ring-brand-blue dark:focus:ring-brand-red transition-colors text-slate-900 dark:text-white" placeholder="John" />
                       </div>
                       <div className="space-y-2">
-                        <label className="text-sm font-semibold text-slate-600 dark:text-slate-300">Last Name</label>
-                        <input type="text" className="w-full px-5 py-4 rounded-xl bg-slate-50 dark:bg-primary-800 border border-slate-200 dark:border-primary-700 focus:outline-none focus:border-brand-blue dark:focus:border-brand-red focus:ring-1 focus:ring-brand-blue dark:focus:ring-brand-red transition-colors text-slate-900 dark:text-white" placeholder="Doe" />
+                        <label className="text-sm font-semibold text-slate-600 dark:text-slate-300">Last Name *</label>
+                        <input type="text" name="lastName" value={formData.lastName} onChange={handleChange} required className="w-full px-5 py-4 rounded-xl bg-slate-50 dark:bg-primary-800 border border-slate-200 dark:border-primary-700 focus:outline-none focus:border-brand-blue dark:focus:border-brand-red focus:ring-1 focus:ring-brand-blue dark:focus:ring-brand-red transition-colors text-slate-900 dark:text-white" placeholder="Doe" />
                       </div>
                     </div>
                     
                     <div className="space-y-2">
-                      <label className="text-sm font-semibold text-slate-600 dark:text-slate-300">Email Address</label>
-                      <input type="email" className="w-full px-5 py-4 rounded-xl bg-slate-50 dark:bg-primary-800 border border-slate-200 dark:border-primary-700 focus:outline-none focus:border-brand-blue dark:focus:border-brand-red focus:ring-1 focus:ring-brand-blue dark:focus:ring-brand-red transition-colors text-slate-900 dark:text-white" placeholder="johndoe@example.com" />
+                      <label className="text-sm font-semibold text-slate-600 dark:text-slate-300">Email Address *</label>
+                      <input type="email" name="email" value={formData.email} onChange={handleChange} required className="w-full px-5 py-4 rounded-xl bg-slate-50 dark:bg-primary-800 border border-slate-200 dark:border-primary-700 focus:outline-none focus:border-brand-blue dark:focus:border-brand-red focus:ring-1 focus:ring-brand-blue dark:focus:ring-brand-red transition-colors text-slate-900 dark:text-white" placeholder="johndoe@example.com" />
                     </div>
                     
                     <div className="space-y-2">
-                      <label className="text-sm font-semibold text-slate-600 dark:text-slate-300">Phone</label>
+                      <label className="text-sm font-semibold text-slate-600 dark:text-slate-300">Phone *</label>
                       <div className="flex">
-                        <select className="w-1/3 px-3 py-4 bg-slate-100 dark:bg-primary-800 border border-r-0 border-slate-200 dark:border-primary-700 rounded-l-xl focus:outline-none focus:border-brand-blue dark:focus:border-brand-red focus:ring-1 focus:ring-brand-blue dark:focus:ring-brand-red transition-colors text-slate-900 dark:text-white">
+                        <select name="phoneCode" value={formData.phoneCode} onChange={handleChange} className="w-1/3 px-3 py-4 bg-slate-100 dark:bg-primary-800 border border-r-0 border-slate-200 dark:border-primary-700 rounded-l-xl focus:outline-none focus:border-brand-blue dark:focus:border-brand-red focus:ring-1 focus:ring-brand-blue dark:focus:ring-brand-red transition-colors text-slate-900 dark:text-white">
                           {countryCodes.map((c, i) => (
                             <option key={i} value={c.code}>{c.label}</option>
                           ))}
                         </select>
-                        <input type="tel" className="w-2/3 pl-3 pr-5 py-4 rounded-r-xl bg-slate-50 dark:bg-primary-800 border border-slate-200 dark:border-primary-700 focus:outline-none focus:border-brand-blue dark:focus:border-brand-red focus:ring-1 focus:ring-brand-blue dark:focus:ring-brand-red transition-colors text-slate-900 dark:text-white" placeholder="20..." />
+                        <input type="tel" name="phone" value={formData.phone} onChange={handleChange} required className="w-2/3 pl-3 pr-5 py-4 rounded-r-xl bg-slate-50 dark:bg-primary-800 border border-slate-200 dark:border-primary-700 focus:outline-none focus:border-brand-blue dark:focus:border-brand-red focus:ring-1 focus:ring-brand-blue dark:focus:ring-brand-red transition-colors text-slate-900 dark:text-white" placeholder="20..." />
                       </div>
                     </div>
                     
                     <div className="space-y-2">
-                      <label className="text-sm font-semibold text-slate-600 dark:text-slate-300">Message</label>
-                      <textarea rows={5} className="w-full px-5 py-4 rounded-xl bg-slate-50 dark:bg-primary-800 border border-slate-200 dark:border-primary-700 focus:outline-none focus:border-brand-blue dark:focus:border-brand-red focus:ring-1 focus:ring-brand-blue dark:focus:ring-brand-red transition-colors text-slate-900 dark:text-white resize-none" placeholder="Write your message here..."></textarea>
+                      <label className="text-sm font-semibold text-slate-600 dark:text-slate-300">Message *</label>
+                      <textarea name="message" value={formData.message} onChange={handleChange} required rows={5} className="w-full px-5 py-4 rounded-xl bg-slate-50 dark:bg-primary-800 border border-slate-200 dark:border-primary-700 focus:outline-none focus:border-brand-blue dark:focus:border-brand-red focus:ring-1 focus:ring-brand-blue dark:focus:ring-brand-red transition-colors text-slate-900 dark:text-white resize-none" placeholder="Write your message here..."></textarea>
                     </div>
 
                     <MagneticButton strength={15}>
-                      <button className="px-10 py-5 rounded-full bg-brand-blue text-white font-bold text-lg hover:bg-brand-red transition-colors shadow-[0_5px_20px_rgba(30,64,175,0.4)] hover:shadow-[0_10px_30px_rgba(212, 53, 28,0.5)] flex items-center gap-2 group w-full md:w-auto mt-4">
-                        Send Message
-                        <svg className="w-5 h-5 group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+                      <button disabled={status === "loading"} className="px-10 py-5 rounded-full bg-brand-blue text-white font-bold text-lg hover:bg-brand-red transition-colors shadow-[0_5px_20px_rgba(30,64,175,0.4)] hover:shadow-[0_10px_30px_rgba(212, 53, 28,0.5)] flex items-center gap-2 group w-full md:w-auto mt-4 disabled:opacity-70">
+                        {status === "loading" ? "Sending..." : "Send Message"}
+                        {status !== "loading" && <svg className="w-5 h-5 group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>}
                       </button>
                     </MagneticButton>
+                    
+                    {status === "success" && (
+                      <div className="p-4 bg-green-500/10 border border-green-500/20 text-green-600 dark:text-green-400 rounded-xl mt-4 animate-[fadeInUp_0.3s_ease-out]">
+                        Message sent successfully! We will get back to you shortly.
+                      </div>
+                    )}
+                    {status === "error" && (
+                      <div className="p-4 bg-red-500/10 border border-red-500/20 text-red-600 dark:text-red-400 rounded-xl mt-4 animate-[fadeInUp_0.3s_ease-out]">
+                        There was an error sending your message. Please try again.
+                      </div>
+                    )}
                   </form>
                 </div>
               </div>

@@ -18,25 +18,25 @@ export default function RegisterPage() {
     website: "",
     email: "",
     password: "",
-    phoneCode: "+91",
+    phoneCode: "+44",
     phone: "",
     // Step 2: Main Contact
     mcFirstName: "",
     mcLastName: "",
     mcJobTitle: "",
     mcEmail: "",
-    mcPhoneCode: "+91",
+    mcPhoneCode: "+44",
     mcPhone: "",
-    mcMobileCode: "+91",
+    mcMobileCode: "+44",
     mcMobile: "",
     // Step 3: Secondary Contact
     scFirstName: "",
     scLastName: "",
     scJobTitle: "",
     scEmail: "",
-    scPhoneCode: "+91",
+    scPhoneCode: "+44",
     scPhone: "",
-    scMobileCode: "+91",
+    scMobileCode: "+44",
     scMobile: ""
   });
 

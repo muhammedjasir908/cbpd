@@ -6,83 +6,83 @@ import MagneticButton from "@/components/MagneticButton";
 
 const programs = [
   { 
-    title: "CBPD Diploma in Mobile Phone Technician", 
-    desc: "Comprehensive training in advanced mobile phone repair, precision diagnostics, delicate screen and component replacement, software flashing, and complex hardware troubleshooting. It also covers essential customer service skills tailored specifically for smartphone repair professionals to maximise client satisfaction and business reputation." 
+    title: "CBPD Diploma in Medical Lab Technology", 
+    desc: "Comprehensive training in laboratory techniques, sample collection, clinical biochemistry, haematology, microbiology, pathology testing, and quality control procedures." 
   },
   { 
-    title: "CBPD Diploma in AC/Fridge Technician", 
-    desc: "Gain vital practical skills in the installation, repair, and ongoing maintenance of diverse air conditioning units, refrigerators, and commercial cooling systems. Master intricate fault finding, safe gas charging, electrical component servicing, and the latest industry safety protocols." 
+    title: "CBPD Certificate in Dialysis Assistant", 
+    desc: "Practical skills for assisting in haemodialysis and peritoneal dialysis, patient monitoring, machine operation, infection control, and renal care support." 
   },
   { 
-    title: "CBPD Certificate in Electrical Technician", 
-    desc: "Master both domestic and commercial electrical installations. Learn advanced fault finding, safe wiring practices, rigorous testing methods, and strict compliance with national safety regulations to ensure safe, hazard-free electrical infrastructure." 
+    title: "CBPD Certificate in Radiology and Imaging Technology", 
+    desc: "Develop expertise in X-ray, CT, MRI, ultrasound imaging techniques, radiation safety, image processing, and patient positioning." 
   },
   { 
-    title: "CBPD Certificate in Plumbing & Heating Technician", 
-    desc: "Develop comprehensive skills in modern plumbing systems, central heating setups, intricate boiler maintenance, precision pipework, and safe water supply installations. Ensure long-lasting, efficient, and compliant heating and sanitary systems." 
+    title: "CBPD Certificate in Cardiac Assistant", 
+    desc: "Training in electrocardiography (ECG), cardiac monitoring, basic life support, patient care during cardiac procedures, and emergency response." 
   },
   { 
-    title: "CBPD Certificate in Automotive Technician", 
-    desc: "Learn sophisticated vehicle diagnostics, mechanical engine repair, complex electrical systems troubleshooting, advanced brake servicing, and general modern automotive maintenance to keep vehicles operating at peak performance and ensuring passenger safety." 
+    title: "CBPD Certificate in Nursing Assistant", 
+    desc: "Essential skills in patient care, vital signs monitoring, personal hygiene assistance, mobility support, and basic nursing procedures." 
   },
   { 
-    title: "CBPD Certificate in Computer Hardware & Networking Technician", 
-    desc: "Gain deep expertise in comprehensive PC and laptop repair, intricate hardware assembly, systematic troubleshooting, and essential networking support to maintain seamless IT hardware operations in modern networked environments." 
+    title: "CBPD Certificate in Operation Theatre Assistant", 
+    desc: "Specialised training in operating room protocols, surgical instrumentation, sterilisation, aseptic techniques, and assisting surgeons during procedures." 
   },
   { 
-    title: "CBPD Certificate in Refrigeration & Air Conditioning Technician", 
-    desc: "Specialised, high-level training focusing on large-scale commercial refrigeration, advanced HVAC systems, professional installation, routine servicing, and modern methods for maximising overall energy efficiency and environmental compliance." 
+    title: "CBPD Diploma in Optometry", 
+    desc: "Practical training in vision testing, refraction techniques, optical dispensing, contact lens fitting, and eye health screening." 
   },
   { 
-    title: "CBPD Certificate in Home Appliance Repair Technician", 
-    desc: "A dedicated focus on efficiently repairing and diagnosing common white-goods such as modern washing machines, ovens, cookers, and other diverse household appliances, extending device lifespan and reducing unnecessary electronic waste." 
+    title: "CBPD Certificate in Nursing", 
+    desc: "Core nursing skills including patient assessment, medication administration, wound care, infection prevention, and holistic patient management." 
   },
   { 
-    title: "CBPD Certificate in CCTV & Security Systems Installation", 
-    desc: "Learn the precise installation, secure network configuration, and proactive maintenance of modern high-definition CCTV cameras, advanced access control mechanisms, and integrated smart security systems to ensure robust property protection." 
+    title: "CBPD Certificate in Caregiving", 
+    desc: "Focused on elderly care, dementia support, daily living assistance, palliative care, and compassionate caregiving practices." 
   },
   { 
-    title: "CBPD Certificate in Solar PV Installation & Maintenance", 
-    desc: "Acquire highly sought-after practical skills in residential and commercial solar panel installation, smart inverter setup, ongoing system maintenance, and strict adherence to modern renewable energy safety standards." 
+    title: "CBPD Certificate in Dental Assistant / Dental Nursing", 
+    desc: "Training in chairside assistance, dental instrumentation, infection control, radiography, and patient management in dental settings." 
   },
   { 
-    title: "CBPD Certificate in Generator & Power Systems Technician", 
-    desc: "Crucial training in reliable diesel generator installation, routine preventative maintenance, complex troubleshooting, and robust backup power systems management to prevent and mitigate critical power outages." 
+    title: "CBPD Certificate in Health and Safety Management in Healthcare", 
+    desc: "Comprehensive programme covering risk assessment, infection control, manual handling, hazardous substances, fire safety, and health & safety legislation specific to healthcare environments." 
   },
   { 
-    title: "CBPD Certificate in Technical Customer Service & Support", 
-    desc: "Develop excellent interpersonal skills geared towards handling complex technical enquiries, rapid problem-solving, managing client expectations, and consistently delivering outstanding, empathetic customer support in highly technical fields." 
+    title: "CBPD Certificate in Patient Safety & Quality Care", 
+    desc: "Learn clinical governance, incident reporting, root cause analysis, and strategies to minimise medical errors and enhance patient outcomes." 
   },
   { 
-    title: "CBPD Certificate in Workshop Safety & Risk Management", 
-    desc: "A critical focus on maintaining stringent health and safety standards within technical workshops. Learn precise risk assessment, the proper application of PPE, occupational health laws, and globally recognised safe working practices." 
+    title: "CBPD Certificate in Phlebotomy & Venepuncture", 
+    desc: "Practical skills in blood collection techniques, specimen handling, safety protocols, and patient comfort during procedures." 
   },
   { 
-    title: "CBPD Certificate in Diagnostic Tools & Modern Technology", 
-    desc: "Learn to confidently utilise the latest advanced diagnostic equipment, technical software tools, and modern, data-driven technical troubleshooting methods required for repairing the new generation of smart and IoT-enabled devices." 
+    title: "CBPD Certificate in Medical Administration & Healthcare Management", 
+    desc: "Develop skills in medical records management, appointment systems, regulatory compliance, and healthcare facility administration." 
   },
   { 
-    title: "CBPD Certificate in Advanced Technical Management", 
-    desc: "Designed specifically for experienced technicians aiming for leadership positions. Covers effective workshop management, inspiring team leadership, streamlined business operations, inventory control, and rigorous quality assurance." 
+    title: "CBPD Certificate in Infection Prevention & Control", 
+    desc: "Advanced training in IPC practices, decontamination, outbreak management, and compliance with current healthcare standards." 
   }
 ];
 
 const benefits = [
-  "Practical, hands-on learning with immediate application in workshops and service environments.",
-  "Flexible delivery modes designed for working technicians and career changers.",
-  "Prestigious UK-issued CBPD certification recognised by employers in technical service industries.",
-  "Strong coverage of high-demand areas including Diplomas in Mobile Phone and AC/Fridge Repair.",
-  "Clear pathways for career progression from technician roles to senior technical and management positions."
+  "Practical, clinical-focused learning with immediate application in real healthcare settings.",
+  "Flexible delivery modes designed for working healthcare professionals and support staff.",
+  "Prestigious UK-issued CBPD certification recognised by employers in hospitals, clinics, and care facilities worldwide.",
+  "Broad coverage of allied health, nursing support, laboratory, imaging, and caregiving roles including specialised diplomas and certificates.",
+  "Strong emphasis on patient safety, infection control, and regulatory compliance."
 ];
 
 const steps = [
-  "Select the CBPD Technical programme that best matches your role and career goals.",
-  "Contact or enrol through an authorised CBPD partner (online or strictly in your region).",
-  "Complete the intensive, focused learning and rigorous practical assessment.",
-  "Receive your official CBPD digital certificate with a unique, secure verification code."
+  "Select the CBPD Healthcare & Medical programme that matches your role and career goals.",
+  "Contact or enrol through an authorised CBPD partner (online or in your region).",
+  "Complete the focused learning and practical assessment.",
+  "Receive your official CBPD digital certificate with unique verification code."
 ];
 
-export default function TechnicalProgramPage() {
+export default function HealthcareMedicalProgramPage() {
   const [openAccordion, setOpenAccordion] = useState<number | null>(0);
   const [activeTab, setActiveTab] = useState('overview');
 
@@ -100,7 +100,7 @@ export default function TechnicalProgramPage() {
           <span className="text-slate-300 dark:text-slate-600">/</span>
           <Link href="/programs" className="hover:text-brand-red transition-colors">Programmes</Link>
           <span className="text-slate-300 dark:text-slate-600">/</span>
-          <span className="text-slate-900 dark:text-white">Technical Programmes</span>
+          <span className="text-slate-900 dark:text-white">Healthcare & Medical Programmes</span>
         </div>
       </div>
 
@@ -109,7 +109,7 @@ export default function TechnicalProgramPage() {
         {/* Background Image */}
         <div 
           className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat pointer-events-none"
-          style={{ backgroundImage: `url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1600&auto=format&fit=crop')` }}
+          style={{ backgroundImage: `url('https://images.unsplash.com/photo-1516549655169-df83a0774514?q=80&w=1600&auto=format&fit=crop')` }}
         ></div>
         {/* Dark overlay for text legibility */}
         <div className="absolute inset-0 z-0 bg-primary-900/80 pointer-events-none"></div>
@@ -121,10 +121,10 @@ export default function TechnicalProgramPage() {
               Training Course Category
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.1] mb-8">
-              CBPD <span className="text-brand-red">Technical Programmes</span>
+              CBPD <span className="text-brand-red">Healthcare & Medical</span> Programmes
             </h1>
             <p className="text-lg md:text-xl text-slate-300 mb-10 leading-relaxed font-light">
-              Equipping technicians, service engineers, maintenance professionals, and technical specialists with the indispensable, immediately applicable hands-on skills required to thrive in today's modern technical and repair industries.
+              Equipping nurses, healthcare assistants, technicians, and allied health workers with immediately applicable skills for today's demanding healthcare environment.
             </p>
             <MagneticButton strength={10}>
               <Link href="/partner" className="inline-flex items-center gap-2 px-8 py-4 bg-brand-red text-white font-bold rounded shadow-lg hover:bg-white hover:text-brand-red transition-all duration-300 group">
@@ -137,10 +137,10 @@ export default function TechnicalProgramPage() {
       </section>
 
       {/* 3. Light Banner Intro */}
-      <section className="bg-brand-red/5 dark:bg-brand-red/10 border-b border-slate-200 dark:border-primary-800 py-10">
+      <section className="bg-brand-blue/5 dark:bg-brand-blue/10 border-b border-slate-200 dark:border-primary-800 py-10">
         <div className="container mx-auto px-6 md:px-12 text-center max-w-4xl">
           <p className="text-lg md:text-xl text-slate-700 dark:text-slate-200 font-medium leading-relaxed">
-            The Central Board of Professional Development (CBPD) offers a comprehensive range of practical Technical programmes designed to help professionals deliver high-quality technical services while enabling workshops and service centres to operate with maximum efficiency and professionalism.
+            The Central Board of Professional Development (CBPD) offers a comprehensive range of practical Healthcare & Medical programmes designed to empower care providers with essential skills for quality care delivery.
           </p>
         </div>
       </section>
@@ -156,10 +156,10 @@ export default function TechnicalProgramPage() {
               {/* Introduction Body */}
               <div className="prose prose-lg prose-slate dark:prose-invert max-w-none text-slate-600 dark:text-slate-300 mb-12">
                 <p>
-                  CBPD Technical certifications focus deeply on <strong>fault diagnosis, advanced repair techniques, routine maintenance procedures, stringent safety standards, and excellent customer service.</strong> 
+                  CBPD Healthcare & Medical certifications focus on <strong>patient safety, clinical competence, regulatory compliance, and quality care delivery</strong>. 
                 </p>
                 <p>
-                  All CBPD Technical programmes are delivered flexibly through our network of highly qualified, authorised partners via online, blended, or direct classroom formats. They lead strictly to prestigious UK-issued CBPD certifications globally recognised by leading technical employers.
+                  This ensures professionals can advance their careers while enabling hospitals, clinics, laboratories, and care facilities to maintain high standards of care and meet strict regulatory requirements. All CBPD Healthcare & Medical programmes are delivered flexibly through our authorised partners in online, blended, or classroom formats and lead to prestigious UK-issued CBPD certifications globally recognised by employers.
                 </p>
               </div>
 
@@ -182,9 +182,9 @@ export default function TechnicalProgramPage() {
               {/* Tab Content: Overview (Accordions) */}
               {activeTab === 'overview' && (
                 <div className="animate-[fadeInUp_0.5s_ease-out]">
-                  <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">Explore Our Technical Programmes</h2>
+                  <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">Explore Our Specialised Programmes</h2>
                   <p className="text-slate-600 dark:text-slate-400 mb-8">
-                    CBPD provides targeted, high-impact programmes across key technical service and repair disciplines. Each programme focuses extensively on the tangible, hands-on skills required in the workshop.
+                    CBPD provides targeted, high-impact programmes across all major healthcare and allied medical disciplines to build clinical competence.
                   </p>
                   
                   {/* Accordion List */}
@@ -222,12 +222,12 @@ export default function TechnicalProgramPage() {
               {/* Tab Content: Why Choose CBPD */}
               {activeTab === 'why' && (
                 <div className="animate-[fadeInUp_0.5s_ease-out] bg-white dark:bg-primary-800 p-8 rounded border border-slate-200 dark:border-primary-700 shadow-sm">
-                  <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">Why Choose CBPD for Technical Development?</h2>
+                  <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">Why Choose CBPD for Healthcare & Medical Professional Development?</h2>
                   <p className="text-slate-600 dark:text-slate-300 mb-6 leading-relaxed text-lg">
-                    CBPD delivers shorter, far more practical, and highly flexible technical credentials when directly compared with many traditional, slow-moving qualifications.
+                    CBPD delivers shorter, more practical, and highly flexible healthcare credentials when compared with many long-form traditional qualifications. 
                   </p>
                   <p className="text-slate-600 dark:text-slate-300 leading-relaxed text-lg">
-                    Our dynamic programmes seamlessly combine strong hands-on repair skills with extremely modern diagnostic techniques, rigorous safety standards, and technological literacy. This distinct methodology guarantees that our professionals and partner businesses consistently deliver reliable, high-quality, and completely safe technical services.
+                    Our programmes combine essential clinical skills with modern healthcare requirements such as patient safety, infection prevention, and specialised support roles—helping professionals and organisations deliver higher standards of care and achieve better patient outcomes.
                   </p>
                 </div>
               )}
@@ -273,8 +273,8 @@ export default function TechnicalProgramPage() {
                 {/* Quick Contact Widget */}
                 <div className="bg-primary-900 rounded-sm shadow-lg p-6 lg:p-8 text-center text-white relative overflow-hidden">
                    <div className="absolute top-0 right-0 w-32 h-32 bg-brand-red/20 blur-3xl"></div>
-                   <h3 className="font-bold text-xl mb-4 relative z-10">Need Assistance?</h3>
-                   <p className="text-sm text-slate-300 mb-6 relative z-10">Our support team is ready to help you find the right technical programme.</p>
+                   <h3 className="font-bold text-xl mb-4 relative z-10">Ready to Advance?</h3>
+                   <p className="text-sm text-slate-300 mb-6 relative z-10">Our support team is ready to help you find the right healthcare programme.</p>
                    <Link href="/contact" className="block w-full py-3 bg-brand-red text-white font-bold rounded text-sm hover:bg-white hover:text-brand-red transition-colors relative z-10">
                      Contact Us Today
                    </Link>
@@ -291,12 +291,12 @@ export default function TechnicalProgramPage() {
       <section className="container mx-auto px-6 md:px-12 mt-8 mb-12">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           
-          <div className="bg-slate-100 dark:bg-primary-800/50 p-10 lg:p-12 rounded-sm border border-slate-200 dark:border-primary-800 flex flex-col justify-center items-start group hover:border-brand-red transition-colors">
+          <div className="bg-slate-100 dark:bg-primary-800/50 p-10 lg:p-12 rounded-sm border border-slate-200 dark:border-primary-800 flex flex-col justify-center items-start group hover:border-brand-blue transition-colors">
             <h3 className="text-2xl lg:text-3xl font-bold text-slate-900 dark:text-white mb-4">View All Programmes</h3>
             <p className="text-slate-600 dark:text-slate-400 mb-8 max-w-sm">
-              Discover our complete catalogue of professional technical credentials across all major disciplines.
+              Discover our complete catalogue of professional credentials across all major disciplines.
             </p>
-            <Link href="/programs" className="font-bold text-brand-red dark:text-white group-hover:text-brand-red transition-colors flex items-center gap-2">
+            <Link href="/programs" className="font-bold text-brand-blue dark:text-white group-hover:text-brand-red transition-colors flex items-center gap-2">
               Browse Catalogue <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
             </Link>
           </div>
@@ -305,7 +305,7 @@ export default function TechnicalProgramPage() {
             <div className="absolute inset-0 bg-brand-red/5 group-hover:bg-brand-red/10 transition-colors"></div>
             <h3 className="text-2xl lg:text-3xl font-bold text-white mb-4 relative z-10">Become a CBPD Partner</h3>
             <p className="text-slate-300 mb-8 max-w-sm relative z-10">
-              Authorised partners have exclusive rights to deliver CBPD technical programmes globally in their regions.
+              Authorised partners have exclusive rights to deliver CBPD healthcare programmes globally.
             </p>
             <Link href="/partner" className="font-bold text-brand-red group-hover:text-white transition-colors flex items-center gap-2 relative z-10">
               Deliver These Programmes <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>

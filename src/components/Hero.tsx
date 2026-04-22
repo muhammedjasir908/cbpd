@@ -1,76 +1,83 @@
+"use client";
 
+import { useState, useRef, useEffect } from "react";
+import Link from "next/link";
+
+const BACKGROUND_VIDEOS = [
+  "https://videos.pexels.com/video-files/7490429/7490429-hd_1280_720_25fps.mp4", // Aerial footage of a university
+  "https://videos.pexels.com/video-files/6550141/6550141-hd_1280_720_25fps.mp4", // Man and woman at the library
+  "https://videos.pexels.com/video-files/8198513/8198513-hd_1280_720_25fps.mp4", // Students listening to the professor
+  "https://videos.pexels.com/video-files/8199413/8199413-hd_1280_720_25fps.mp4", // People studying together
+  "https://videos.pexels.com/video-files/7683332/7683332-hd_1280_720_30fps.mp4"  // College students walking in the campus
+];
 
 export default function Hero() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
+
+  useEffect(() => {
+    // Whenever the currentIndex changes, play the active video and reset it to start
+    const activeVideo = videoRefs.current[currentIndex];
+    if (activeVideo) {
+      activeVideo.currentTime = 0;
+      activeVideo.play().catch(err => console.log("Video auto-play was prevented", err));
+    }
+    
+    // Safety check to pause other videos so they don't consume bandwidth/audio
+    videoRefs.current.forEach((vid, idx) => {
+      if (idx !== currentIndex && vid) {
+        vid.pause();
+      }
+    });
+  }, [currentIndex]);
+
+  const handleVideoEnd = (index: number) => {
+    // When the current video ends naturally, move to the next one
+    if (index === currentIndex) {
+      setCurrentIndex((prev) => (prev + 1) % BACKGROUND_VIDEOS.length);
+    }
+  };
+
   return (
     <section className="relative h-screen w-full flex items-center justify-center overflow-hidden">
-      {/* Video Background */}
-      <div className="absolute inset-0 w-full h-full z-0 overflow-hidden bg-[#0A192F]">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="object-cover w-full h-full opacity-60"
-        >
-          <source src="./hero-video-comp.mp4" type="video/mp4" />
-        </video>
-        {/* Dark opacity layer as requested */}
-        <div className="absolute inset-0 bg-black/60 z-0"></div>
-        {/* Gradient Overlay using brand blue for extra flavor */}
-        <div className="absolute inset-0 bg-gradient-to-r from-brand-blue/80 via-primary-900/70 to-transparent z-0 pointer-events-none mix-blend-multiply"></div>
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-primary-900/95 z-0 pointer-events-none"></div>
+      {/* Video Background Playlist */}
+      <div className="absolute inset-0 w-full h-full z-0 overflow-hidden bg-primary-900">
+        {BACKGROUND_VIDEOS.map((videoSrc, index) => (
+          <video
+            key={videoSrc}
+            ref={(el) => {
+              if (el) videoRefs.current[index] = el;
+            }}
+            src={videoSrc}
+            muted
+            playsInline
+            onEnded={() => handleVideoEnd(index)}
+            className={`absolute inset-0 object-cover w-full h-full transition-opacity duration-[1500ms] ease-in-out ${
+              currentIndex === index ? "opacity-80 z-10" : "opacity-0 z-0"
+            }`}
+          />
+        ))}
+
+        {/* Dark opacity layer */}
+        <div className="absolute inset-0 bg-black/40 z-10 pointer-events-none"></div>
+        {/* Gradient Overlay using brand blue */}
+        <div className="absolute inset-0 bg-gradient-to-r from-brand-blue/60 via-primary-900/50 to-transparent z-10 pointer-events-none mix-blend-multiply"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-primary-900/80 z-10 pointer-events-none"></div>
       </div>
 
       {/* Content */}
-      <div className="relative z-10 container mx-auto px-6 md:px-12 flex flex-col lg:flex-row items-center justify-between pt-20 h-full gap-12 w-full">
+      <div className="relative z-20 container mx-auto px-6 md:px-12 flex flex-col lg:flex-row items-center justify-between pt-20 h-full gap-12 w-full">
         
         {/* Text Area */}
-        <div className="flex flex-col items-start justify-center w-full lg:w-1/2 h-full pb-10">
-          
-          <div className="inline-block px-4 py-2 rounded-full border border-brand-red/30 bg-brand-red/10 text-brand-red font-bold tracking-wide text-xs md:text-sm mb-6 animate-[fadeInUp_0.8s_ease-out]">
-            Central Board of Professional Development (CBPD)
-          </div>
-
+        <div className="flex flex-col items-start justify-center w-full lg:w-1/2 h-full pb-10 pt-24 lg:pt-36">
           <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white max-w-3xl leading-[1.1] mb-5 animate-[fadeInUp_1s_ease-out]">
             UK Professional Body Delivering Practical, <br className="hidden md:block" />
             <span className="text-brand-red">Globally Recognised Credentials</span>
           </h1>
-          
         </div>
 
         {/* Floating Images Area */}
         <div className="hidden lg:flex w-full lg:w-1/2 relative h-[500px] items-center justify-center animate-[fadeInUp_1.5s_ease-out]">
-          
-          {/* Image 1: Student */}
-          <div className="absolute top-0 right-4 w-64 h-80 rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)] border-2 border-white/20 animate-[float_6s_ease-in-out_infinite] z-20 hover:scale-105 transition-transform duration-500">
-            <img 
-              src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=600&auto=format&fit=crop" 
-              alt="Students learning" 
-              className="w-full h-full object-cover" 
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-          </div>
-          
-          {/* Image 2: London */}
-          <div className="absolute bottom-0 right-32 w-72 h-56 rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)] border-2 border-white/20 animate-[float_8s_ease-in-out_infinite_reverse] z-10 hover:scale-105 transition-transform duration-500 delay-100">
-            <img 
-              src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?q=80&w=600&auto=format&fit=crop" 
-              alt="London landscape" 
-              className="w-full h-full object-cover" 
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-          </div>
-          
-          {/* Image 3: Graduation/Professional */}
-          <div className="absolute top-24 left-4 w-56 h-64 rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)] border-2 border-brand-red/40 animate-[float_7s_ease-in-out_infinite] z-30 hover:scale-105 transition-transform duration-500 delay-300">
-            <img 
-              src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=600&auto=format&fit=crop" 
-              alt="Professional graduation" 
-              className="w-full h-full object-cover" 
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-          </div>
-
           {/* Decorative Elements */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-brand-red/20 rounded-full blur-[80px] z-0"></div>
           <div className="absolute top-10 left-20 w-8 h-8 rounded-full bg-brand-red/50 animate-[ping_3s_cubic-bezier(0,0,0.2,1)_infinite] z-40"></div>
@@ -78,7 +85,7 @@ export default function Hero() {
       </div>
 
       {/* Scroll indicator */}
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 animate-[fadeInUp_1.6s_ease-out]">
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2 animate-[fadeInUp_1.6s_ease-out]">
         <span className="text-white/60 text-xs uppercase tracking-widest font-semibold">Scroll</span>
         <div className="w-[1px] h-12 bg-white/20 relative overflow-hidden">
           <div className="absolute top-0 left-0 w-full h-1/2 bg-brand-red animate-[translateY_2s_infinite]"></div>

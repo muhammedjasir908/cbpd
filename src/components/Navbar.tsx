@@ -57,14 +57,17 @@ export default function Navbar() {
         scrolled || programsOpen || moreOpen ? "glass-dark bg-primary-900/95 shadow-xl border-b border-white/10" : "bg-transparent py-3"
       }`}
     >
-      <div className={`container mx-auto px-6 md:px-12 flex justify-between items-center transition-all duration-300 ${scrolled || programsOpen || moreOpen ? 'py-3' : 'py-5'}`}>
+      <div className={`container mx-auto px-6 md:px-12 flex justify-between transition-all duration-300 ${scrolled || programsOpen || moreOpen ? 'items-center py-3' : 'items-start py-5 pt-8'}`}>
         
         {/* Logo */}
         <Link href="/" className="flex items-center gap-3 group" onClick={() => setMobileMenuOpen(false)}>
-          <img src={cbpdLogo.src} alt="CBPD Logo" className="h-10 md:h-12 w-auto group-hover:scale-105 transition-transform drop-shadow-[0_0_10px_rgba(255,255,255,0.4)]" />
-          <span className={`text-xl md:text-2xl font-black tracking-widest transition-colors ${scrolled || programsOpen || moreOpen ? 'text-brand-blue dark:text-white' : 'text-white'}`}>
-            CBPD
-          </span>
+          <img 
+            src={cbpdLogo.src} 
+            alt="CBPD Logo" 
+            className={`w-auto group-hover:scale-105 transition-all duration-500 drop-shadow-[0_0_10px_rgba(255,255,255,0.4)] origin-left ${
+              scrolled || programsOpen || moreOpen ? "h-12 md:h-14" : "h-24 md:h-32 lg:h-40"
+            }`} 
+          />
         </Link>
 
         {/* Desktop Nav */}

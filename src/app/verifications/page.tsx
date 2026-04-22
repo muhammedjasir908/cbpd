@@ -7,7 +7,19 @@ import { useEffect, useState } from "react";
 export default function VerificationPage() {
   const [isVisible, setIsVisible] = useState(false);
   const [verifyStatus, setVerifyStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
-  const [verifyInput, setVerifyInput] = useState("");
+  const [certType, setCertType] = useState<"student" | "membership" | "centre">("student");
+  
+  // Form States
+  const [studentName, setStudentName] = useState("");
+  const [registrationNo, setRegistrationNo] = useState("");
+  const [certificateNo, setCertificateNo] = useState("");
+  const [learnerNo, setLearnerNo] = useState("");
+  
+  const [membershipName, setMembershipName] = useState("");
+  const [membershipNo, setMembershipNo] = useState("");
+  
+  const [centreName, setCentreName] = useState("");
+  const [centreCode, setCentreCode] = useState("");
 
   useEffect(() => {
     const timer = setTimeout(() => setIsVisible(true), 100);
@@ -16,18 +28,12 @@ export default function VerificationPage() {
 
   const handleVerify = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!verifyInput.trim()) return;
-    
     setVerifyStatus("loading");
     
     // Simulate API call
     setTimeout(() => {
-      // Just a mock response based on input length
-      if (verifyInput.length > 5) {
-        setVerifyStatus("success");
-      } else {
-        setVerifyStatus("error");
-      }
+      // For demo purposes assume it succeeds
+      setVerifyStatus("success");
     }, 1500);
   };
 
@@ -60,37 +66,63 @@ export default function VerificationPage() {
             <div className="bg-white dark:bg-white/5 backdrop-blur-xl border border-slate-200 dark:border-white/10 p-8 md:p-12 rounded-3xl shadow-2xl relative overflow-hidden">
               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-blue via-brand-red to-brand-red"></div>
               
-              <form onSubmit={handleVerify} className="relative z-10">
-                <div className="flex flex-col md:flex-row gap-4">
-                  <div className="flex-grow relative">
-                    <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                      <svg className="w-6 h-6 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 21h7a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v11m0 5l4.879-4.879m0 0a3 3 0 104.243-4.242 3 3 0 00-4.243 4.242z" /></svg>
-                    </div>
-                    <input 
-                      type="text" 
-                      value={verifyInput}
-                      onChange={(e) => setVerifyInput(e.target.value)}
-                      placeholder="Enter Certificate or Membership ID (e.g. CBPD-98765)" 
-                      className="w-full pl-12 pr-4 py-4 md:py-5 bg-slate-50 dark:bg-primary-900 border border-slate-200 dark:border-white/10 rounded-2xl text-slate-800 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-transparent transition-all text-lg"
-                      required
-                    />
-                  </div>
-                  
-                  <button 
-                    type="submit" 
-                    disabled={verifyStatus === "loading"}
-                    className="px-8 py-4 md:py-5 bg-brand-blue text-white font-bold rounded-2xl hover:bg-brand-red transition-all shadow-[0_5px_15px_rgba(30,64,175,0.3)] hover:shadow-[0_10px_25px_rgba(212, 53, 28,0.4)] disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center min-w-[160px]"
-                  >
-                    {verifyStatus === "loading" ? (
-                      <svg className="w-6 h-6 animate-spin" fill="none" viewBox="0 0 24 24">
-                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                      </svg>
-                    ) : (
-                      "Verify Now"
-                    )}
-                  </button>
+              <form onSubmit={handleVerify} className="relative z-10 space-y-6">
+                
+                {/* Type Selection */}
+                <div className="flex flex-wrap gap-4 mb-2">
+                  <label className={`cursor-pointer px-4 py-3 rounded-xl border transition-all ${certType === 'student' ? 'bg-brand-blue/10 border-brand-blue text-brand-blue dark:text-white' : 'bg-slate-50 dark:bg-primary-900 border-slate-200 dark:border-white/10 text-slate-500'}`}>
+                    <input type="radio" name="certType" value="student" className="hidden" checked={certType === 'student'} onChange={() => setCertType('student')} />
+                    <span className="font-semibold text-sm">Student Certificate</span>
+                  </label>
+                  <label className={`cursor-pointer px-4 py-3 rounded-xl border transition-all ${certType === 'membership' ? 'bg-brand-red/10 border-brand-red text-brand-red dark:text-white' : 'bg-slate-50 dark:bg-primary-900 border-slate-200 dark:border-white/10 text-slate-500'}`}>
+                    <input type="radio" name="certType" value="membership" className="hidden" checked={certType === 'membership'} onChange={() => setCertType('membership')} />
+                    <span className="font-semibold text-sm">Membership Certificate</span>
+                  </label>
+                  <label className={`cursor-pointer px-4 py-3 rounded-xl border transition-all ${certType === 'centre' ? 'bg-emerald-500/10 border-emerald-500 text-emerald-600 dark:text-white' : 'bg-slate-50 dark:bg-primary-900 border-slate-200 dark:border-white/10 text-slate-500'}`}>
+                    <input type="radio" name="certType" value="centre" className="hidden" checked={certType === 'centre'} onChange={() => setCertType('centre')} />
+                    <span className="font-semibold text-sm">Approved Centre Certificate</span>
+                  </label>
                 </div>
+
+                <div className="space-y-4">
+                  {certType === 'student' && (
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 animate-[fadeInUp_0.3s_ease-out]">
+                      <input type="text" required placeholder="Student Name" value={studentName} onChange={(e) => setStudentName(e.target.value)} className="w-full px-5 py-4 bg-slate-50 dark:bg-primary-900 border border-slate-200 dark:border-white/10 rounded-2xl text-slate-800 dark:text-white focus:ring-2 focus:ring-brand-blue focus:outline-none transition-all" />
+                      <input type="text" required placeholder="Registration No" value={registrationNo} onChange={(e) => setRegistrationNo(e.target.value)} className="w-full px-5 py-4 bg-slate-50 dark:bg-primary-900 border border-slate-200 dark:border-white/10 rounded-2xl text-slate-800 dark:text-white focus:ring-2 focus:ring-brand-blue focus:outline-none transition-all" />
+                      <input type="text" required placeholder="Certificate No" value={certificateNo} onChange={(e) => setCertificateNo(e.target.value)} className="w-full px-5 py-4 bg-slate-50 dark:bg-primary-900 border border-slate-200 dark:border-white/10 rounded-2xl text-slate-800 dark:text-white focus:ring-2 focus:ring-brand-blue focus:outline-none transition-all" />
+                      <input type="text" required placeholder="Learner No" value={learnerNo} onChange={(e) => setLearnerNo(e.target.value)} className="w-full px-5 py-4 bg-slate-50 dark:bg-primary-900 border border-slate-200 dark:border-white/10 rounded-2xl text-slate-800 dark:text-white focus:ring-2 focus:ring-brand-blue focus:outline-none transition-all" />
+                    </div>
+                  )}
+
+                  {certType === 'membership' && (
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 animate-[fadeInUp_0.3s_ease-out]">
+                      <input type="text" required placeholder="Membership Name" value={membershipName} onChange={(e) => setMembershipName(e.target.value)} className="w-full px-5 py-4 bg-slate-50 dark:bg-primary-900 border border-slate-200 dark:border-white/10 rounded-2xl text-slate-800 dark:text-white focus:ring-2 focus:ring-brand-red focus:outline-none transition-all" />
+                      <input type="text" required placeholder="Membership No" value={membershipNo} onChange={(e) => setMembershipNo(e.target.value)} className="w-full px-5 py-4 bg-slate-50 dark:bg-primary-900 border border-slate-200 dark:border-white/10 rounded-2xl text-slate-800 dark:text-white focus:ring-2 focus:ring-brand-red focus:outline-none transition-all" />
+                    </div>
+                  )}
+
+                  {certType === 'centre' && (
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 animate-[fadeInUp_0.3s_ease-out]">
+                      <input type="text" required placeholder="Centre Name" value={centreName} onChange={(e) => setCentreName(e.target.value)} className="w-full px-5 py-4 bg-slate-50 dark:bg-primary-900 border border-slate-200 dark:border-white/10 rounded-2xl text-slate-800 dark:text-white focus:ring-2 focus:ring-emerald-500 focus:outline-none transition-all" />
+                      <input type="text" required placeholder="Centre Code" value={centreCode} onChange={(e) => setCentreCode(e.target.value)} className="w-full px-5 py-4 bg-slate-50 dark:bg-primary-900 border border-slate-200 dark:border-white/10 rounded-2xl text-slate-800 dark:text-white focus:ring-2 focus:ring-emerald-500 focus:outline-none transition-all" />
+                    </div>
+                  )}
+                </div>
+                  
+                <button 
+                  type="submit" 
+                  disabled={verifyStatus === "loading"}
+                  className="w-full px-8 py-5 bg-brand-blue text-white font-bold rounded-2xl hover:bg-brand-red transition-all shadow-[0_5px_15px_rgba(30,64,175,0.3)] hover:shadow-[0_10px_25px_rgba(212, 53, 28,0.4)] disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center min-w-[160px]"
+                >
+                  {verifyStatus === "loading" ? (
+                    <svg className="w-6 h-6 animate-spin" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                  ) : (
+                    "Verify Document"
+                  )}
+                </button>
               </form>
 
               {/* Status Display Area */}
@@ -103,7 +135,7 @@ export default function VerificationPage() {
                     <div>
                       <h3 className="text-xl font-bold text-green-600 dark:text-green-400 mb-1">Authentic Record Found</h3>
                       <p className="text-slate-600 dark:text-slate-300">
-                        The ID <span className="font-mono font-bold">{verifyInput}</span> matches an official CBPD document. This certification/membership is currently active and in good standing.
+                        The submitted details match an official CBPD document. This certification/membership is currently active and in good standing.
                       </p>
                     </div>
                   </div>
@@ -117,7 +149,7 @@ export default function VerificationPage() {
                     <div>
                       <h3 className="text-xl font-bold text-red-600 dark:text-red-400 mb-1">Record Not Found</h3>
                       <p className="text-slate-600 dark:text-slate-300">
-                        We could not find any active record matching <span className="font-mono font-bold">{verifyInput}</span>. Please ensure you have entered the ID exactly as it appears on your document.
+                        We could not find any active record matching the details provided. Please ensure you have entered them exactly as they appear on your document.
                       </p>
                     </div>
                   </div>

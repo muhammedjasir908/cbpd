@@ -5,9 +5,11 @@ import TiltCard from "@/components/TiltCard";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { countryCodes } from "@/data/countries";
+import { countries } from "@/data/countryList";
 
 export default function PartnerPage() {
   const [isVisible, setIsVisible] = useState(false);
+  const [hasAccreditation, setHasAccreditation] = useState("No");
 
   useEffect(() => {
     // Slight delay to trigger enter animations
@@ -235,50 +237,112 @@ export default function PartnerPage() {
               <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white">Begin the Conversation</h2>
             </div>
                   
-            <form className="space-y-6 relative z-10" onSubmit={(e) => e.preventDefault()}>
+            <form className="space-y-6 relative z-10" onSubmit={(e) => { e.preventDefault(); alert('Form submitted successfully!'); }}>
+              
+              {/* Org Name & Website */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                  <label className="text-sm font-semibold text-slate-600 dark:text-slate-300 text-left block">First Name *</label>
-                  <input type="text" required className="w-full px-5 py-4 rounded-xl bg-slate-50 dark:bg-primary-800 border border-slate-200 dark:border-primary-700 focus:outline-none focus:border-brand-blue dark:focus:border-brand-red focus:ring-1 focus:ring-brand-blue dark:focus:ring-brand-red transition-colors text-slate-900 dark:text-white" placeholder="John" />
+                  <label className="text-sm font-semibold text-slate-600 dark:text-slate-300 text-left block">Name of organisation/institute *</label>
+                  <input type="text" required className="w-full px-5 py-4 rounded-xl bg-slate-50 dark:bg-primary-800 border border-slate-200 dark:border-primary-700 focus:outline-none focus:border-brand-blue dark:focus:border-brand-red focus:ring-1 focus:ring-brand-blue dark:focus:ring-brand-red transition-colors text-slate-900 dark:text-white" placeholder="Institution Name" />
                 </div>
                 <div className="space-y-2">
-                  <label className="text-sm font-semibold text-slate-600 dark:text-slate-300 text-left block">Last Name *</label>
-                  <input type="text" required className="w-full px-5 py-4 rounded-xl bg-slate-50 dark:bg-primary-800 border border-slate-200 dark:border-primary-700 focus:outline-none focus:border-brand-blue dark:focus:border-brand-red focus:ring-1 focus:ring-brand-blue dark:focus:ring-brand-red transition-colors text-slate-900 dark:text-white" placeholder="Doe" />
+                  <label className="text-sm font-semibold text-slate-600 dark:text-slate-300 text-left block">Website *</label>
+                  <input type="url" required className="w-full px-5 py-4 rounded-xl bg-slate-50 dark:bg-primary-800 border border-slate-200 dark:border-primary-700 focus:outline-none focus:border-brand-blue dark:focus:border-brand-red focus:ring-1 focus:ring-brand-blue dark:focus:ring-brand-red transition-colors text-slate-900 dark:text-white" placeholder="https://www.example.com" />
+                </div>
+              </div>
+
+              {/* Head Name & Inception Year */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <label className="text-sm font-semibold text-slate-600 dark:text-slate-300 text-left block">Name of head / Authorized signatory *</label>
+                  <input type="text" required className="w-full px-5 py-4 rounded-xl bg-slate-50 dark:bg-primary-800 border border-slate-200 dark:border-primary-700 focus:outline-none focus:border-brand-blue dark:focus:border-brand-red focus:ring-1 focus:ring-brand-blue dark:focus:ring-brand-red transition-colors text-slate-900 dark:text-white" placeholder="John Doe" />
+                </div>
+                <div className="space-y-2">
+                  <label className="text-sm font-semibold text-slate-600 dark:text-slate-300 text-left block">Year of inception *</label>
+                  <input type="number" required min="1800" max="2100" className="w-full px-5 py-4 rounded-xl bg-slate-50 dark:bg-primary-800 border border-slate-200 dark:border-primary-700 focus:outline-none focus:border-brand-blue dark:focus:border-brand-red focus:ring-1 focus:ring-brand-blue dark:focus:ring-brand-red transition-colors text-slate-900 dark:text-white" placeholder="e.g. 2005" />
                 </div>
               </div>
               
+              {/* Address Lines */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <label className="text-sm font-semibold text-slate-600 dark:text-slate-300 text-left block">Address line 1 *</label>
+                  <input type="text" required className="w-full px-5 py-4 rounded-xl bg-slate-50 dark:bg-primary-800 border border-slate-200 dark:border-primary-700 focus:outline-none focus:border-brand-blue dark:focus:border-brand-red focus:ring-1 focus:ring-brand-blue dark:focus:ring-brand-red transition-colors text-slate-900 dark:text-white" placeholder="Street layout" />
+                </div>
+                <div className="space-y-2">
+                  <label className="text-sm font-semibold text-slate-600 dark:text-slate-300 text-left block">Address line 2</label>
+                  <input type="text" className="w-full px-5 py-4 rounded-xl bg-slate-50 dark:bg-primary-800 border border-slate-200 dark:border-primary-700 focus:outline-none focus:border-brand-blue dark:focus:border-brand-red focus:ring-1 focus:ring-brand-blue dark:focus:ring-brand-red transition-colors text-slate-900 dark:text-white" placeholder="Suite, unit, etc." />
+                </div>
+              </div>
+
+              {/* City/State & Country */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <label className="text-sm font-semibold text-slate-600 dark:text-slate-300 text-left block">Province / City / State *</label>
+                  <input type="text" required className="w-full px-5 py-4 rounded-xl bg-slate-50 dark:bg-primary-800 border border-slate-200 dark:border-primary-700 focus:outline-none focus:border-brand-blue dark:focus:border-brand-red focus:ring-1 focus:ring-brand-blue dark:focus:ring-brand-red transition-colors text-slate-900 dark:text-white" placeholder="London" />
+                </div>
+                <div className="space-y-2">
+                  <label className="text-sm font-semibold text-slate-600 dark:text-slate-300 text-left block">Country *</label>
+                  <select required defaultValue="United Kingdom" className="w-full px-5 py-4 rounded-xl bg-slate-50 dark:bg-primary-800 border border-slate-200 dark:border-primary-700 focus:outline-none focus:border-brand-blue dark:focus:border-brand-red focus:ring-1 focus:ring-brand-blue dark:focus:ring-brand-red transition-colors text-slate-900 dark:text-white">
+                    {countries.map((country, idx) => (
+                      <option key={idx} value={country}>{country}</option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+
+              {/* Email & Phone */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label className="text-sm font-semibold text-slate-600 dark:text-slate-300 text-left block">Email Address *</label>
-                  <input type="email" required className="w-full px-5 py-4 rounded-xl bg-slate-50 dark:bg-primary-800 border border-slate-200 dark:border-primary-700 focus:outline-none focus:border-brand-blue dark:focus:border-brand-red focus:ring-1 focus:ring-brand-blue dark:focus:ring-brand-red transition-colors text-slate-900 dark:text-white" placeholder="work@example.com" />
+                  <input type="email" required className="w-full px-5 py-4 rounded-xl bg-slate-50 dark:bg-primary-800 border border-slate-200 dark:border-primary-700 focus:outline-none focus:border-brand-blue dark:focus:border-brand-red focus:ring-1 focus:ring-brand-blue dark:focus:ring-brand-red transition-colors text-slate-900 dark:text-white" placeholder="admin@institute.com" />
                 </div>
                 <div className="space-y-2">
-                  <label className="text-sm font-semibold text-slate-600 dark:text-slate-300 text-left block">Phone</label>
+                  <label className="text-sm font-semibold text-slate-600 dark:text-slate-300 text-left block">Phone *</label>
                   <div className="flex">
-                    <select className="w-1/3 px-3 py-4 bg-slate-100 dark:bg-primary-800 border border-r-0 border-slate-200 dark:border-primary-700 rounded-l-xl focus:outline-none focus:border-brand-blue dark:focus:border-brand-red focus:ring-1 focus:ring-brand-blue dark:focus:ring-brand-red transition-colors text-slate-900 dark:text-white">
+                    <select defaultValue="+44" className="w-1/3 px-3 py-4 bg-slate-100 dark:bg-primary-800 border border-r-0 border-slate-200 dark:border-primary-700 rounded-l-xl focus:outline-none focus:border-brand-blue dark:focus:border-brand-red focus:ring-1 focus:ring-brand-blue dark:focus:ring-brand-red transition-colors text-slate-900 dark:text-white">
                       {countryCodes.map((c, i) => (
                         <option key={i} value={c.code}>{c.label}</option>
                       ))}
                     </select>
-                    <input type="tel" className="w-2/3 pl-3 pr-5 py-4 rounded-r-xl bg-slate-50 dark:bg-primary-800 border border-slate-200 dark:border-primary-700 focus:outline-none focus:border-brand-blue dark:focus:border-brand-red focus:ring-1 focus:ring-brand-blue dark:focus:ring-brand-red transition-colors text-slate-900 dark:text-white" placeholder="20..." />
+                    <input type="tel" required className="w-2/3 pl-3 pr-5 py-4 rounded-r-xl bg-slate-50 dark:bg-primary-800 border border-slate-200 dark:border-primary-700 focus:outline-none focus:border-brand-blue dark:focus:border-brand-red focus:ring-1 focus:ring-brand-blue dark:focus:ring-brand-red transition-colors text-slate-900 dark:text-white" placeholder="20..." />
                   </div>
                 </div>
               </div>
-              
+
+              {/* Profile */}
               <div className="space-y-2">
-                <label className="text-sm font-semibold text-slate-600 dark:text-slate-300 text-left block">Institution / Company Name *</label>
-                <input type="text" required className="w-full px-5 py-4 rounded-xl bg-slate-50 dark:bg-primary-800 border border-slate-200 dark:border-primary-700 focus:outline-none focus:border-brand-blue dark:focus:border-brand-red focus:ring-1 focus:ring-brand-blue dark:focus:ring-brand-red transition-colors text-slate-900 dark:text-white" placeholder="Your Institution" />
-              </div>
-              
-              <div className="space-y-2">
-                <label className="text-sm font-semibold text-slate-600 dark:text-slate-300 text-left block">Tell us about your requirements</label>
-                <textarea rows={4} className="w-full px-5 py-4 rounded-xl bg-slate-50 dark:bg-primary-800 border border-slate-200 dark:border-primary-700 focus:outline-none focus:border-brand-blue dark:focus:border-brand-red focus:ring-1 focus:ring-brand-blue dark:focus:ring-brand-red transition-colors text-slate-900 dark:text-white resize-none" placeholder="We are interested in delivering CBPD programs..."></textarea>
+                <label className="text-sm font-semibold text-slate-600 dark:text-slate-300 text-left block">Please provide a brief profile for your institute *</label>
+                <textarea rows={4} required className="w-full px-5 py-4 rounded-xl bg-slate-50 dark:bg-primary-800 border border-slate-200 dark:border-primary-700 focus:outline-none focus:border-brand-blue dark:focus:border-brand-red focus:ring-1 focus:ring-brand-blue dark:focus:ring-brand-red transition-colors text-slate-900 dark:text-white resize-none" placeholder="We have been operating for..."></textarea>
               </div>
 
-              <div className="flex justify-center mt-8">
+              {/* Accreditations Radio */}
+              <div className="space-y-3">
+                <label className="text-sm font-semibold text-slate-600 dark:text-slate-300 text-left block">Is your institute having any local or international accreditations? *</label>
+                <div className="flex gap-8">
+                  <label className="flex items-center gap-2 cursor-pointer text-slate-700 dark:text-slate-200">
+                    <input type="radio" name="accreditation" value="Yes" required onChange={(e) => setHasAccreditation(e.target.value)} className="w-4 h-4 text-brand-red focus:ring-brand-red" />
+                    Yes
+                  </label>
+                  <label className="flex items-center gap-2 cursor-pointer text-slate-700 dark:text-slate-200">
+                    <input type="radio" name="accreditation" value="No" required onChange={(e) => setHasAccreditation(e.target.value)} defaultChecked className="w-4 h-4 text-brand-red focus:ring-brand-red" />
+                    No
+                  </label>
+                </div>
+              </div>
+
+              {/* Conditional Accreditations Details */}
+              {hasAccreditation === "Yes" && (
+                <div className="space-y-2 animate-[fadeIn_0.3s_ease-out]">
+                  <label className="text-sm font-semibold text-slate-600 dark:text-slate-300 text-left block">If Yes, please share details</label>
+                  <textarea rows={3} className="w-full px-5 py-4 rounded-xl bg-slate-50 dark:bg-primary-800 border border-slate-200 dark:border-primary-700 focus:outline-none focus:border-brand-blue dark:focus:border-brand-red focus:ring-1 focus:ring-brand-blue dark:focus:ring-brand-red transition-colors text-slate-900 dark:text-white resize-none" placeholder="Details of accreditations..."></textarea>
+                </div>
+              )}
+
+              <div className="flex justify-center mt-10">
                 <MagneticButton strength={15}>
                   <button type="submit" className="px-10 py-5 rounded-full bg-brand-red text-white font-bold text-lg hover:bg-brand-blue transition-colors shadow-[0_5px_20px_rgba(212,53,28,0.4)] hover:shadow-[0_10px_30px_rgba(30,64,175,0.5)] flex items-center gap-2 group w-full md:w-auto">
-                    Submit Enquiry
+                    Submit Partnership Enquiry
                     <svg className="w-5 h-5 group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
                   </button>
                 </MagneticButton>
