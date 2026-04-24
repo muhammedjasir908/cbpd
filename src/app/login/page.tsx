@@ -44,7 +44,7 @@ export default function LoginPage() {
                 <img 
                   src="https://www.cbpd.co.uk/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FCBPD_LOGO.7c42c792.png&w=256&q=75" 
                   alt="CBPD Logo" 
-                  className="h-14 w-auto bg-white rounded p-2 shadow-lg hover:scale-105 transition-transform"
+                  className="h-24 w-auto rounded-xl p-4 shadow-xl hover:scale-105 transition-transform"
                 />
               </Link>
             </div>

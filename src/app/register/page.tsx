@@ -91,7 +91,7 @@ export default function RegisterPage() {
         {/* Header Header */}
         <div className="text-center mb-10 w-full animate-[fadeInUp_0.5s_ease-out]">
           <Link href="/" className="inline-block mb-8">
-            <img src="https://www.cbpd.co.uk/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FCBPD_LOGO.7c42c792.png&w=256&q=75" alt="CBPD Logo" className="h-16 w-auto bg-white rounded-xl p-2 shadow-sm border border-slate-100" />
+            <img src="https://www.cbpd.co.uk/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FCBPD_LOGO.7c42c792.png&w=256&q=75" alt="CBPD Logo" className="h-32 w-auto rounded-xl p-4 shadow-xl" />
           </Link>
           <h1 className="text-3xl md:text-5xl font-bold text-slate-800 dark:text-white mb-4 tracking-tight">
             Let's Get You Started
