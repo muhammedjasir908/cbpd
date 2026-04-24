@@ -109,12 +109,12 @@ export default function ProgramsPage() {
                     <div className="p-8 pt-10 flex flex-col flex-grow">
                       <Link href={`/programs/${prog.slug}`}>
                         <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4 group-hover:text-brand-blue dark:group-hover:text-brand-red transition-colors">
-                          {prog.title}
+                          {prog.title.replace(/\s*Programmes?/i, '')}
                         </h2>
                       </Link>
                       
                       <p className="text-sm text-slate-500 dark:text-slate-400 mb-6 shrink-0">
-                        Master the principles of {prog.title.toLowerCase()} with our globally accredited industry curriculum. 
+                        Master the principles of {prog.title.replace(/\s*Programmes?/i, '').toLowerCase()} with our globally accredited industry curriculum. 
                       </p>
                       
                       <Link 
