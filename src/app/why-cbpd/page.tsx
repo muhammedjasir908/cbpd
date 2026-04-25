@@ -133,11 +133,16 @@ export default function WhyChooseCBPDPage() {
             <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-2xl transform translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
             
             <h3 className="text-4xl md:text-5xl font-bold text-white mb-6 animate-on-scroll translate-y-12 opacity-0 transition-all duration-700">
-              Trusted in Over <span className="text-brand-red">100+ Countries</span>
+              Trusted in Over 100+ Countries
             </h3>
-            <p className="text-xl text-red-100 mb-10 leading-relaxed animate-on-scroll translate-y-12 opacity-0 transition-all duration-700 delay-100">
-              Our UK-issued professional credentials carry serious weight universally. We work alongside highly respected CPD frameworks to ensure total, unquestionable international validity.
-            </p>
+            <div className="animate-on-scroll translate-y-12 opacity-0 transition-all duration-700 delay-100">
+              <p className="text-xl text-red-100 mb-4 leading-relaxed">
+                CBPD qualifications are recognised by a global network of learners, institutions, and employers.
+              </p>
+              <p className="text-xl text-red-100 mb-10 leading-relaxed">
+                Supported by the CBPD Qualification Framework (CQF) and aligned with recognised Continuing Professional Development (CPD) standards, our programmes ensure structured progression, academic integrity, and internationally benchmarked outcomes.
+              </p>
+            </div>
             
             <div className="animate-on-scroll translate-y-12 opacity-0 transition-all duration-700 delay-200">
               <MagneticButton strength={20}>

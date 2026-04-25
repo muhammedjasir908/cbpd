@@ -37,7 +37,8 @@ export default function LearnersPage() {
     { title: "Flexible Study Options", desc: "Capitalise on versatile and flexible study options seamlessly tailored to fit around your demanding commitments.", icon: "⏱️" },
     { title: "Valued Certification", desc: "Gain prestigious UK professional-body certification firmly trusted and valued by prominent employers worldwide.", icon: "🏆" },
     { title: "Verifiable Credentials", desc: "Secure clear, instantly verifiable digital credentials that effectively prove your high-level competencies globally.", icon: "🔐" },
-    { title: "Authorised Network", desc: "Enjoy comprehensive support through our expansive network of rigorously vetted, authorised CBPD partners.", icon: "🌐" }
+    { title: "Authorised Network", desc: "Enjoy comprehensive support through our expansive network of rigorously vetted, authorised CBPD partners.", icon: "🌐" },
+    { title: "Career Progression Pathways", desc: "Advance your career with globally aligned qualifications designed to enhance employability, strengthen professional credibility, and support long-term career growth.", icon: "📈" }
   ];
 
   const testimonials = [
@@ -88,7 +89,7 @@ export default function LearnersPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-center max-w-6xl mx-auto">
             {benefits.map((benefit, idx) => (
-              <div key={idx} className={`animate-on-scroll translate-y-12 opacity-0 transition-all duration-700 ease-out ${idx === 3 ? 'lg:col-start-1 lg:col-end-auto md:col-span-1' : ''} ${idx === 4 ? 'lg:col-start-2 lg:col-end-auto md:col-span-1' : ''}`} style={{ transitionDelay: `${idx * 100}ms` }}>
+              <div key={idx} className="animate-on-scroll translate-y-12 opacity-0 transition-all duration-700 ease-out" style={{ transitionDelay: `${idx * 100}ms` }}>
                 <TiltCard sensitivity={7} className="h-full">
                   <div className="bg-slate-50 dark:bg-primary-900 border border-slate-200 dark:border-primary-800 rounded-3xl p-10 h-full hover:shadow-2xl transition-all group shadow-sm flex flex-col items-center text-center">
                     <div className="w-20 h-20 rounded-2xl bg-white dark:bg-primary-800 border border-slate-200 dark:border-primary-700 flex items-center justify-center text-4xl mb-8 shadow-inner group-hover:scale-110 transition-transform duration-300 group-hover:border-brand-red/50">

@@ -42,20 +42,29 @@ export default function Partners() {
         <div className={`w-24 h-1 bg-brand-red mx-auto mb-16 transition-all duration-700 delay-300 ${isVisible ? 'scale-x-100 opacity-100' : 'scale-x-0 opacity-0'}`}></div>
 
         <div className={`grid grid-cols-2 md:grid-cols-3 gap-8 md:gap-12 max-w-5xl mx-auto transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          {partners.map((partner, index) => (
-            <TiltCard key={index} sensitivity={15} className={`animate-[float_${6 + (index%3)}s_ease-in-out_infinite] cursor-pointer`}>
-              <div 
-                className="flex items-center justify-center p-6 bg-white dark:bg-primary-900 rounded-2xl shadow-sm border border-slate-100 dark:border-primary-800 hover:shadow-xl hover:-translate-y-3 transition-all duration-500 h-[160px] md:h-[180px]"
-                style={{ transform: "translateZ(20px)" }}
+          {partners.map((partner, index) => {
+            const isLast = index === partners.length - 1;
+            return (
+              <TiltCard 
+                key={index} 
+                sensitivity={15} 
+                className={`animate-[float_${6 + (index%3)}s_ease-in-out_infinite] cursor-pointer ${
+                  isLast ? "col-span-2 md:col-span-1 md:col-start-2 w-[calc(50%-1rem)] md:w-full mx-auto md:mx-0" : ""
+                }`}
               >
-                <img 
-                  src={partner.url} 
-                  alt={`${partner.name} Logo`} 
-                  className="max-h-24 w-auto object-contain mix-blend-multiply dark:mix-blend-normal hover:scale-110 transition-transform duration-300" 
-                />
-              </div>
-            </TiltCard>
-          ))}
+                <div 
+                  className="flex items-center justify-center p-6 bg-white dark:bg-primary-900 rounded-2xl shadow-sm border border-slate-100 dark:border-primary-800 hover:shadow-xl hover:-translate-y-3 transition-all duration-500 h-[160px] md:h-[180px]"
+                  style={{ transform: "translateZ(20px)" }}
+                >
+                  <img 
+                    src={partner.url} 
+                    alt={`${partner.name} Logo`} 
+                    className="max-h-24 w-auto object-contain mix-blend-multiply dark:mix-blend-normal hover:scale-110 transition-transform duration-300" 
+                  />
+                </div>
+              </TiltCard>
+            );
+          })}
         </div>
       </div>
     </section>

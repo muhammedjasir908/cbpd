@@ -90,6 +90,20 @@ export default function AboutPage() {
                 </TiltCard>
               ))}
             </div>
+
+            {/* Decorative Image to fill blank space */}
+            <div className="mt-12 rounded-3xl overflow-hidden shadow-2xl relative group hidden lg:block border border-slate-200 dark:border-primary-700">
+              <div className="absolute inset-0 bg-brand-blue/20 mix-blend-multiply z-10 group-hover:bg-transparent transition-all duration-500"></div>
+              <img 
+                src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070&auto=format&fit=crop" 
+                alt="Professionals collaborating" 
+                className="w-full h-[380px] object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+              <div className="absolute bottom-6 left-6 bg-white/90 dark:bg-primary-900/90 backdrop-blur-md border border-slate-200 dark:border-primary-700 p-4 rounded-xl z-20 shadow-lg">
+                <p className="text-slate-800 dark:text-white font-bold text-lg mb-1">Global Excellence</p>
+                <p className="text-slate-500 dark:text-slate-300 text-xs font-medium uppercase tracking-wider">CPD Provider No. 21235</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>

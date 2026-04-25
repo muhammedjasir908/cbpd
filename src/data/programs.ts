@@ -10,6 +10,7 @@ import fireSafetyImg from "../../public/images/programs/fire-safety.png";
 import marineImg from "../../public/images/programs/marine.png";
 import transportImg from "../../public/images/programs/transport.png";
 import securityImg from "../../public/images/programs/security.png";
+import { jobMarketInsightsMap } from "./jobMarketInsights";
 
 export interface ProgramCategory {
   title: string;
@@ -72,6 +73,16 @@ export function getSubProgramBySlug(slug: string): SubProgram | undefined {
 
 // Generate dynamic detailed content based on category and title (Mocking our missing CMS)
 export function getProgramContent(program: SubProgram) {
+  const parentCategory = programData.find(cat => cat.title === program.category);
+  const categorySlug = parentCategory ? parentCategory.slug : '';
+  
+  const insight = jobMarketInsightsMap[categorySlug] || {
+      salaryRange: "£30,000 - £80,000+",
+      growthRate: "Steady Growth",
+      topEmployers: ["Leading UK Companies", "Global Enterprises", "SMEs"],
+      description: `The demand for specialized expertise in ${program.title} is reaching an all-time high as the ${program.category} sector rapidly transforms. Securing certification in this sub-discipline marks a competitive edge that talent recruiters actively prioritize.`
+  };
+
   return {
     overview: `Our rigorous ${program.title} curriculum provides a definitive path to commanding ${program.category.toLowerCase()} principles in the modern industry landscape. You will gain profound insights designed and validated by senior experts.`,
     curriculum: [
@@ -81,10 +92,10 @@ export function getProgramContent(program: SubProgram) {
       "Final Practicum Project & Assessment",
     ],
     jobMarket: {
-      salaryRange: "$65,000 - $130,000+",
-      growthRate: "+14% (Faster than average)",
-      topEmployers: ["Fortune 500 Companies", "Global Agencies", "Leading Startups"],
-      description: `The demand for specialized expertise in ${program.title} is reaching an all-time high as the ${program.category} sector rapidly transforms. Securing certification in this sub-discipline marks a competitive edge that talent recruiters actively prioritize.`
+      salaryRange: insight.salaryRange,
+      growthRate: insight.growthRate,
+      topEmployers: insight.topEmployers,
+      description: insight.description
     }
   };
 }

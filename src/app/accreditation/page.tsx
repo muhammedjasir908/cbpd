@@ -8,7 +8,8 @@ export default function AccreditationPage() {
     { title: "Enhanced Enrolment", desc: "Significantly increase learner appeal, driving higher enrolment and attendance for your specialist courses worldwide.", icon: "📈" },
     { title: "Global Network Access", desc: "Unlock immediate access to CBPD's rapidly growing international network of elite professionals and corporate partners.", icon: "🌐" },
     { title: "Strategic Co-Branding", desc: "Receive dedicated marketing guidance, promotional materials, and official co-branding support to amplify your reach.", icon: "📢" },
-    { title: "Official Credentials", desc: "Gain the exclusive authority to issue official, globally recognised CBPD-endorsed certificates to your participants.", icon: "📜" }
+    { title: "Official Credentials", desc: "Gain the exclusive authority to issue official, globally recognised CBPD-endorsed certificates to your participants.", icon: "📜" },
+    { title: "CBPD Qualification Framework (CQF)", desc: "Integrate your programmes within the CBPD Qualification Framework (CQF), delivering structured level alignment, academic integrity, and globally benchmarked qualification standards.", icon: "📋" }
   ];
 
   const steps = [
@@ -90,7 +91,7 @@ export default function AccreditationPage() {
             
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-center">
             {benefits.map((benefit, i) => (
-              <div key={i} className={`p-8 bg-white dark:bg-primary-800 rounded-3xl border border-slate-100 dark:border-primary-700 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group ${i === 3 ? 'lg:col-start-1 lg:col-end-auto md:col-span-1' : ''} ${i === 4 ? 'lg:col-start-2 lg:col-end-auto md:col-span-1' : ''}`}>
+              <div key={i} className="p-8 bg-white dark:bg-primary-800 rounded-3xl border border-slate-100 dark:border-primary-700 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group">
                 <div className="w-16 h-16 bg-slate-50 dark:bg-primary-900 border border-slate-100 dark:border-primary-700 rounded-2xl flex justify-center items-center text-3xl mb-6 group-hover:scale-110 transition-transform shadow-inner">
                   {benefit.icon}
                 </div>
