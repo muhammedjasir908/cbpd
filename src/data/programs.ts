@@ -4,6 +4,7 @@ export interface SubProgram {
   category: string;
 }
 
+import { StaticImageData } from "next/image";
 import constructionImg from "../../public/images/programs/construction.png";
 import fireSafetyImg from "../../public/images/programs/fire-safety.png";
 import marineImg from "../../public/images/programs/marine.png";
@@ -14,7 +15,7 @@ export interface ProgramCategory {
   title: string;
   slug: string;
   icon: string;
-  image: string;
+  image: string | StaticImageData;
   subs: SubProgram[];
 }
 
