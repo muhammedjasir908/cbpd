@@ -28,7 +28,19 @@ export default function Programs() {
     return () => observer.disconnect();
   }, []);
 
-  const disciplines = programData.map((prog, i) => ({
+  // Select 6 common standard programmes to showcase
+  const popularSlugs = [
+    "business", 
+    "information-technology", 
+    "design", 
+    "engineering", 
+    "finance", 
+    "healthcare-medical"
+  ];
+  
+  const popularPrograms = programData.filter(p => popularSlugs.includes(p.slug));
+
+  const disciplines = popularPrograms.map((prog, i) => ({
     name: prog.title.replace(/ Programmes?/i, ''),
     number: String(i + 1).padStart(2, '0'),
     img: prog.image,
@@ -45,7 +57,7 @@ export default function Programs() {
           </h2>
           <div className="w-24 h-1 bg-brand-red mb-8"></div>
           <p className="text-lg text-slate-600 dark:text-slate-300 leading-relaxed mb-10">
-            {programData.map(p => p.title.replace(/ Programmes?/i, '')).join(" • ")}
+            {popularPrograms.map(p => p.title.replace(/ Programmes?/i, '')).join(" • ")}
           </p>
           <Link href="/programs" className="px-8 py-4 rounded-full bg-brand-blue text-white font-bold hover:bg-brand-red transition-all shadow-[0_5px_15px_rgba(30,64,175,0.3)] hover:shadow-[0_10px_25px_rgba(212, 53, 28,0.4)] self-start flex items-center gap-2 group">
             View All Programmes
