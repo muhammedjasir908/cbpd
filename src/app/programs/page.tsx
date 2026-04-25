@@ -93,7 +93,7 @@ export default function ProgramsPage() {
                     <Link href={`/programs/${prog.slug}`} className="relative h-56 w-full overflow-hidden shrink-0 block">
                       <div className="absolute inset-0 bg-brand-blue/20 z-10 group-hover:opacity-0 transition-opacity duration-500"></div>
                       <img 
-                        src={prog.image} 
+                        src={typeof prog.image === 'string' ? prog.image : prog.image.src} 
                         alt={prog.title} 
                         className="w-full h-full object-cover group-hover:scale-110 group-hover:rotate-1 transition-transform duration-700"
                         loading="lazy"
