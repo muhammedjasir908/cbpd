@@ -2,19 +2,35 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { api } from "@/lib/api";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
+  const router = useRouter();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
-    // Simulate login
-    setTimeout(() => {
+    setErrorMsg("");
+
+    try {
+      const response = await api.login({ email, password });
+      
+      // Assume the backend returns { token: '...' } on success
+      if (response.token) {
+        localStorage.setItem("token", response.token);
+      }
+      
+      router.push("/dashboard"); // Redirect to dashboard or home
+    } catch (err: any) {
+      console.error("Login error:", err);
+      setErrorMsg(err.message || "Invalid credentials. Please try again.");
       setIsLoading(false);
-    }, 1500);
+    }
   };
 
   return (
@@ -87,6 +103,11 @@ export default function LoginPage() {
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-6">
+              {errorMsg && (
+                <div className="p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-red-600 dark:text-red-400 rounded-xl text-sm animate-[fadeIn_0.3s_ease-out]">
+                  {errorMsg}
+                </div>
+              )}
               <div className="space-y-2 relative">
                 <label className="text-sm font-semibold text-slate-700 dark:text-slate-300 ml-1">Email Address</label>
                 <div className="relative group">

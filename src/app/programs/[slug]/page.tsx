@@ -1,33 +1,55 @@
-import { getSubProgramBySlug, getProgramContent, programData } from "@/data/programs";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import ApplicationForm from "./ApplicationForm";
+import { api } from "@/lib/api";
 
-// For static generation (optional but good practice)
-export function generateStaticParams() {
-  const params: { slug: string }[] = [];
-  programData.forEach(cat => {
-    // Add category slug itself so Next.js can pre-render it
-    params.push({ slug: cat.slug });
-    
-    // Add all sub-program slugs
-    cat.subs.forEach(sub => {
-      params.push({ slug: sub.slug });
-    });
-  });
-  return params;
+// For static generation
+export async function generateStaticParams() {
+  try {
+    const [catsRes, coursesRes] = await Promise.all([
+      api.getCategories(),
+      api.getCourses()
+    ]);
+    const params: { slug: string }[] = [];
+    catsRes.categories?.forEach((c: any) => params.push({ slug: c.slug }));
+    coursesRes.courses?.forEach((c: any) => params.push({ slug: c.slug }));
+    return params;
+  } catch (e) {
+    return [];
+  }
 }
 
 export default async function SubProgramPage({ params }: { params: Promise<{ slug: string }> }) {
   const resolvedParams = await params;
-  const program = getSubProgramBySlug(resolvedParams.slug);
-  const category = programData.find(c => c.slug === resolvedParams.slug);
   
-  if (!program && !category) {
+  let category = null;
+  let program = null;
+  let categoryCourses = [];
+
+  try {
+    const [catsRes, coursesRes] = await Promise.all([
+      api.getCategories(),
+      api.getCourses()
+    ]);
+    
+    category = catsRes.categories?.find((c: any) => c.slug === resolvedParams.slug);
+    program = coursesRes.courses?.find((c: any) => c.slug === resolvedParams.slug);
+    
+    if (category) {
+      categoryCourses = coursesRes.courses?.filter((c: any) => 
+        c.categoryId && (c.categoryId._id === category._id || c.categoryId === category._id)
+      ) || [];
+    }
+
+    if (!program && !category) {
+      notFound();
+    }
+  } catch (err) {
+    console.error(err);
     notFound();
   }
 
-  // If it's a category page (and doesn't have a dedicated page like /business already), render a generic generic category template
+  // If it's a category page (and doesn't have a dedicated page like /business already), render a generic category template
   if (category && !program) {
     return (
       <main className="min-h-screen bg-slate-50 dark:bg-primary-900 pb-20">
@@ -37,17 +59,17 @@ export default async function SubProgramPage({ params }: { params: Promise<{ slu
             <span className="text-slate-300">/</span>
             <Link href="/programs" className="hover:text-brand-red border-transparent transition-colors">Programmes</Link>
             <span className="text-slate-300">/</span>
-            <span className="text-slate-900 dark:text-white">{category.title}</span>
+            <span className="text-slate-900 dark:text-white">{category.name}</span>
           </div>
         </div>
 
         <section className="bg-primary-900 py-20 relative overflow-hidden">
           <div className="container mx-auto px-6 md:px-12 relative z-10 text-center">
             <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
-              {category.title}
+              {category.name}
             </h1>
             <p className="text-xl text-slate-300 mb-8 max-w-2xl mx-auto">
-              Master the principles of {category.title.toLowerCase()} with our globally accredited industry curriculum. 
+              Master the principles of {category.name.toLowerCase()} with our globally accredited industry curriculum. 
             </p>
           </div>
         </section>
@@ -56,7 +78,7 @@ export default async function SubProgramPage({ params }: { params: Promise<{ slu
           <div className="container mx-auto px-6 md:px-12 max-w-4xl">
             <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-8">Available Sub-Programmes</h2>
             <div className="space-y-4">
-              {category.subs.map((sub, i) => (
+              {categoryCourses.map((sub: any, i: number) => (
                 <Link key={i} href={`/programs/${sub.slug}`} className="block p-6 bg-white dark:bg-primary-800 border border-slate-200 dark:border-primary-700 rounded-lg hover:border-brand-red dark:hover:border-brand-red transition-all group shadow-sm">
                   <div className="flex items-center justify-between">
                     <div>
@@ -81,8 +103,8 @@ export default async function SubProgramPage({ params }: { params: Promise<{ slu
   // Render specific Sub-Program template
   if (!program) return notFound();
 
-  const content = getProgramContent(program);
-  const heroImage = `https://picsum.photos/seed/${program.category.replace(/ & | /g, "")}/1920/600`;
+  const categoryName = program.categoryId?.name || "Programme";
+  const heroImage = program.image || `https://picsum.photos/seed/${categoryName.replace(/ & | /g, "")}/1920/600`;
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-[#0a0f1c] pt-20">
@@ -90,7 +112,7 @@ export default async function SubProgramPage({ params }: { params: Promise<{ slu
       {/* Hero Section */}
       <section className="relative w-full h-[400px] md:h-[500px] flex items-center">
         <div className="absolute inset-0 z-0">
-          <img src={heroImage} alt={program.category} className="w-full h-full object-cover" />
+          <img src={heroImage} alt={categoryName} className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-r from-primary-900 via-primary-900/90 to-transparent"></div>
         </div>
         
@@ -101,7 +123,7 @@ export default async function SubProgramPage({ params }: { params: Promise<{ slu
               View All Programs
             </Link>
             <div className="text-brand-red font-bold tracking-widest uppercase mb-2">
-              {program.category} DISCIPLINE
+              {categoryName} DISCIPLINE
             </div>
             <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
               {program.title}
@@ -128,7 +150,7 @@ export default async function SubProgramPage({ params }: { params: Promise<{ slu
                   Program Overview
                 </h2>
                 <div className="text-lg text-slate-600 dark:text-slate-400 leading-relaxed whitespace-pre-line bg-white dark:bg-primary-900 p-8 rounded-3xl border border-slate-200 dark:border-white/5 shadow-sm">
-                  {content.overview}
+                  {program.overview || "Overview coming soon."}
                 </div>
               </div>
 
@@ -140,7 +162,7 @@ export default async function SubProgramPage({ params }: { params: Promise<{ slu
                   Core Curriculum
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {content.curriculum.map((item, idx) => (
+                  {(program.curriculum || []).map((item: string, idx: number) => (
                     <div key={idx} className="bg-white dark:bg-primary-900 border border-slate-200 dark:border-white/5 p-6 rounded-2xl shadow-sm hover:shadow-md transition-shadow group">
                       <div className="w-8 h-8 rounded-full bg-brand-blue text-white flex items-center justify-center font-bold mb-4 group-hover:bg-brand-red transition-colors">
                         {idx + 1}
@@ -165,18 +187,18 @@ export default async function SubProgramPage({ params }: { params: Promise<{ slu
                   
                   <div className="space-y-6 relative z-10 text-slate-300">
                     <p className="text-sm leading-relaxed mb-8">
-                      {content.jobMarket.description}
+                      {program.jobMarket?.description || "Market insights coming soon."}
                     </p>
 
                     <div className="bg-white/5 p-5 rounded-2xl border border-white/10 backdrop-blur-sm">
                       <div className="text-sm text-slate-400 mb-1">Average Salary Range</div>
-                      <div className="text-2xl font-bold text-brand-red">{content.jobMarket.salaryRange}</div>
+                      <div className="text-2xl font-bold text-brand-red">{program.jobMarket?.salaryRange || "TBD"}</div>
                     </div>
 
                     <div className="bg-white/5 p-5 rounded-2xl border border-white/10 backdrop-blur-sm">
                       <div className="text-sm text-slate-400 mb-1">Projected Growth</div>
                       <div className="text-2xl font-bold text-green-400 flex items-center gap-2">
-                        {content.jobMarket.growthRate}
+                        {program.jobMarket?.growthRate || "TBD"}
                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" /></svg>
                       </div>
                     </div>
@@ -184,7 +206,7 @@ export default async function SubProgramPage({ params }: { params: Promise<{ slu
                     <div>
                       <div className="text-sm text-slate-400 mb-3 uppercase tracking-wider font-bold">Top Employers</div>
                       <ul className="space-y-2">
-                        {content.jobMarket.topEmployers.map((emp, idx) => (
+                        {(program.jobMarket?.topEmployers || []).map((emp: string, idx: number) => (
                           <li key={idx} className="flex items-center gap-3">
                             <span className="w-1.5 h-1.5 rounded-full bg-brand-red"></span>
                             <span className="font-medium text-slate-200">{emp}</span>

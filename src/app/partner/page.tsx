@@ -6,10 +6,42 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { countryCodes } from "@/data/countries";
 import { countries } from "@/data/countryList";
+import { api } from "@/lib/api";
 
 export default function PartnerPage() {
   const [isVisible, setIsVisible] = useState(false);
   const [hasAccreditation, setHasAccreditation] = useState("No");
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setStatus("loading");
+    setErrorMessage("");
+    setSuccessMessage("");
+    const formData = new FormData(e.currentTarget);
+    const data = Object.fromEntries(formData.entries());
+    
+    // Combine phone code and number
+    data.phone = `${data.phoneCode} ${data.phone}`.trim();
+    delete data.phoneCode;
+
+    try {
+      const response = await api.submitPartner(data);
+      setStatus("success");
+      setSuccessMessage(response?.message || "Partner enquiry sent successfully! We will get back to you shortly.");
+      e.currentTarget.reset();
+      setTimeout(() => {
+        setStatus("idle");
+        setSuccessMessage("");
+      }, 5000);
+    } catch (err: any) {
+      console.error("Partner submission error:", err);
+      setStatus("error");
+      setErrorMessage(err.message || "There was an error sending your enquiry. Please try again.");
+    }
+  };
 
   useEffect(() => {
     // Slight delay to trigger enter animations
@@ -237,17 +269,17 @@ export default function PartnerPage() {
               <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white">Begin the Conversation</h2>
             </div>
                   
-            <form className="space-y-6 relative z-10" onSubmit={(e) => { e.preventDefault(); alert('Form submitted successfully!'); }}>
+            <form className="space-y-6 relative z-10" onSubmit={handleSubmit}>
               
               {/* Org Name & Website */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label className="text-sm font-semibold text-slate-600 dark:text-slate-300 text-left block">Name of organisation/institute *</label>
-                  <input type="text" required className="w-full px-5 py-4 rounded-xl bg-slate-50 dark:bg-primary-800 border border-slate-200 dark:border-primary-700 focus:outline-none focus:border-brand-blue dark:focus:border-brand-red focus:ring-1 focus:ring-brand-blue dark:focus:ring-brand-red transition-colors text-slate-900 dark:text-white" placeholder="Institution Name" />
+                  <input type="text" name="orgName" required className="w-full px-5 py-4 rounded-xl bg-slate-50 dark:bg-primary-800 border border-slate-200 dark:border-primary-700 focus:outline-none focus:border-brand-blue dark:focus:border-brand-red focus:ring-1 focus:ring-brand-blue dark:focus:ring-brand-red transition-colors text-slate-900 dark:text-white" placeholder="Institution Name" />
                 </div>
                 <div className="space-y-2">
                   <label className="text-sm font-semibold text-slate-600 dark:text-slate-300 text-left block">Website *</label>
-                  <input type="url" required className="w-full px-5 py-4 rounded-xl bg-slate-50 dark:bg-primary-800 border border-slate-200 dark:border-primary-700 focus:outline-none focus:border-brand-blue dark:focus:border-brand-red focus:ring-1 focus:ring-brand-blue dark:focus:ring-brand-red transition-colors text-slate-900 dark:text-white" placeholder="https://www.example.com" />
+                  <input type="url" name="website" required className="w-full px-5 py-4 rounded-xl bg-slate-50 dark:bg-primary-800 border border-slate-200 dark:border-primary-700 focus:outline-none focus:border-brand-blue dark:focus:border-brand-red focus:ring-1 focus:ring-brand-blue dark:focus:ring-brand-red transition-colors text-slate-900 dark:text-white" placeholder="https://www.example.com" />
                 </div>
               </div>
 
@@ -255,11 +287,11 @@ export default function PartnerPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label className="text-sm font-semibold text-slate-600 dark:text-slate-300 text-left block">Name of head / Authorized signatory *</label>
-                  <input type="text" required className="w-full px-5 py-4 rounded-xl bg-slate-50 dark:bg-primary-800 border border-slate-200 dark:border-primary-700 focus:outline-none focus:border-brand-blue dark:focus:border-brand-red focus:ring-1 focus:ring-brand-blue dark:focus:ring-brand-red transition-colors text-slate-900 dark:text-white" placeholder="John Doe" />
+                  <input type="text" name="headName" required className="w-full px-5 py-4 rounded-xl bg-slate-50 dark:bg-primary-800 border border-slate-200 dark:border-primary-700 focus:outline-none focus:border-brand-blue dark:focus:border-brand-red focus:ring-1 focus:ring-brand-blue dark:focus:ring-brand-red transition-colors text-slate-900 dark:text-white" placeholder="John Doe" />
                 </div>
                 <div className="space-y-2">
                   <label className="text-sm font-semibold text-slate-600 dark:text-slate-300 text-left block">Year of inception *</label>
-                  <input type="number" required min="1800" max="2100" className="w-full px-5 py-4 rounded-xl bg-slate-50 dark:bg-primary-800 border border-slate-200 dark:border-primary-700 focus:outline-none focus:border-brand-blue dark:focus:border-brand-red focus:ring-1 focus:ring-brand-blue dark:focus:ring-brand-red transition-colors text-slate-900 dark:text-white" placeholder="e.g. 2005" />
+                  <input type="number" name="inceptionYear" required min="1800" max="2100" className="w-full px-5 py-4 rounded-xl bg-slate-50 dark:bg-primary-800 border border-slate-200 dark:border-primary-700 focus:outline-none focus:border-brand-blue dark:focus:border-brand-red focus:ring-1 focus:ring-brand-blue dark:focus:ring-brand-red transition-colors text-slate-900 dark:text-white" placeholder="e.g. 2005" />
                 </div>
               </div>
               
@@ -267,11 +299,11 @@ export default function PartnerPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label className="text-sm font-semibold text-slate-600 dark:text-slate-300 text-left block">Address line 1 *</label>
-                  <input type="text" required className="w-full px-5 py-4 rounded-xl bg-slate-50 dark:bg-primary-800 border border-slate-200 dark:border-primary-700 focus:outline-none focus:border-brand-blue dark:focus:border-brand-red focus:ring-1 focus:ring-brand-blue dark:focus:ring-brand-red transition-colors text-slate-900 dark:text-white" placeholder="Street layout" />
+                  <input type="text" name="address1" required className="w-full px-5 py-4 rounded-xl bg-slate-50 dark:bg-primary-800 border border-slate-200 dark:border-primary-700 focus:outline-none focus:border-brand-blue dark:focus:border-brand-red focus:ring-1 focus:ring-brand-blue dark:focus:ring-brand-red transition-colors text-slate-900 dark:text-white" placeholder="Street layout" />
                 </div>
                 <div className="space-y-2">
                   <label className="text-sm font-semibold text-slate-600 dark:text-slate-300 text-left block">Address line 2</label>
-                  <input type="text" className="w-full px-5 py-4 rounded-xl bg-slate-50 dark:bg-primary-800 border border-slate-200 dark:border-primary-700 focus:outline-none focus:border-brand-blue dark:focus:border-brand-red focus:ring-1 focus:ring-brand-blue dark:focus:ring-brand-red transition-colors text-slate-900 dark:text-white" placeholder="Suite, unit, etc." />
+                  <input type="text" name="address2" className="w-full px-5 py-4 rounded-xl bg-slate-50 dark:bg-primary-800 border border-slate-200 dark:border-primary-700 focus:outline-none focus:border-brand-blue dark:focus:border-brand-red focus:ring-1 focus:ring-brand-blue dark:focus:ring-brand-red transition-colors text-slate-900 dark:text-white" placeholder="Suite, unit, etc." />
                 </div>
               </div>
 
@@ -279,11 +311,11 @@ export default function PartnerPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label className="text-sm font-semibold text-slate-600 dark:text-slate-300 text-left block">Province / City / State *</label>
-                  <input type="text" required className="w-full px-5 py-4 rounded-xl bg-slate-50 dark:bg-primary-800 border border-slate-200 dark:border-primary-700 focus:outline-none focus:border-brand-blue dark:focus:border-brand-red focus:ring-1 focus:ring-brand-blue dark:focus:ring-brand-red transition-colors text-slate-900 dark:text-white" placeholder="London" />
+                  <input type="text" name="city" required className="w-full px-5 py-4 rounded-xl bg-slate-50 dark:bg-primary-800 border border-slate-200 dark:border-primary-700 focus:outline-none focus:border-brand-blue dark:focus:border-brand-red focus:ring-1 focus:ring-brand-blue dark:focus:ring-brand-red transition-colors text-slate-900 dark:text-white" placeholder="London" />
                 </div>
                 <div className="space-y-2">
                   <label className="text-sm font-semibold text-slate-600 dark:text-slate-300 text-left block">Country *</label>
-                  <select required defaultValue="United Kingdom" className="w-full px-5 py-4 rounded-xl bg-slate-50 dark:bg-primary-800 border border-slate-200 dark:border-primary-700 focus:outline-none focus:border-brand-blue dark:focus:border-brand-red focus:ring-1 focus:ring-brand-blue dark:focus:ring-brand-red transition-colors text-slate-900 dark:text-white">
+                  <select name="country" required defaultValue="United Kingdom" className="w-full px-5 py-4 rounded-xl bg-slate-50 dark:bg-primary-800 border border-slate-200 dark:border-primary-700 focus:outline-none focus:border-brand-blue dark:focus:border-brand-red focus:ring-1 focus:ring-brand-blue dark:focus:ring-brand-red transition-colors text-slate-900 dark:text-white">
                     {countries.map((country, idx) => (
                       <option key={idx} value={country}>{country}</option>
                     ))}
@@ -295,17 +327,17 @@ export default function PartnerPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label className="text-sm font-semibold text-slate-600 dark:text-slate-300 text-left block">Email Address *</label>
-                  <input type="email" required className="w-full px-5 py-4 rounded-xl bg-slate-50 dark:bg-primary-800 border border-slate-200 dark:border-primary-700 focus:outline-none focus:border-brand-blue dark:focus:border-brand-red focus:ring-1 focus:ring-brand-blue dark:focus:ring-brand-red transition-colors text-slate-900 dark:text-white" placeholder="admin@institute.com" />
+                  <input type="email" name="email" required className="w-full px-5 py-4 rounded-xl bg-slate-50 dark:bg-primary-800 border border-slate-200 dark:border-primary-700 focus:outline-none focus:border-brand-blue dark:focus:border-brand-red focus:ring-1 focus:ring-brand-blue dark:focus:ring-brand-red transition-colors text-slate-900 dark:text-white" placeholder="admin@institute.com" />
                 </div>
                 <div className="space-y-2">
                   <label className="text-sm font-semibold text-slate-600 dark:text-slate-300 text-left block">Phone *</label>
                   <div className="flex">
-                    <select defaultValue="+44" className="w-1/3 px-3 py-4 bg-slate-100 dark:bg-primary-800 border border-r-0 border-slate-200 dark:border-primary-700 rounded-l-xl focus:outline-none focus:border-brand-blue dark:focus:border-brand-red focus:ring-1 focus:ring-brand-blue dark:focus:ring-brand-red transition-colors text-slate-900 dark:text-white">
+                    <select name="phoneCode" defaultValue="+44" className="w-1/3 px-3 py-4 bg-slate-100 dark:bg-primary-800 border border-r-0 border-slate-200 dark:border-primary-700 rounded-l-xl focus:outline-none focus:border-brand-blue dark:focus:border-brand-red focus:ring-1 focus:ring-brand-blue dark:focus:ring-brand-red transition-colors text-slate-900 dark:text-white">
                       {countryCodes.map((c, i) => (
                         <option key={i} value={c.code}>{c.label}</option>
                       ))}
                     </select>
-                    <input type="tel" required className="w-2/3 pl-3 pr-5 py-4 rounded-r-xl bg-slate-50 dark:bg-primary-800 border border-slate-200 dark:border-primary-700 focus:outline-none focus:border-brand-blue dark:focus:border-brand-red focus:ring-1 focus:ring-brand-blue dark:focus:ring-brand-red transition-colors text-slate-900 dark:text-white" placeholder="20..." />
+                    <input type="tel" name="phone" required className="w-2/3 pl-3 pr-5 py-4 rounded-r-xl bg-slate-50 dark:bg-primary-800 border border-slate-200 dark:border-primary-700 focus:outline-none focus:border-brand-blue dark:focus:border-brand-red focus:ring-1 focus:ring-brand-blue dark:focus:ring-brand-red transition-colors text-slate-900 dark:text-white" placeholder="20..." />
                   </div>
                 </div>
               </div>
@@ -313,7 +345,7 @@ export default function PartnerPage() {
               {/* Profile */}
               <div className="space-y-2">
                 <label className="text-sm font-semibold text-slate-600 dark:text-slate-300 text-left block">Please provide a brief profile for your institute *</label>
-                <textarea rows={4} required className="w-full px-5 py-4 rounded-xl bg-slate-50 dark:bg-primary-800 border border-slate-200 dark:border-primary-700 focus:outline-none focus:border-brand-blue dark:focus:border-brand-red focus:ring-1 focus:ring-brand-blue dark:focus:ring-brand-red transition-colors text-slate-900 dark:text-white resize-none" placeholder="We have been operating for..."></textarea>
+                <textarea name="profile" rows={4} required className="w-full px-5 py-4 rounded-xl bg-slate-50 dark:bg-primary-800 border border-slate-200 dark:border-primary-700 focus:outline-none focus:border-brand-blue dark:focus:border-brand-red focus:ring-1 focus:ring-brand-blue dark:focus:ring-brand-red transition-colors text-slate-900 dark:text-white resize-none" placeholder="We have been operating for..."></textarea>
               </div>
 
               {/* Accreditations Radio */}
@@ -335,15 +367,26 @@ export default function PartnerPage() {
               {hasAccreditation === "Yes" && (
                 <div className="space-y-2 animate-[fadeIn_0.3s_ease-out]">
                   <label className="text-sm font-semibold text-slate-600 dark:text-slate-300 text-left block">If Yes, please share details</label>
-                  <textarea rows={3} className="w-full px-5 py-4 rounded-xl bg-slate-50 dark:bg-primary-800 border border-slate-200 dark:border-primary-700 focus:outline-none focus:border-brand-blue dark:focus:border-brand-red focus:ring-1 focus:ring-brand-blue dark:focus:ring-brand-red transition-colors text-slate-900 dark:text-white resize-none" placeholder="Details of accreditations..."></textarea>
+                  <textarea name="accreditationDetails" rows={3} className="w-full px-5 py-4 rounded-xl bg-slate-50 dark:bg-primary-800 border border-slate-200 dark:border-primary-700 focus:outline-none focus:border-brand-blue dark:focus:border-brand-red focus:ring-1 focus:ring-brand-blue dark:focus:ring-brand-red transition-colors text-slate-900 dark:text-white resize-none" placeholder="Details of accreditations..."></textarea>
+                </div>
+              )}
+
+              {status === "success" && (
+                <div className="p-4 bg-green-500/10 border border-green-500/20 text-green-600 dark:text-green-400 rounded-xl mt-4 animate-[fadeInUp_0.3s_ease-out]">
+                  {successMessage}
+                </div>
+              )}
+              {status === "error" && (
+                <div className="p-4 bg-red-500/10 border border-red-500/20 text-red-600 dark:text-red-400 rounded-xl mt-4 animate-[fadeInUp_0.3s_ease-out]">
+                  {errorMessage}
                 </div>
               )}
 
               <div className="flex justify-center mt-10">
                 <MagneticButton strength={15}>
-                  <button type="submit" className="px-10 py-5 rounded-full bg-brand-red text-white font-bold text-lg hover:bg-brand-blue transition-colors shadow-[0_5px_20px_rgba(212,53,28,0.4)] hover:shadow-[0_10px_30px_rgba(30,64,175,0.5)] flex items-center gap-2 group w-full md:w-auto">
-                    Submit Partnership Enquiry
-                    <svg className="w-5 h-5 group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+                  <button type="submit" disabled={status === "loading"} className="px-10 py-5 rounded-full bg-brand-red text-white font-bold text-lg hover:bg-brand-blue transition-colors shadow-[0_5px_20px_rgba(212,53,28,0.4)] hover:shadow-[0_10px_30px_rgba(30,64,175,0.5)] flex items-center gap-2 group w-full md:w-auto disabled:opacity-70">
+                    {status === "loading" ? "Submitting..." : "Submit Partnership Enquiry"}
+                    {status !== "loading" && <svg className="w-5 h-5 group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>}
                   </button>
                 </MagneticButton>
               </div>

@@ -3,6 +3,7 @@
 import MagneticButton from "@/components/MagneticButton";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { api } from "@/lib/api";
 
 export default function VerificationPage() {
   const [isVisible, setIsVisible] = useState(false);
@@ -26,15 +27,42 @@ export default function VerificationPage() {
     return () => clearTimeout(timer);
   }, []);
 
-  const handleVerify = (e: React.FormEvent) => {
+  const handleVerify = async (e: React.FormEvent) => {
     e.preventDefault();
     setVerifyStatus("loading");
     
-    // Simulate API call
-    setTimeout(() => {
-      // For demo purposes assume it succeeds
-      setVerifyStatus("success");
-    }, 1500);
+    try {
+      let result;
+      if (certType === 'student') {
+        result = await api.verifyStudent({
+          name: studentName,
+          regNumber: registrationNo,
+          certNumber: certificateNo,
+          learnerNumber: learnerNo
+        });
+      } else if (certType === 'membership') {
+        result = await api.verifyMembership({
+          name: membershipName,
+          memberId: membershipNo
+        });
+      } else if (certType === 'centre') {
+        result = await api.verifyCentre({
+          name: centreName,
+          centreId: centreCode
+        });
+      }
+
+      // Check if we got data back (assuming the backend returns a `data` array or similar structure)
+      // Usually a search endpoint returns an array of matches.
+      if (result && result.data && result.data.length > 0) {
+        setVerifyStatus("success");
+      } else {
+        setVerifyStatus("error");
+      }
+    } catch (err) {
+      console.error("Verification error:", err);
+      setVerifyStatus("error");
+    }
   };
 
   return (
@@ -126,30 +154,36 @@ export default function VerificationPage() {
               </form>
 
               {/* Status Display Area */}
-              <div className={`mt-8 overflow-hidden transition-all duration-500 ${verifyStatus !== "idle" && verifyStatus !== "loading" ? "max-h-64 opacity-100" : "max-h-0 opacity-0"}`}>
+              <div className={`mt-8 overflow-hidden transition-all duration-700 ease-in-out ${verifyStatus !== "idle" && verifyStatus !== "loading" ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"}`}>
                 {verifyStatus === "success" && (
-                  <div className="p-6 bg-green-500/10 border border-green-500/20 rounded-2xl flex items-start gap-4 text-left">
-                    <div className="w-12 h-12 rounded-full bg-green-500/20 flex items-center justify-center shrink-0">
-                      <svg className="w-6 h-6 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" /></svg>
+                  <div className="p-8 bg-green-50 dark:bg-green-500/10 border border-green-200 dark:border-green-500/20 rounded-2xl flex flex-col sm:flex-row items-center sm:items-start gap-6 text-center sm:text-left shadow-lg transform transition-all duration-500 hover:scale-[1.02] animate-[fadeInUp_0.6s_ease-out]">
+                    <div className="w-16 h-16 rounded-full bg-green-100 dark:bg-green-500/20 flex items-center justify-center shrink-0 shadow-inner">
+                      <svg className="w-8 h-8 text-green-600 dark:text-green-500 animate-[pulse_2s_infinite]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" /></svg>
                     </div>
                     <div>
-                      <h3 className="text-xl font-bold text-green-600 dark:text-green-400 mb-1">Authentic Record Found</h3>
-                      <p className="text-slate-600 dark:text-slate-300">
-                        The submitted details match an official CBPD document. This certification/membership is currently active and in good standing.
+                      <h3 className="text-2xl font-bold text-green-700 dark:text-green-400 mb-2 font-serif">Verified Authentic Credential</h3>
+                      <div className="w-12 h-1 bg-green-500 rounded-full mb-4 mx-auto sm:mx-0"></div>
+                      <p className="text-slate-700 dark:text-slate-300 leading-relaxed text-sm md:text-base">
+                        {certType === 'student' && "This academic credential has been successfully authenticated against the official Central Board of Professional Development registry. The learner holds a verified qualification in excellent standing."}
+                        {certType === 'membership' && "This professional membership has been successfully authenticated against the official Central Board of Professional Development registry. The individual holds an active, verified professional standing."}
+                        {certType === 'centre' && "This institution has been successfully authenticated against the official Central Board of Professional Development registry. It is an approved and accredited educational centre in full compliance with CBPD academic standards."}
                       </p>
                     </div>
                   </div>
                 )}
                 
                 {verifyStatus === "error" && (
-                  <div className="p-6 bg-red-500/10 border border-red-500/20 rounded-2xl flex items-start gap-4 text-left">
-                    <div className="w-12 h-12 rounded-full bg-red-500/20 flex items-center justify-center shrink-0">
-                      <svg className="w-6 h-6 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
+                  <div className="p-8 bg-red-50 dark:bg-red-500/10 border border-red-200 dark:border-red-500/20 rounded-2xl flex flex-col sm:flex-row items-center sm:items-start gap-6 text-center sm:text-left shadow-lg transform transition-all duration-500 hover:scale-[1.02] animate-[fadeInUp_0.6s_ease-out]">
+                    <div className="w-16 h-16 rounded-full bg-red-100 dark:bg-red-500/20 flex items-center justify-center shrink-0 shadow-inner">
+                      <svg className="w-8 h-8 text-red-600 dark:text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
                     </div>
                     <div>
-                      <h3 className="text-xl font-bold text-red-600 dark:text-red-400 mb-1">Record Not Found</h3>
-                      <p className="text-slate-600 dark:text-slate-300">
-                        We could not find any active record matching the details provided. Please ensure you have entered them exactly as they appear on your document.
+                      <h3 className="text-2xl font-bold text-red-700 dark:text-red-400 mb-2 font-serif">Credential Unverified</h3>
+                      <div className="w-12 h-1 bg-red-500 rounded-full mb-4 mx-auto sm:mx-0"></div>
+                      <p className="text-slate-700 dark:text-slate-300 leading-relaxed text-sm md:text-base">
+                        {certType === 'student' && "We are unable to locate a verified academic record matching the provided details in the central registry. Please verify the learner information and registration number as printed on the official transcript."}
+                        {certType === 'membership' && "We are unable to locate a verified professional membership matching the provided details in the central registry. Please verify the membership name and identification number."}
+                        {certType === 'centre' && "We are unable to locate a verified accreditation record for this institution in the central registry. Please verify the centre name and unique accreditation code."}
                       </p>
                     </div>
                   </div>

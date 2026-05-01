@@ -4,7 +4,8 @@ import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import cbpdLogo from "../../public/cbpd-logo-transparent.png";
 import TiltCard from "@/components/TiltCard";
-import { programData } from "@/data/programs";
+import { programData as staticProgramData } from "@/data/programs";
+import { api } from "@/lib/api";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -12,6 +13,7 @@ export default function Navbar() {
   const [programsOpen, setProgramsOpen] = useState(false);
   const [moreOpen, setMoreOpen] = useState(false);
   const [activeCategory, setActiveCategory] = useState(0);
+  const [programData, setProgramData] = useState<any[]>(staticProgramData);
   
   // Mobile accordion states
   const [mobileProgramsOpen, setMobileProgramsOpen] = useState(false);
@@ -23,6 +25,34 @@ export default function Navbar() {
       setScrolled(window.scrollY > 50);
     };
     window.addEventListener("scroll", handleScroll);
+
+    // Fetch dynamic programs data
+    async function fetchDynamicData() {
+      try {
+        const [categoriesRes, coursesRes] = await Promise.all([
+          api.getCategories(),
+          api.getCourses()
+        ]);
+        const cats = categoriesRes.categories || [];
+        const courses = coursesRes.courses || [];
+        
+        if (cats.length > 0) {
+          const formatted = cats.map((cat: any) => ({
+             title: cat.name,
+             slug: cat.slug,
+             icon: cat.icon || "🎓",
+             subs: courses
+               .filter((c: any) => c.categoryId && (c.categoryId._id === cat._id || c.categoryId === cat._id))
+               .map((c: any) => ({ title: c.title, slug: c.slug }))
+          }));
+          setProgramData(formatted);
+        }
+      } catch (err) {
+        console.error("Failed to fetch dynamic program data:", err);
+      }
+    }
+    fetchDynamicData();
+
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -196,18 +226,18 @@ export default function Navbar() {
           <div className="w-3/4 h-full p-10 overflow-y-auto">
             <div className="flex items-center gap-6 mb-10 border-b border-white/10 pb-6">
               <div className="w-16 h-16 rounded-2xl bg-white/10 flex items-center justify-center text-3xl shadow-inner border border-white/5">
-                {programData[activeCategory].icon}
+                {programData[activeCategory]?.icon || "🎓"}
               </div>
               <div>
                 <h2 className="text-3xl font-bold text-white mb-2">
-                  {programData[activeCategory].title.replace(/ Programmes/i, '')} <span className="text-brand-red">Programmes</span>
+                  {programData[activeCategory]?.title?.replace(/ Programmes/i, '')} <span className="text-brand-red">Programmes</span>
                 </h2>
                 <p className="text-slate-400 text-sm">Explore specialized certifications within this discipline.</p>
               </div>
             </div>
 
             <div className="grid grid-cols-2 gap-x-12 gap-y-6">
-              {programData[activeCategory].subs.map((sub, i) => (
+              {programData[activeCategory]?.subs?.map((sub: any, i: number) => (
                 <TiltCard key={i} sensitivity={5}>
                   <Link href={`/programs/${sub.slug}`} className="block px-6 py-5 rounded-2xl bg-white/5 border border-white/5 hover:bg-white/10 hover:border-brand-red/30 transition-all duration-300 group">
                     <h3 className="text-white font-bold mb-2 group-hover:text-brand-red transition-colors">{sub.title}</h3>
@@ -217,9 +247,9 @@ export default function Navbar() {
               ))}
               
               <TiltCard sensitivity={5}>
-                <Link href={`/programs/${programData[activeCategory].slug}`} className="block px-6 py-5 rounded-2xl border border-dashed border-white/20 hover:border-brand-red/50 bg-transparent hover:bg-brand-red/5 transition-all duration-300 group flex items-center justify-center h-full min-h-[100px]">
+                <Link href={`/programs/${programData[activeCategory]?.slug}`} className="block px-6 py-5 rounded-2xl border border-dashed border-white/20 hover:border-brand-red/50 bg-transparent hover:bg-brand-red/5 transition-all duration-300 group flex items-center justify-center h-full min-h-[100px]">
                   <span className="text-slate-300 font-bold group-hover:text-brand-red transition-colors flex items-center gap-2">
-                    View All {programData[activeCategory].title.replace(/\s*Programmes?/i, '')}
+                    View All {programData[activeCategory]?.title?.replace(/\s*Programmes?/i, '')}
                     <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
                   </span>
                 </Link>

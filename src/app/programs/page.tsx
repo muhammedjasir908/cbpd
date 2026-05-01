@@ -3,7 +3,9 @@
 import Link from "next/link";
 import TiltCard from "@/components/TiltCard";
 import MagneticButton from "@/components/MagneticButton";
-import { programData } from "@/data/programs";
+import { useState, useEffect } from "react";
+import { programData as staticProgramData } from "@/data/programs";
+import { api } from "@/lib/api";
 
 export default function ProgramsPage() {
   const benefits = [
@@ -20,6 +22,29 @@ export default function ProgramsPage() {
     { title: "Complete Assessment", desc: "Engage in focused, real-world learning and pass the practical assessment.", icon: "✍️" },
     { title: "Receive Credential", desc: "Earn and showcase your official, globally recognised CBPD certificate.", icon: "🎓" }
   ];
+
+  const [programData, setProgramData] = useState<any[]>(staticProgramData);
+
+  useEffect(() => {
+    async function fetchDynamicData() {
+      try {
+        const res = await api.getCategories();
+        const cats = res.categories || [];
+        if (cats.length > 0) {
+          const formatted = cats.map((cat: any) => ({
+             title: cat.name,
+             slug: cat.slug,
+             icon: cat.icon || "🎓",
+             image: cat.image || "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=800&auto=format&fit=crop"
+          }));
+          setProgramData(formatted);
+        }
+      } catch (err) {
+        console.error("Failed to load program categories", err);
+      }
+    }
+    fetchDynamicData();
+  }, []);
 
   return (
     <main className="min-h-screen bg-slate-50 dark:bg-[#0a0f1c]">

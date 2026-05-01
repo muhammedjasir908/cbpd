@@ -2,11 +2,15 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { countryCodes } from "@/data/countries";
+import { api } from "@/lib/api";
 
 export default function RegisterPage() {
   const [step, setStep] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
+  const router = useRouter();
 
   // Form State
   const [formData, setFormData] = useState({
@@ -60,14 +64,48 @@ export default function RegisterPage() {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
-    // Simulate API registration
-    setTimeout(() => {
+    setErrorMsg("");
+
+    const payload = {
+      orgName: formData.orgName,
+      industrySector: formData.industry,
+      businessAddress: formData.address,
+      postalCode: formData.postalCode,
+      mainTelephone: `${formData.phoneCode} ${formData.phone}`.trim(),
+      website: formData.website,
+      email: formData.email,
+      password: formData.password,
+      
+      firstName: formData.mcFirstName,
+      lastName: formData.mcLastName,
+      jobTitle: formData.mcJobTitle,
+      emailAddress: formData.mcEmail,
+      phoneNumber: `${formData.mcPhoneCode} ${formData.mcPhone}`.trim(),
+      mobileNumber: formData.mcMobile ? `${formData.mcMobileCode} ${formData.mcMobile}`.trim() : "",
+      
+      SfirstName: formData.scFirstName,
+      SlastName: formData.scLastName,
+      SjobTitle: formData.scJobTitle,
+      SemailAddress: formData.scEmail,
+      SphoneNumber: `${formData.scPhoneCode} ${formData.scPhone}`.trim(),
+      SmobileNumber: formData.scMobile ? `${formData.scMobileCode} ${formData.scMobile}`.trim() : "",
+      
+      isApproved: false,
+      isTerminated: false,
+    };
+
+    try {
+      await api.register(payload);
+      alert("Registration Successful! Please login.");
+      router.push("/login");
+    } catch (err: any) {
+      console.error("Registration error:", err);
+      setErrorMsg(err.message || "An error occurred during registration.");
       setIsLoading(false);
-      alert("Registration Successful!");
-    }, 2000);
+    }
   };
 
   const InputWrapper = ({ label, required = false, children }: any) => (
@@ -129,6 +167,11 @@ export default function RegisterPage() {
           </div>
 
           <form onSubmit={step === 3 ? handleSubmit : handleNext} className="flex-grow flex flex-col justify-between">
+            {errorMsg && (
+              <div className="mb-6 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-red-600 dark:text-red-400 rounded-xl text-sm animate-[fadeIn_0.3s_ease-out]">
+                {errorMsg}
+              </div>
+            )}
             {/* Step 1: Organization Details */}
             {step === 1 && (
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 animate-[fadeInUp_0.4s_ease-out]">

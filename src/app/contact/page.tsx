@@ -3,7 +3,9 @@
 import TiltCard from "@/components/TiltCard";
 import MagneticButton from "@/components/MagneticButton";
 import { countryCodes } from "@/data/countries";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { api } from "@/lib/api";
+import { programData as staticProgramData } from "@/data/programs";
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -12,9 +14,40 @@ export default function ContactPage() {
     email: "",
     phoneCode: "+44",
     phone: "",
+    enquiryType: "Enquiry",
+    programme: "",
     message: ""
   });
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
+  const [programData, setProgramData] = useState<any[]>(staticProgramData);
+
+  useEffect(() => {
+    async function fetchDynamicData() {
+      try {
+        const [categoriesRes, coursesRes] = await Promise.all([
+          api.getCategories(),
+          api.getCourses()
+        ]);
+        const cats = categoriesRes.categories || [];
+        const courses = coursesRes.courses || [];
+        
+        if (cats.length > 0) {
+          const formatted = cats.map((cat: any) => ({
+             title: cat.name,
+             subs: courses
+               .filter((c: any) => c.categoryId && (c.categoryId._id === cat._id || c.categoryId === cat._id))
+               .map((c: any) => ({ title: c.title }))
+          }));
+          setProgramData(formatted);
+        }
+      } catch (err) {
+        console.error("Failed to fetch dynamic program data:", err);
+      }
+    }
+    fetchDynamicData();
+  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -25,27 +58,31 @@ export default function ContactPage() {
     e.preventDefault();
     setStatus("loading");
     
-    const formUrl = "https://docs.google.com/forms/d/e/1FAIpQLSc6SBmxH3-nNKqgPn1_UuH0M_7b39h4YhiBWMBe-d5VEb5z1Q/formResponse";
-    
-    const data = new FormData();
-    data.append("entry.1706561623", formData.firstName);
-    data.append("entry.1777583790", formData.lastName);
-    data.append("entry.972689318", formData.email);
-    data.append("entry.983455282", `${formData.phoneCode} ${formData.phone}`);
-    data.append("entry.443280545", formData.message);
-
     try {
-      await fetch(formUrl, {
-        method: "POST",
-        mode: "no-cors",
-        body: data
+      setErrorMessage("");
+      setSuccessMessage("");
+      
+      const response = await api.submitContact({
+        firstName: formData.firstName.trim(),
+        lastName: formData.lastName.trim(),
+        email: formData.email,
+        phone: `${formData.phoneCode} ${formData.phone}`.trim(),
+        enquiryType: formData.enquiryType,
+        programmeName: formData.enquiryType === "Programme" ? formData.programme : "",
+        message: formData.message,
       });
+      
       setStatus("success");
-      setFormData({ firstName: "", lastName: "", email: "", phoneCode: "+44", phone: "", message: "" });
-      setTimeout(() => setStatus("idle"), 5000);
-    } catch (err) {
-      console.error(err);
+      setSuccessMessage(response?.message || "Message sent successfully! We will get back to you shortly.");
+      setFormData({ firstName: "", lastName: "", email: "", phoneCode: "+44", phone: "", enquiryType: "Enquiry", programme: "", message: "" });
+      setTimeout(() => {
+        setStatus("idle");
+        setSuccessMessage("");
+      }, 5000);
+    } catch (err: any) {
+      console.error("Contact submission error:", err);
       setStatus("error");
+      setErrorMessage(err.message || "There was an error sending your message. Please try again.");
     }
   };
   return (
@@ -154,6 +191,31 @@ export default function ContactPage() {
                         <input type="tel" name="phone" value={formData.phone} onChange={handleChange} required className="w-2/3 pl-3 pr-5 py-4 rounded-r-xl bg-slate-50 dark:bg-primary-800 border border-slate-200 dark:border-primary-700 focus:outline-none focus:border-brand-blue dark:focus:border-brand-red focus:ring-1 focus:ring-brand-blue dark:focus:ring-brand-red transition-colors text-slate-900 dark:text-white" placeholder="20..." />
                       </div>
                     </div>
+
+                    <div className="space-y-2">
+                      <label className="text-sm font-semibold text-slate-600 dark:text-slate-300">Enquiry Type *</label>
+                      <select name="enquiryType" value={formData.enquiryType} onChange={handleChange} required className="w-full px-5 py-4 rounded-xl bg-slate-50 dark:bg-primary-800 border border-slate-200 dark:border-primary-700 focus:outline-none focus:border-brand-blue dark:focus:border-brand-red focus:ring-1 focus:ring-brand-blue dark:focus:ring-brand-red transition-colors text-slate-900 dark:text-white">
+                        <option value="Enquiry">General Enquiry</option>
+                        <option value="Programme">Programme</option>
+                        <option value="Other">Other</option>
+                      </select>
+                    </div>
+
+                    {formData.enquiryType === "Programme" && (
+                      <div className="space-y-2 animate-[fadeIn_0.3s_ease-out]">
+                        <label className="text-sm font-semibold text-slate-600 dark:text-slate-300">Select Programme *</label>
+                        <select name="programme" value={formData.programme} onChange={handleChange} required className="w-full px-5 py-4 rounded-xl bg-slate-50 dark:bg-primary-800 border border-slate-200 dark:border-primary-700 focus:outline-none focus:border-brand-blue dark:focus:border-brand-red focus:ring-1 focus:ring-brand-blue dark:focus:ring-brand-red transition-colors text-slate-900 dark:text-white">
+                          <option value="" disabled>Select a programme</option>
+                          {programData.map((category, idx) => (
+                            <optgroup key={idx} label={category.title}>
+                              {category.subs.map((sub, subIdx) => (
+                                <option key={subIdx} value={sub.title}>{sub.title}</option>
+                              ))}
+                            </optgroup>
+                          ))}
+                        </select>
+                      </div>
+                    )}
                     
                     <div className="space-y-2">
                       <label className="text-sm font-semibold text-slate-600 dark:text-slate-300">Message *</label>
@@ -169,12 +231,12 @@ export default function ContactPage() {
                     
                     {status === "success" && (
                       <div className="p-4 bg-green-500/10 border border-green-500/20 text-green-600 dark:text-green-400 rounded-xl mt-4 animate-[fadeInUp_0.3s_ease-out]">
-                        Message sent successfully! We will get back to you shortly.
+                        {successMessage}
                       </div>
                     )}
                     {status === "error" && (
                       <div className="p-4 bg-red-500/10 border border-red-500/20 text-red-600 dark:text-red-400 rounded-xl mt-4 animate-[fadeInUp_0.3s_ease-out]">
-                        There was an error sending your message. Please try again.
+                        {errorMessage}
                       </div>
                     )}
                   </form>
