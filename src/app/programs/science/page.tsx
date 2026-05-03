@@ -109,7 +109,7 @@ export default function ScienceProgramPage() {
         {/* Background Image */}
         <div 
           className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat pointer-events-none"
-          style={{ backgroundImage: `url('https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=1600&auto=format&fit=crop')` }}
+          style={{ backgroundImage: `url('/images/external/1532094349884-543bc11b234d.jpg')` }}
         ></div>
         {/* Dark overlay for text legibility */}
         <div className="absolute inset-0 z-0 bg-primary-900/80 pointer-events-none"></div>

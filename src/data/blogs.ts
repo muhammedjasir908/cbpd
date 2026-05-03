@@ -15,7 +15,7 @@ export const blogs: BlogPost[] = [
     title: "What Is CBPD and How It Supports Global Career Development",
     category: "Career Growth",
     date: "March 15, 2025",
-    image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&q=80",
+    image: "/images/external/1522202176988-66273c2fd55f.jpg",
     excerpt: "Discover how CBPD's internationally aligned qualifications enhance skills, employability, and career progression across the globe.",
     keywords: ["CBPD", "UK awarding body", "professional qualifications", "CQF framework", "global certification", "career development"],
     content: `
@@ -48,7 +48,7 @@ export const blogs: BlogPost[] = [
     title: "Understanding the CBPD Qualification Framework (CQF)",
     category: "Guidelines",
     date: "March 10, 2025",
-    image: "https://images.unsplash.com/photo-1516321497487-e288fb19713f?w=800&q=80",
+    image: "/images/external/1516321497487-e288fb19713f.jpg",
     excerpt: "Learn how the CQF provides a clear, structured pathway for learners and institutions to ensure consistency and global recognition.",
     keywords: ["CQF", "qualification framework", "CBPD levels", "UK certification framework", "global education standards"],
     content: `
@@ -91,7 +91,7 @@ export const blogs: BlogPost[] = [
     title: "Top Benefits of International Professional Certifications",
     category: "Education",
     date: "March 05, 2025",
-    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80",
+    image: "/images/external/1454165804606-c3d57bc86b40.jpg",
     excerpt: "Explore the crucial advantages of international certifications and why they are essential for staying competitive in the global workforce.",
     keywords: ["international certification", "professional qualifications", "career growth", "UK certification", "global employability"],
     content: `

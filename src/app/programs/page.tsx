@@ -34,8 +34,9 @@ export default function ProgramsPage() {
           const formatted = cats.map((cat: any) => ({
              title: cat.name,
              slug: cat.slug,
+             description: cat.description,
              icon: cat.icon || "🎓",
-             image: cat.image || "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=800&auto=format&fit=crop"
+             image: cat.image || "/images/external/1552664730-d307ca884978.jpg"
           }));
           setProgramData(formatted);
         }
@@ -138,8 +139,8 @@ export default function ProgramsPage() {
                         </h2>
                       </Link>
                       
-                      <p className="text-sm text-slate-500 dark:text-slate-400 mb-6 shrink-0">
-                        Master the principles of {prog.title.replace(/\s*Programmes?/i, '').toLowerCase()} with our globally accredited industry curriculum. 
+                      <p className="text-sm text-slate-500 dark:text-slate-400 mb-6 shrink-0 line-clamp-3">
+                        {prog.description || `Master the principles of ${prog.title.replace(/\s*Programmes?/i, '').toLowerCase()} with our globally accredited industry curriculum.`}
                       </p>
                       
                       <Link 
@@ -221,7 +222,7 @@ export default function ProgramsPage() {
 
       {/* CTA Section */}
       <section className="py-24 bg-primary-900 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-20 bg-[url('https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center mix-blend-overlay z-0"></div>
+        <div className="absolute inset-0 opacity-20 bg-[url('/images/external/1542744173-8e7e53415bb0.jpg')] bg-cover bg-center mix-blend-overlay z-0"></div>
         <div className="absolute inset-0 bg-gradient-to-t from-primary-900 via-primary-900/80 to-transparent z-0"></div>
         <div className="container mx-auto px-6 md:px-12 relative z-10 text-center max-w-4xl">
           <h2 className="text-4xl md:text-6xl font-bold text-white mb-8">

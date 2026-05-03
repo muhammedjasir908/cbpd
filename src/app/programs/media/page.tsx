@@ -109,7 +109,7 @@ export default function MediaProgramPage() {
         {/* Background Image */}
         <div 
           className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat pointer-events-none"
-          style={{ backgroundImage: `url('https://images.unsplash.com/photo-1478720568477-152d9b164e26?q=80&w=1600&auto=format&fit=crop')` }}
+          style={{ backgroundImage: `url('/images/external/1478720568477-152d9b164e26.jpg')` }}
         ></div>
         {/* Dark overlay for text legibility */}
         <div className="absolute inset-0 z-0 bg-primary-900/80 pointer-events-none"></div>

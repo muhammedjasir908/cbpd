@@ -7,8 +7,8 @@ async function fetchAPI(endpoint: string, options: RequestInit = {}) {
   const url = `${API_BASE_URL}${endpoint}`;
   
   // Setup headers, include JSON by default if body exists
-  const headers: HeadersInit = {
-    ...options.headers,
+  const headers: Record<string, string> = {
+    ...(options.headers as Record<string, string>),
   };
 
   if (options.body && typeof options.body === 'string') {
@@ -31,7 +31,7 @@ async function fetchAPI(endpoint: string, options: RequestInit = {}) {
   const data = await response.json().catch(() => ({}));
 
   if (!response.ok) {
-    throw new Error(data.message || 'Something went wrong');
+    throw new Error(data.error || data.message || 'Something went wrong');
   }
 
   return data;
@@ -54,19 +54,11 @@ export const api = {
   },
 
   // --- Verifications ---
-  verifyStudent: async (query: { name?: string; regNumber?: string; certNumber?: string; learnerNumber?: string }) => {
-    const params = new URLSearchParams(query as Record<string, string>);
-    return fetchAPI(`/admin/student-certificates/search?${params.toString()}`);
-  },
-
-  verifyMembership: async (query: { name?: string; memberId?: string }) => {
-    const params = new URLSearchParams(query as Record<string, string>);
-    return fetchAPI(`/admin/memberships/search?${params.toString()}`);
-  },
-
-  verifyCentre: async (query: { name?: string; centreId?: string }) => {
-    const params = new URLSearchParams(query as Record<string, string>);
-    return fetchAPI(`/admin/centers/search?${params.toString()}`);
+  verifyDocument: async (payload: { type: string; payload: Record<string, string> }) => {
+    return fetchAPI('/public/verify', {
+      method: 'POST',
+      body: JSON.stringify(payload),
+    });
   },
 
   // --- Auth ---

@@ -109,7 +109,7 @@ export default function HospitalityProgramPage() {
         {/* Background Image */}
         <div 
           className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat pointer-events-none"
-          style={{ backgroundImage: `url('https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=1600&auto=format&fit=crop')` }}
+          style={{ backgroundImage: `url('/images/external/1566073771259-6a8506099945.jpg')` }}
         ></div>
         {/* Dark overlay for text legibility */}
         <div className="absolute inset-0 z-0 bg-primary-900/80 pointer-events-none"></div>

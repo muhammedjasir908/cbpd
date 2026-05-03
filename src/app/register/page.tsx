@@ -4,12 +4,14 @@ import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { countryCodes } from "@/data/countries";
+import FormAlert from "@/components/FormAlert";
 import { api } from "@/lib/api";
 
 export default function RegisterPage() {
   const [step, setStep] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
+  const [successMsg, setSuccessMsg] = useState("");
   const router = useRouter();
 
   // Form State
@@ -68,6 +70,7 @@ export default function RegisterPage() {
     e.preventDefault();
     setIsLoading(true);
     setErrorMsg("");
+    setSuccessMsg("");
 
     const payload = {
       orgName: formData.orgName,
@@ -98,9 +101,9 @@ export default function RegisterPage() {
     };
 
     try {
-      await api.register(payload);
-      alert("Registration Successful! Please login.");
-      router.push("/login");
+      const response = await api.register(payload);
+      setSuccessMsg(response.message || "Registration Successful! Please login.");
+      setTimeout(() => router.push("/login"), 2000);
     } catch (err: any) {
       console.error("Registration error:", err);
       setErrorMsg(err.message || "An error occurred during registration.");
@@ -129,7 +132,7 @@ export default function RegisterPage() {
         {/* Header Header */}
         <div className="text-center mb-10 w-full animate-[fadeInUp_0.5s_ease-out]">
           <Link href="/" className="inline-block mb-8">
-            <img src="https://www.cbpd.co.uk/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FCBPD_LOGO.7c42c792.png&w=256&q=75" alt="CBPD Logo" className="h-32 w-auto rounded-xl p-4 shadow-xl" />
+            <img src="/images/external/CBPD_LOGO.7c42c792.png" alt="CBPD Logo" className="h-32 w-auto rounded-xl p-4 shadow-xl" />
           </Link>
           <h1 className="text-3xl md:text-5xl font-bold text-slate-800 dark:text-white mb-4 tracking-tight">
             Let's Get You Started
@@ -168,9 +171,10 @@ export default function RegisterPage() {
 
           <form onSubmit={step === 3 ? handleSubmit : handleNext} className="flex-grow flex flex-col justify-between">
             {errorMsg && (
-              <div className="mb-6 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-red-600 dark:text-red-400 rounded-xl text-sm animate-[fadeIn_0.3s_ease-out]">
-                {errorMsg}
-              </div>
+              <FormAlert type="error" message={errorMsg} onClose={() => setErrorMsg("")} />
+            )}
+            {successMsg && (
+              <FormAlert type="success" message={successMsg} onClose={() => setSuccessMsg("")} />
             )}
             {/* Step 1: Organization Details */}
             {step === 1 && (

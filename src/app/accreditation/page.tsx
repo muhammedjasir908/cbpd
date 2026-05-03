@@ -24,7 +24,7 @@ export default function AccreditationPage() {
       {/* Mini Hero */}
       <section className="relative pt-40 pb-24 bg-primary-900 border-b border-primary-800 overflow-hidden">
         {/* Background Overlay */}
-        <div className="absolute inset-0 opacity-30 bg-[url('https://images.unsplash.com/photo-1556761175-4b46a572b786?q=80&w=2000&auto=format&fit=crop')] bg-cover bg-center mix-blend-overlay z-0"></div>
+        <div className="absolute inset-0 opacity-30 bg-[url('/images/external/1556761175-4b46a572b786.jpg')] bg-cover bg-center mix-blend-overlay z-0"></div>
         <div className="absolute inset-0 bg-gradient-to-t from-primary-900 via-primary-900/80 to-transparent z-0"></div>
 
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-red/10 rounded-full blur-[150px] pointer-events-none z-0"></div>
@@ -68,7 +68,7 @@ export default function AccreditationPage() {
               <div className="relative rounded-3xl overflow-hidden shadow-2xl group">
                 <div className="absolute inset-0 bg-brand-blue/20 group-hover:opacity-0 transition-opacity duration-500 z-10"></div>
                 <img 
-                  src="https://images.unsplash.com/photo-1515169067868-5387ec356754?q=80&w=2070&auto=format&fit=crop" 
+                  src="/images/external/1515169067868-5387ec356754.jpg" 
                   alt="Business event presentation" 
                   className="w-full h-[400px] object-cover group-hover:scale-105 transition-transform duration-700"
                 />
@@ -137,7 +137,7 @@ export default function AccreditationPage() {
 
       {/* CTA Section */}
       <section className="py-24 bg-primary-900 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-20 bg-[url('https://images.unsplash.com/photo-1542744094-3a31f272c490?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center mix-blend-overlay z-0"></div>
+        <div className="absolute inset-0 opacity-20 bg-[url('/images/external/1542744094-3a31f272c490.jpg')] bg-cover bg-center mix-blend-overlay z-0"></div>
         <div className="absolute inset-0 bg-gradient-to-t from-primary-900 via-primary-900/80 to-transparent z-0"></div>
         <div className="container mx-auto px-6 md:px-12 relative z-10 text-center max-w-4xl">
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-8">

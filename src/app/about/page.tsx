@@ -16,7 +16,7 @@ export default function AboutPage() {
       {/* Mini Hero with Image Background */}
       <section className="relative pt-40 pb-24 bg-primary-900 border-b border-primary-800 overflow-hidden">
         {/* Background Image */}
-        <div className="absolute inset-0 opacity-40 bg-[url('https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center mix-blend-overlay z-0"></div>
+        <div className="absolute inset-0 opacity-40 bg-[url('/images/external/1542744173-8e7e53415bb0.jpg')] bg-cover bg-center mix-blend-overlay z-0"></div>
         {/* Dark opacity layer overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-primary-900 via-primary-900/80 to-transparent z-0 pointer-events-none"></div>
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-transparent z-0 pointer-events-none"></div>
@@ -95,7 +95,7 @@ export default function AboutPage() {
             <div className="mt-12 rounded-3xl overflow-hidden shadow-2xl relative group hidden lg:block border border-slate-200 dark:border-primary-700">
               <div className="absolute inset-0 bg-brand-blue/20 mix-blend-multiply z-10 group-hover:bg-transparent transition-all duration-500"></div>
               <img 
-                src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070&auto=format&fit=crop" 
+                src="/images/external/1522071820081-009f0129c71c.jpg" 
                 alt="Professionals collaborating" 
                 className="w-full h-[380px] object-cover transition-transform duration-700 group-hover:scale-105"
               />
@@ -110,7 +110,7 @@ export default function AboutPage() {
 
       {/* CTA Section */}
       <section className="py-24 bg-primary-900 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-30 bg-[url('https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center mix-blend-overlay z-0"></div>
+        <div className="absolute inset-0 opacity-30 bg-[url('/images/external/1552664730-d307ca884978.jpg')] bg-cover bg-center mix-blend-overlay z-0"></div>
         <div className="absolute inset-0 bg-gradient-to-t from-primary-900 via-primary-950/80 to-transparent z-0"></div>
         <div className="container mx-auto px-6 md:px-12 relative z-10 text-center max-w-4xl">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-8">

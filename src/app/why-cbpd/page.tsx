@@ -123,7 +123,7 @@ export default function WhyChooseCBPDPage() {
           <div className="lg:w-1/2 w-full h-[300px] lg:h-full relative overflow-hidden group">
             <div className="absolute inset-0 bg-brand-blue/30 mix-blend-multiply z-10 group-hover:bg-brand-blue/10 transition-colors duration-700"></div>
             <img 
-               src="https://images.unsplash.com/photo-1578574577315-3fbeb0cecdc2?q=80&w=2072&auto=format&fit=crop" 
+               src="/images/external/1578574577315-3fbeb0cecdc2.jpg" 
                alt="Global Map showing trust" 
                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000"
             />

@@ -7,42 +7,42 @@ export default function TestimonialsPage() {
       title: "Senior Project Manager",
       text: "Securing my certification through CBPD was a phenomenal milestone in my career. The entire process was incredibly streamlined, and the instant global recognition helped me land my current senior role within two months.",
       rating: 5,
-      image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop"
+      image: "/images/external/1494790108377-be9c29b29330.jpg"
     },
     {
       name: "David Chen",
       title: "Data Analytics Lead",
       text: "The rigour of the assessments proved the high quality of the CBPD accreditation. My employer immediately recognized the value of the credential. Highly recommend this for professionals looking to upskill quickly but reliably.",
       rating: 5,
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop"
+      image: "/images/external/1507003211169-0a1dd7228f2d.jpg"
     },
     {
       name: "Elena Rodriguez",
       title: "HR Director",
       text: "As an HR professional, I look for candidates with verified, practical skills. CBPD's approach to professional mastery and real-world application means that a candidate holding this certification is ready to hit the ground running.",
       rating: 5,
-      image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200&h=200&fit=crop"
+      image: "/images/external/1573496359142-b8d87734a5a2.jpg"
     },
     {
       name: "Michael Chang",
       title: "Operations Consultant",
       text: "I was looking for a credential that carried weight across Europe and Asia. CBPD exceeded my expectations. The networking opportunities with other industry experts have been incredibly valuable for my consulting business.",
       rating: 4,
-      image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=200&h=200&fit=crop"
+      image: "/images/external/1506794778202-cad84cf45f1d.jpg"
     },
     {
       name: "Anita Patel",
       title: "Healthcare Administrator",
       text: "The Health and Safety discipline training through CBPD's partners was top-tier. I particularly appreciated the seamless digital verification, which made updating my compliance records effortless.",
       rating: 5,
-      image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=200&h=200&fit=crop"
+      image: "/images/external/1580489944761-15a19d654956.jpg"
     },
     {
       name: "James Wilson",
       title: "Creative Art Director",
       text: "Creative fields often lack structured recognition. The Language and Creative Arts certification gave my portfolio the formal prestige it needed when bidding for massive corporate contracts.",
       rating: 5,
-      image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=200&h=200&fit=crop"
+      image: "/images/external/1519085360753-af0119f7cbe7.jpg"
     }
   ];
 

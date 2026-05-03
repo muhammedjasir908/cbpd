@@ -25,12 +25,12 @@ export default function Partners() {
 
   const partners = [
     { name: "CIMAA", url: cimaaLogo.src },
-    { name: "CPD Logo", url: "https://www.cbpd.co.uk/_next/image?url=%2Fimages%2Ffooter%2Fcpdlogo.png&w=640&q=75" },
-    { name: "AOHT", url: "https://www.cbpd.co.uk/_next/image?url=%2Fimages%2Ffooter%2Faoht.png&w=640&q=75" },
-    { name: "UKRLP", url: "https://www.cbpd.co.uk/_next/image?url=%2Fimages%2Ffooter%2Fukrlp.jpg&w=384&q=75" },
-    { name: "ICO", url: "https://www.cbpd.co.uk/_next/image?url=%2Fimages%2Ffooter%2Fico.jpeg&w=384&q=75" },
-    { name: "Data Protection", url: "https://www.cbpd.co.uk/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fprotection.1a5a131e.png&w=384&q=75" },
-    { name: "Registration", url: "https://www.cbpd.co.uk/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Freg%20noo.90469e93.png&w=384&q=75" },
+    { name: "CPD Logo", url: "/images/external/cpdlogo.png" },
+    { name: "AOHT", url: "/images/external/aoht.png" },
+    { name: "UKRLP", url: "/images/external/ukrlp.jpg" },
+    { name: "ICO", url: "/images/external/ico.jpeg" },
+    { name: "Data Protection", url: "/images/external/protection.1a5a131e.png" },
+    { name: "Registration", url: "/images/external/reg noo.90469e93.png" },
   ];
 
   return (

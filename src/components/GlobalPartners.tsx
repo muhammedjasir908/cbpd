@@ -24,30 +24,30 @@ export default function GlobalPartners() {
 
   const partnersRow1 = [
     { name: "CREATE+", url: createPlus.src },
-    { name: "Anglia", url: "https://lymaxlearning.com/img/home/progressions/anglia.webp" },
-    { name: "Bloomsbury", url: "https://lymaxlearning.com/img/home/progressions/bloomsberry.webp" },
-    { name: "Brooks", url: "https://lymaxlearning.com/img/home/progressions/brooks.webp" },
-    { name: "Deakin", url: "https://lymaxlearning.com/img/home/progressions/deakin.webp" },
-    { name: "East London", url: "https://lymaxlearning.com/img/home/progressions/eastlondon.webp" },
-    { name: "Emirates", url: "https://lymaxlearning.com/img/home/progressions/emirates.webp" },
-    { name: "Hallam", url: "https://lymaxlearning.com/img/home/progressions/hallam.webp" },
-    { name: "Hertfordshire", url: "https://lymaxlearning.com/img/home/progressions/hertfort.webp" },
-    { name: "Leicester", url: "https://lymaxlearning.com/img/home/progressions/leicester.webp" },
-    { name: "Midland", url: "https://lymaxlearning.com/img/home/progressions/midland.webp" },
+    { name: "Anglia", url: "/images/external/anglia.webp" },
+    { name: "Bloomsbury", url: "/images/external/bloomsberry.webp" },
+    { name: "Brooks", url: "/images/external/brooks.webp" },
+    { name: "Deakin", url: "/images/external/deakin.webp" },
+    { name: "East London", url: "/images/external/eastlondon.webp" },
+    { name: "Emirates", url: "/images/external/emirates.webp" },
+    { name: "Hallam", url: "/images/external/hallam.webp" },
+    { name: "Hertfordshire", url: "/images/external/hertfort.webp" },
+    { name: "Leicester", url: "/images/external/leicester.webp" },
+    { name: "Midland", url: "/images/external/midland.webp" },
   ];
 
 
   const partnersRow2 = [
-    { name: "Northumbria", url: "https://lymaxlearning.com/img/home/progressions/northum.webp" },
-    { name: "Portsmouth", url: "https://lymaxlearning.com/img/home/progressions/portsmouth.webp" },
-    { name: "South Bank", url: "https://lymaxlearning.com/img/home/progressions/south-bank.webp" },
-    { name: "Staffordshire", url: "https://lymaxlearning.com/img/home/progressions/stafford.webp" },
-    { name: "UCB", url: "https://lymaxlearning.com/img/home/progressions/ucb.webp" },
-    { name: "UVS", url: "https://lymaxlearning.com/img/home/progressions/uws.webp" },
-    { name: "Westminster", url: "https://lymaxlearning.com/img/home/progressions/westminister.webp" },
-    { name: "Wrexham", url: "https://lymaxlearning.com/img/home/progressions/wrexham.webp" },
-    { name: "Yorkville", url: "https://lymaxlearning.com/img/home/progressions/yorkville.webp" },
-    { name: "Aston", url: "https://lymaxlearning.com/img/home/progressions/aston.webp" },
+    { name: "Northumbria", url: "/images/external/northum.webp" },
+    { name: "Portsmouth", url: "/images/external/portsmouth.webp" },
+    { name: "South Bank", url: "/images/external/south-bank.webp" },
+    { name: "Staffordshire", url: "/images/external/stafford.webp" },
+    { name: "UCB", url: "/images/external/ucb.webp" },
+    { name: "UVS", url: "/images/external/uws.webp" },
+    { name: "Westminster", url: "/images/external/westminister.webp" },
+    { name: "Wrexham", url: "/images/external/wrexham.webp" },
+    { name: "Yorkville", url: "/images/external/yorkville.webp" },
+    { name: "Aston", url: "/images/external/aston.webp" },
   ];
 
   const allPartners = [...partnersRow1, ...partnersRow2];

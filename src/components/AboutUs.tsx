@@ -27,7 +27,7 @@ export default function AboutUs() {
         <div className={`md:w-1/2 relative transition-all duration-1000 ${isVisible ? 'translate-x-0 opacity-100' : '-translate-x-12 opacity-0'}`}>
           <div className="absolute inset-0 bg-brand-blue/20 transform rotate-3 rounded-3xl"></div>
           <img 
-            src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2071&auto=format&fit=crop" 
+            src="/images/external/1522202176988-66273c2fd55f.jpg" 
             alt="Professionals in a learning environment" 
             className="relative z-10 w-full rounded-3xl object-cover object-center shadow-2xl h-[400px] hover:scale-[1.02] transition-transform duration-500"
           />

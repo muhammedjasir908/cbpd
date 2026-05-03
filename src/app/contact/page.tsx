@@ -2,6 +2,7 @@
 
 import TiltCard from "@/components/TiltCard";
 import MagneticButton from "@/components/MagneticButton";
+import FormAlert from "@/components/FormAlert";
 import { countryCodes } from "@/data/countries";
 import { useState, useEffect } from "react";
 import { api } from "@/lib/api";
@@ -208,7 +209,7 @@ export default function ContactPage() {
                           <option value="" disabled>Select a programme</option>
                           {programData.map((category, idx) => (
                             <optgroup key={idx} label={category.title}>
-                              {category.subs.map((sub, subIdx) => (
+                              {category.subs.map((sub: any, subIdx: number) => (
                                 <option key={subIdx} value={sub.title}>{sub.title}</option>
                               ))}
                             </optgroup>
@@ -230,14 +231,10 @@ export default function ContactPage() {
                     </MagneticButton>
                     
                     {status === "success" && (
-                      <div className="p-4 bg-green-500/10 border border-green-500/20 text-green-600 dark:text-green-400 rounded-xl mt-4 animate-[fadeInUp_0.3s_ease-out]">
-                        {successMessage}
-                      </div>
+                      <FormAlert type="success" message={successMessage} onClose={() => setStatus("idle")} />
                     )}
                     {status === "error" && (
-                      <div className="p-4 bg-red-500/10 border border-red-500/20 text-red-600 dark:text-red-400 rounded-xl mt-4 animate-[fadeInUp_0.3s_ease-out]">
-                        {errorMessage}
-                      </div>
+                      <FormAlert type="error" message={errorMessage} onClose={() => setStatus("idle")} />
                     )}
                   </form>
                 </div>

@@ -42,16 +42,16 @@ export default function LearnersPage() {
   ];
 
   const testimonials = [
-    { name: "Sarah M.", role: "HR Director", quote: "Obtaining my CBPD certification was a turning point. It provided tangible skills that I instantly applied to streamline our entire recruitment process.", image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=200&auto=format&fit=crop" },
-    { name: "James L.", role: "IT Project Manager", quote: "The flexible learning options meant I could continue my demanding role while studying. The digital credential I gained was key for my promotion.", image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=200&auto=format&fit=crop" },
-    { name: "Amanda T.", role: "Operations Lead", quote: "CBPD's focus on practical application makes it stand out from typical theoretical courses. The results were immediate and incredibly beneficial.", image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=200&auto=format&fit=crop" },
+    { name: "Sarah M.", role: "HR Director", quote: "Obtaining my CBPD certification was a turning point. It provided tangible skills that I instantly applied to streamline our entire recruitment process.", image: "/images/external/1573496359142-b8d87734a5a2.jpg" },
+    { name: "James L.", role: "IT Project Manager", quote: "The flexible learning options meant I could continue my demanding role while studying. The digital credential I gained was key for my promotion.", image: "/images/external/1560250097-0b93528c311a.jpg" },
+    { name: "Amanda T.", role: "Operations Lead", quote: "CBPD's focus on practical application makes it stand out from typical theoretical courses. The results were immediate and incredibly beneficial.", image: "/images/external/1580489944761-15a19d654956.jpg" },
   ];
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-[#0a0f1c]">
       {/* Hero Section */}
       <section className="relative pt-40 pb-20 bg-primary-900 border-b border-primary-800 overflow-hidden">
-        <div className="absolute inset-0 opacity-30 bg-[url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2000&auto=format&fit=crop')] bg-cover bg-center mix-blend-overlay z-0"></div>
+        <div className="absolute inset-0 opacity-30 bg-[url('/images/external/1522202176988-66273c2fd55f.jpg')] bg-cover bg-center mix-blend-overlay z-0"></div>
         <div className="absolute inset-0 bg-gradient-to-t from-primary-900 via-primary-900/80 to-transparent z-0"></div>
 
         <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-brand-blue/20 rounded-full blur-[150px] pointer-events-none z-0 animate-[pulse_8s_infinite]"></div>
@@ -153,7 +153,7 @@ export default function LearnersPage() {
 
       {/* CTA Section */}
       <section className="py-24 relative overflow-hidden bg-primary-900 border-t border-white/5">
-        <div className="absolute inset-0 opacity-20 bg-[url('https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center mix-blend-overlay z-0"></div>
+        <div className="absolute inset-0 opacity-20 bg-[url('/images/external/1524178232363-1fb2b075b655.jpg')] bg-cover bg-center mix-blend-overlay z-0"></div>
         <div className="absolute inset-0 bg-gradient-to-t from-primary-900 via-primary-900/90 to-transparent z-0"></div>
 
         <div className="container mx-auto px-6 md:px-12 relative z-10 animate-on-scroll translate-y-12 opacity-0 transition-all duration-700 ease-out delay-200 text-center max-w-4xl">

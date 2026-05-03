@@ -4,11 +4,11 @@ import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 
 const BACKGROUND_VIDEOS = [
-  "https://videos.pexels.com/video-files/7490429/7490429-hd_1280_720_25fps.mp4", // Aerial footage of a university
-  "https://videos.pexels.com/video-files/6550141/6550141-hd_1280_720_25fps.mp4", // Man and woman at the library
-  "https://videos.pexels.com/video-files/8198513/8198513-hd_1280_720_25fps.mp4", // Students listening to the professor
-  "https://videos.pexels.com/video-files/8199413/8199413-hd_1280_720_25fps.mp4", // People studying together
-  "https://videos.pexels.com/video-files/7683332/7683332-hd_1280_720_30fps.mp4"  // College students walking in the campus
+  "/videos/external/7490429.mp4", // Aerial footage of a university
+  "/videos/external/6550141.mp4", // Man and woman at the library
+  "/videos/external/8198513.mp4", // Students listening to the professor
+  "/videos/external/8199413.mp4", // People studying together
+  "/videos/external/7683332.mp4"  // College students walking in the campus
 ];
 
 export default function Hero() {

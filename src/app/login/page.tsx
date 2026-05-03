@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import FormAlert from "@/components/FormAlert";
 import { api } from "@/lib/api";
 
 export default function LoginPage() {
@@ -10,12 +11,14 @@ export default function LoginPage() {
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
+  const [successMsg, setSuccessMsg] = useState("");
   const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
     setErrorMsg("");
+    setSuccessMsg("");
 
     try {
       const response = await api.login({ email, password });
@@ -25,7 +28,8 @@ export default function LoginPage() {
         localStorage.setItem("token", response.token);
       }
       
-      router.push("/dashboard"); // Redirect to dashboard or home
+      setSuccessMsg("Login successful! Redirecting...");
+      setTimeout(() => router.push("/dashboard"), 1000);
     } catch (err: any) {
       console.error("Login error:", err);
       setErrorMsg(err.message || "Invalid credentials. Please try again.");
@@ -48,7 +52,7 @@ export default function LoginPage() {
           <div className="md:w-5/12 bg-primary-900 relative hidden md:flex flex-col justify-between p-12 overflow-hidden border-r border-slate-200 dark:border-white/10">
             <div className="absolute inset-0 z-0 opacity-40">
               <img 
-                src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2071&auto=format&fit=crop" 
+                src="/images/external/1522202176988-66273c2fd55f.jpg" 
                 alt="Students studying" 
                 className="w-full h-full object-cover mix-blend-luminosity"
               />
@@ -58,7 +62,7 @@ export default function LoginPage() {
             <div className="relative z-10">
               <Link href="/">
                 <img 
-                  src="https://www.cbpd.co.uk/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FCBPD_LOGO.7c42c792.png&w=256&q=75" 
+                  src="/images/external/CBPD_LOGO.7c42c792.png" 
                   alt="CBPD Logo" 
                   className="h-24 w-auto rounded-xl p-4 shadow-xl hover:scale-105 transition-transform"
                 />
@@ -85,7 +89,7 @@ export default function LoginPage() {
             <div className="mb-10 text-center md:text-left">
               <div className="md:hidden flex justify-center mb-8">
                 <Link href="/">
-                  <img src="https://www.cbpd.co.uk/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FCBPD_LOGO.7c42c792.png&w=256&q=75" alt="CBPD Logo" className="h-14 w-auto bg-white rounded p-2 shadow-md border border-slate-100" />
+                  <img src="/images/external/CBPD_LOGO.7c42c792.png" alt="CBPD Logo" className="h-14 w-auto bg-white rounded p-2 shadow-md border border-slate-100" />
                 </Link>
               </div>
               <h1 className="text-3xl md:text-4xl font-bold text-slate-800 dark:text-white mb-3 tracking-tight">
@@ -104,9 +108,10 @@ export default function LoginPage() {
 
             <form onSubmit={handleSubmit} className="space-y-6">
               {errorMsg && (
-                <div className="p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-red-600 dark:text-red-400 rounded-xl text-sm animate-[fadeIn_0.3s_ease-out]">
-                  {errorMsg}
-                </div>
+                <FormAlert type="error" message={errorMsg} onClose={() => setErrorMsg("")} />
+              )}
+              {successMsg && (
+                <FormAlert type="success" message={successMsg} onClose={() => setSuccessMsg("")} />
               )}
               <div className="space-y-2 relative">
                 <label className="text-sm font-semibold text-slate-700 dark:text-slate-300 ml-1">Email Address</label>

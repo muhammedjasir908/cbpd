@@ -109,7 +109,7 @@ export default function HumanResourcesProgramPage() {
         {/* Background Image */}
         <div 
           className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat pointer-events-none"
-          style={{ backgroundImage: `url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1600&auto=format&fit=crop')` }}
+          style={{ backgroundImage: `url('/images/external/1522071820081-009f0129c71c.jpg')` }}
         ></div>
         {/* Dark overlay for text legibility */}
         <div className="absolute inset-0 z-0 bg-primary-900/80 pointer-events-none"></div>

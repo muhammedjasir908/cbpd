@@ -2,6 +2,7 @@
 
 import MagneticButton from "@/components/MagneticButton";
 import TiltCard from "@/components/TiltCard";
+import FormAlert from "@/components/FormAlert";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { countryCodes } from "@/data/countries";
@@ -23,12 +24,26 @@ export default function PartnerPage() {
     const formData = new FormData(e.currentTarget);
     const data = Object.fromEntries(formData.entries());
     
-    // Combine phone code and number
-    data.phone = `${data.phoneCode} ${data.phone}`.trim();
-    delete data.phoneCode;
+    // Map to backend schema
+    const payload = {
+      organizationName: data.orgName,
+      website: data.website,
+      authorizedSignatory: data.headName,
+      yearOfInception: data.inceptionYear,
+      addressLine1: data.address1,
+      addressLine2: data.address2 || "",
+      cityState: data.city,
+      country: data.country,
+      email: data.email,
+      phone: `${data.phoneCode} ${data.phone}`.trim(),
+      instituteProfile: data.accreditation === "Yes" && data.accreditationDetails 
+        ? `${data.profile}\n\nAccreditation Details: ${data.accreditationDetails}` 
+        : data.profile,
+      hasAccreditations: data.accreditation,
+    };
 
     try {
-      const response = await api.submitPartner(data);
+      const response = await api.submitPartner(payload);
       setStatus("success");
       setSuccessMessage(response?.message || "Partner enquiry sent successfully! We will get back to you shortly.");
       e.currentTarget.reset();
@@ -91,7 +106,7 @@ export default function PartnerPage() {
       {/* Hero Section */}
       <section className="relative pt-40 pb-20 bg-primary-900 border-b border-primary-800 overflow-hidden">
         {/* Abstract Background Elements */}
-        <div className="absolute inset-0 opacity-20 bg-[url('https://images.unsplash.com/photo-1556761175-4b46a572b786?q=80&w=2000&auto=format&fit=crop')] bg-cover bg-center mix-blend-overlay z-0"></div>
+        <div className="absolute inset-0 opacity-20 bg-[url('/images/external/1556761175-4b46a572b786.jpg')] bg-cover bg-center mix-blend-overlay z-0"></div>
         <div className="absolute inset-0 bg-gradient-to-t from-primary-900 via-primary-900/80 to-transparent z-0"></div>
 
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-red/10 rounded-full blur-[150px] pointer-events-none z-0 animate-[pulse_8s_infinite]"></div>
@@ -146,7 +161,7 @@ export default function PartnerPage() {
               <div className="relative rounded-3xl overflow-hidden shadow-2xl group border border-slate-200 dark:border-white/10">
                 <div className="absolute inset-0 bg-brand-blue/20 mix-blend-multiply z-10 group-hover:bg-transparent transition-all duration-500"></div>
                 <img 
-                  src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=2070&auto=format&fit=crop" 
+                  src="/images/external/1600880292203-757bb62b4baf.jpg" 
                   alt="Business Partnership Agreement" 
                   className="w-full h-[500px] object-cover transition-transform duration-700 group-hover:scale-105"
                 />
@@ -234,7 +249,7 @@ export default function PartnerPage() {
 
       {/* CTA Section */}
       <section className="py-24 relative overflow-hidden bg-primary-900">
-        <div className="absolute inset-0 opacity-20 bg-[url('https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center mix-blend-overlay z-0"></div>
+        <div className="absolute inset-0 opacity-20 bg-[url('/images/external/1552664730-d307ca884978.jpg')] bg-cover bg-center mix-blend-overlay z-0"></div>
         <div className="absolute inset-0 bg-gradient-to-t from-primary-900 via-primary-900/90 to-transparent z-0"></div>
 
         <div className="container mx-auto px-6 md:px-12 relative z-10 animate-on-scroll translate-y-12 opacity-0 transition-all duration-700 ease-out delay-200 text-center max-w-4xl">
@@ -372,14 +387,10 @@ export default function PartnerPage() {
               )}
 
               {status === "success" && (
-                <div className="p-4 bg-green-500/10 border border-green-500/20 text-green-600 dark:text-green-400 rounded-xl mt-4 animate-[fadeInUp_0.3s_ease-out]">
-                  {successMessage}
-                </div>
+                <FormAlert type="success" message={successMessage} onClose={() => setStatus("idle")} />
               )}
               {status === "error" && (
-                <div className="p-4 bg-red-500/10 border border-red-500/20 text-red-600 dark:text-red-400 rounded-xl mt-4 animate-[fadeInUp_0.3s_ease-out]">
-                  {errorMessage}
-                </div>
+                <FormAlert type="error" message={errorMessage} onClose={() => setStatus("idle")} />
               )}
 
               <div className="flex justify-center mt-10">
